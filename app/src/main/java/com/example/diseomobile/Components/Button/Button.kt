@@ -1,4 +1,4 @@
-package com.example.diseomobile.Button
+package com.example.diseomobile.Components.Button
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.diseomobile.ui.theme.PrimaryColor
-import com.example.diseomobile.ui.theme.Secondary200
 
 @Composable
 fun ButtonMain(color : Color, buttonText: String){

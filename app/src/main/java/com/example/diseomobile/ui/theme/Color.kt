@@ -3,12 +3,12 @@ package com.example.diseomobile.ui.theme
 import androidx.compose.ui.graphics.Color
 
 val PrimaryColor = Color(0xFF9AFC03)
-val Primary200 = Color(0xFF3700B3)
+val Primary200 = Color(0xFF9BC55B)
 val Primary300 = Color(0xFF3700B3)
 val Primary400 = Color(0xFF3700B3)
 val Primary500 = Color(0xFF3700B3)
-val SecondaryColor = Color(0xFF03DAC5)
-val Secondary200 = Color(0xFF03DAC5)
+val SecondaryColor = Color(0xFFFF3306)
+val Secondary200 = Color(0xFFC56E5B)
 val Secondary300 = Color(0xFF03DAC5)
 val Secondary400 = Color(0xFF03DAC5)
 val BackgroundColor = Color(0xFFFFFFFF)
