@@ -25,11 +25,17 @@ import com.example.diseomobile.Components.Button.ButtonType
 import com.example.diseomobile.Components.Button.FilledButton
 import com.example.diseomobile.ui.theme.BodyRegular
 import com.example.diseomobile.ui.theme.BodySemiBold
+import com.example.diseomobile.ui.theme.Primary300
+import com.example.diseomobile.ui.theme.Primary400
 import com.example.diseomobile.ui.theme.SubtitleSemiBold
+import com.example.diseomobile.ui.theme.Title2Regular
+import com.example.diseomobile.ui.theme.Title2SemiBold
+import com.example.diseomobile.utils.categorizeMovementsByDate
 import java.util.Date
 
 @Composable
 fun RecentActivity(movements: List<MovementParams>) {
+    val categorizedMovements = categorizeMovementsByDate(movements)
 
     Box(
         modifier = Modifier.border(
@@ -59,11 +65,15 @@ fun RecentActivity(movements: List<MovementParams>) {
                 }
             }
 
-            Column{
-                movements.forEach {
-                    Spacer(modifier = Modifier.height(24.dp))
-                    Movement(it)
-                }
+            Column {
+               categorizedMovements.forEach { (date , movement) ->
+                   Spacer(modifier = Modifier.height(16.dp))
+                   Text(text = date , style = Title2SemiBold, color = Primary400)
+                     movement.forEach {
+                         Spacer(modifier = Modifier.height(8.dp))
+                         Movement(it)
+                     }
+               }
             }
         }
     }
@@ -101,7 +111,7 @@ fun RecentActivity(movements: List<MovementParams>) {
                         "200",
                         "Le pague a mi tio",
                         false,
-                        Date()
+                        Date(2, 23,30)
                     ),
                 )
             )
