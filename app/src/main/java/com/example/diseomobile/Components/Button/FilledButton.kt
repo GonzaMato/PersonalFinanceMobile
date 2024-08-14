@@ -3,6 +3,7 @@ package com.example.diseomobile.Components.Button
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -17,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.diseomobile.ui.theme.PrimaryColor
 import com.example.diseomobile.ui.theme.SecondaryColor
+import com.example.diseomobile.ui.theme.SubtitleSemiBold
 
 enum class ButtonType {
     PRIMARY,
@@ -32,13 +34,12 @@ fun FilledButton(text : String, type : ButtonType, onClick : () -> Unit ) {
     
     Box(modifier = Modifier
         .background(backgroundColor, RoundedCornerShape(10.dp))
-        .padding(16.dp)
         .fillMaxWidth()
-        .height(40.dp)
+        .fillMaxHeight()
         .clickable { onClick() },
         contentAlignment = Alignment.Center
     ) {
-        Text(text = text, color = Color.Black, style = MaterialTheme.typography.titleMedium)
+        Text(text = text, color = Color.Black, style = SubtitleSemiBold, )
     }
 }
 

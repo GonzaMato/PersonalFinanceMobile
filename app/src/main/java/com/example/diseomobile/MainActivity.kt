@@ -13,7 +13,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.diseomobile.Components.BalanceCard
-import com.example.diseomobile.Components.Button.ButtonMain
 import com.example.diseomobile.ui.theme.DiseñoMobileTheme
 import com.example.diseomobile.ui.theme.PrimaryColor
 
@@ -37,7 +36,6 @@ fun Homepage() {
         modifier = Modifier.fillMaxSize()
     ) {
         Text(text = "Welcome toe app", style = MaterialTheme.typography.bodyMedium)
-        ButtonMain(color = PrimaryColor, buttonText = "Ahhh")
         BalanceCard(balance = "$ 25.000", negative = false)
     }
 }

@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.diseomobile.ui.theme.PrimaryColor
 import com.example.diseomobile.ui.theme.SecondaryColor
+import com.example.diseomobile.ui.theme.SubtitleSemiBold
 
 @Composable
 fun OutlineButton(text : String, type : ButtonType, onClick : () -> Unit ) {
@@ -34,7 +35,7 @@ fun OutlineButton(text : String, type : ButtonType, onClick : () -> Unit ) {
         .clickable { onClick() },
         contentAlignment = Alignment.Center
     ) {
-        Text(text = text, color = Color.Black, style = MaterialTheme.typography.titleMedium)
+        Text(text = text, color = Color.Black, style = SubtitleSemiBold)
     }
 }
 
