@@ -42,20 +42,10 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun Homepage() {
-    Column(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        Text(text = "Welcome the app", style = MaterialTheme.typography.bodyMedium)
-        BalanceCard(balance = "$ 25.000", negative = false)
-    }
-}
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     DiseñoMobileTheme {
-        Homepage()
     }
 }

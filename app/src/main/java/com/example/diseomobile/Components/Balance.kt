@@ -20,6 +20,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.diseomobile.R
 import com.example.diseomobile.ui.theme.SecondaryColor
+import com.example.diseomobile.ui.theme.Title2Regular
+import com.example.diseomobile.ui.theme.Title2SemiBold
 
 @Composable
 fun BalanceCard(balance: String, negative : Boolean) {
@@ -35,9 +37,9 @@ val textColor = if(negative) Color.White else Color.Black
         Column (
             horizontalAlignment = Alignment.Start
         ) {
-            Text(text = stringResource(R.string.Balance), color = textColor, style = MaterialTheme.typography.titleMedium)
+            Text(text = stringResource(R.string.Balance), color = textColor, style = Title2SemiBold)
             Spacer(modifier = Modifier.height(8.dp))
-            Text(text = balance, color = textColor, style = MaterialTheme.typography.bodyMedium)
+            Text(text = balance, color = textColor, style = Title2Regular)
         }
     }
 }

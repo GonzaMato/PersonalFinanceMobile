@@ -4,8 +4,10 @@
     <string name="ShowAll">Show All</string>
     <string name="Today">Today</string>
     <string name="LastWeek">Last Week</string>
-    <string name="ThisMont">This Month</string>
+    <string name="ThisMonth">This Month</string>
     <string name="LastMonth">Last Month</string>
     <string name="ThisYear">This Year</string>
     <string name="Balance">Balance</string>
+    <string name="WelcomMessage">"Hello, "</string>
+    <string name="AddFunds">New Transaction</string>
 </resources>

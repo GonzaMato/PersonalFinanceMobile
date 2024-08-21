@@ -37,7 +37,14 @@ import java.util.Date
 
 @Composable
 fun RecentActivity(movements: List<MovementParams>) {
-    val categorizedMovements = categorizeMovementsByDate(movements)
+    val nameByDate = mapOf(
+        "Today" to stringResource(R.string.Today),
+        "LastWeek" to stringResource(R.string.LastWeek),
+        "ThisMonth" to stringResource(R.string.ThisMonth),
+        "LastMonth" to stringResource(R.string.LastMonth),
+        "ThisYear" to stringResource(R.string.ThisYear),
+    )
+    val categorizedMovements = categorizeMovementsByDate(nameByDate, movements)
 
     Box(
         modifier = Modifier.border(

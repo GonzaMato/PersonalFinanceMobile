@@ -9,18 +9,21 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.diseomobile.Homepage
 import com.example.diseomobile.pages.GraphPage
+import com.example.diseomobile.pages.HomePage
 
 @Composable
 fun NavHostComposable(navController: NavHostController, innerPadding: PaddingValues) {
     NavHost(
         navController = navController,
         startDestination = WiseRipOffScreens.Home.name,
-        modifier = Modifier.fillMaxWidth().padding(innerPadding).padding(horizontal = 24.dp)
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(innerPadding)
+            .padding(horizontal = 24.dp)
     ) {
         composable(WiseRipOffScreens.Home.name) {
-            Homepage()
+            HomePage()
         }
 
         composable(WiseRipOffScreens.Graphs.name) {

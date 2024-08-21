@@ -1,10 +1,15 @@
 package com.example.diseomobile.utils
 
+import android.content.Context
 import com.example.diseomobile.Components.RecentActivity.MovementParams
-import java.util.*
+import com.example.diseomobile.R
 import java.text.SimpleDateFormat
+import java.util.*
 
-fun categorizeMovementsByDate(movements: List<MovementParams>): Map<String, List<MovementParams>> {
+fun categorizeMovementsByDate(
+    dateStrings : Map<String, String>,
+    movements: List<MovementParams>
+): Map<String, List<MovementParams>> {
     val today = Calendar.getInstance()
 
     val categorizedMovements = movements
@@ -13,12 +18,12 @@ fun categorizeMovementsByDate(movements: List<MovementParams>): Map<String, List
             val movementDate = Calendar.getInstance().apply { time = movement.date }
 
             when {
-                isSameDay(today, movementDate) -> "Today"
-                isLastWeek(movementDate) -> "Last Week"
-                isSameMonth(today, movementDate) -> "This Month"
-                isLastMonth(movementDate) -> "Last Month"
-                isSameYear(today, movementDate) -> "This Year"
-                else -> SimpleDateFormat("yyyy").format(movement.date)
+                isSameDay(today, movementDate) -> dateStrings.get("Today").orEmpty()
+                isLastWeek(movementDate) -> dateStrings.get("LastWeek").orEmpty()
+                isSameMonth(today, movementDate) -> dateStrings.get("ThisMonth").orEmpty()
+                isLastMonth(movementDate) -> dateStrings.get("LastMonth").orEmpty()
+                isSameYear(today, movementDate) -> dateStrings.get("ThisYear").orEmpty()
+                else -> SimpleDateFormat("yyyy", Locale.getDefault()).format(movement.date)
             }
         }
 
@@ -31,8 +36,9 @@ private fun isSameDay(today: Calendar, other: Calendar): Boolean {
 }
 
 private fun isLastWeek(other: Calendar): Boolean {
-    val today = Calendar.getInstance()
-    today.add(Calendar.DAY_OF_YEAR, -7)
+    val today = Calendar.getInstance().apply {
+        add(Calendar.DAY_OF_YEAR, -7)
+    }
     return !isSameDay(today, other) && other.after(today)
 }
 
@@ -42,8 +48,9 @@ private fun isSameMonth(today: Calendar, other: Calendar): Boolean {
 }
 
 private fun isLastMonth(other: Calendar): Boolean {
-    val today = Calendar.getInstance()
-    today.add(Calendar.MONTH, -1)
+    val today = Calendar.getInstance().apply {
+        add(Calendar.MONTH, -1)
+    }
     return today.get(Calendar.YEAR) == other.get(Calendar.YEAR) &&
             today.get(Calendar.MONTH) == other.get(Calendar.MONTH)
 }
