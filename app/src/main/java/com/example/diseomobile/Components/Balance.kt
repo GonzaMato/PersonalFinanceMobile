@@ -16,7 +16,9 @@ import androidx.compose.ui.graphics.Color
 import com.example.diseomobile.ui.theme.PrimaryColor
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.Text
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.diseomobile.R
 import com.example.diseomobile.ui.theme.SecondaryColor
 
 @Composable
@@ -33,7 +35,7 @@ val textColor = if(negative) Color.White else Color.Black
         Column (
             horizontalAlignment = Alignment.Start
         ) {
-            Text(text = "Balance", color = textColor, style = MaterialTheme.typography.titleMedium)
+            Text(text = stringResource(R.string.Balance), color = textColor, style = MaterialTheme.typography.titleMedium)
             Spacer(modifier = Modifier.height(8.dp))
             Text(text = balance, color = textColor, style = MaterialTheme.typography.bodyMedium)
         }

@@ -18,11 +18,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.diseomobile.Components.Button.ButtonType
 import com.example.diseomobile.Components.Button.FilledButton
+import com.example.diseomobile.R
 import com.example.diseomobile.ui.theme.BodyRegular
 import com.example.diseomobile.ui.theme.BodySemiBold
 import com.example.diseomobile.ui.theme.Primary300
@@ -54,14 +56,14 @@ fun RecentActivity(movements: List<MovementParams>) {
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(text = "Recent Activity", style = SubtitleSemiBold)
+                Text(text = stringResource(R.string.RecentActivity), style = SubtitleSemiBold)
 
                 Box(
                     modifier = Modifier
                         .width(116.dp)
                         .height(40.dp)
                 ) {
-                    FilledButton(text = "Show All", type = ButtonType.PRIMARY) {}
+                    FilledButton(text = stringResource(R.string.ShowAll) , type = ButtonType.PRIMARY) {}
                 }
             }
 

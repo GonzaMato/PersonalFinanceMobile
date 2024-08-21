@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">DiseñoMobile</string>
+    <string name="RecentActivity">Recent Activity</string>
+    <string name="ShowAll">Show All</string>
+    <string name="Today">Today</string>
+    <string name="LastWeek">Last Week</string>
+    <string name="ThisMont">This Month</string>
+    <string name="LastMonth">Last Month</string>
+    <string name="ThisYear">This Year</string>
+    <string name="Balance">Balance</string>
 </resources>
