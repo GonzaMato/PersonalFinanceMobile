@@ -37,7 +37,7 @@ fun HomePage() {
 
         }
         Spacer(modifier = Modifier.padding(12.dp))
-        RecentActivity(movements = listOf(MovementParams("Gasto 1" , "1000", "Gasto en comida", false, java.util.Date()), MovementParams("Ingreso 1" , "1000", "Ingreso en trabajo", true, java.util.Date())))
+        RecentActivity(movements = listOf(MovementParams("Gasto 1" , 1000, "Gasto en comida", false, java.util.Date()), MovementParams("Ingreso 1" , 1000, "Ingreso en trabajo", true, java.util.Date())))
     }
 }
 

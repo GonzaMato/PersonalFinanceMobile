@@ -103,21 +103,21 @@ fun RecentActivity(movements: List<MovementParams>) {
                 movements = listOf(
                     MovementParams(
                         "Gasto 1",
-                        "200",
+                        200,
                         "Le pague a mi tio",
                         false,
                         Date()
                     ),
                     MovementParams(
                         "Gasto 2",
-                        "200",
+                        200,
                         "Le pague a mi tio",
                         false,
                         Date()
                     ),
                     MovementParams(
                         "Gasto 3",
-                        "200",
+                        200,
                         "Le pague a mi tio",
                         false,
                         Date(2, 23,30)

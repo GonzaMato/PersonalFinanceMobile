@@ -24,7 +24,7 @@ import java.util.Date
 
 data class MovementParams(
     val title: String,
-    val amount: String,
+    val amount: Int,
     val description: String,
     val income: Boolean,
     val date : Date
@@ -33,7 +33,7 @@ data class MovementParams(
 @Composable
 fun Movement(movementData : MovementParams) {
     val movementAmountLiteral = movementData.amount
-    val movementAmount = if (movementData.income) "$ +$movementAmountLiteral" else "$ -$movementAmountLiteral"
+    val movementAmount = if (movementData.income) "$ +${roundAmount(movementAmountLiteral)}" else "$ -${roundAmount(movementAmountLiteral)}"
     val movementColor = if (movementData.income) PrimaryColor else SecondaryColor
 
     Row (
@@ -50,6 +50,13 @@ fun Movement(movementData : MovementParams) {
     }
 }
 
+fun roundAmount(amount : Int) : String {
+    return when {
+        amount < 1000 -> "$$amount"
+        amount < 1000000 -> "$${amount / 1000}K"
+        else -> "$${amount / 1000000}M"
+    }
+}
 
 @Preview
 @Composable
@@ -60,9 +67,9 @@ fun PreviewMovement(){
     ) {
         Column(
         ) {
-            Movement(MovementParams("Gasto 1","200", "Le pague a mi tio", false, Date()))
+            Movement(MovementParams("Gasto 1",20000, "Le pague a mi tio", false, Date()))
 
-            Movement(MovementParams("Ingreso 1", amount = "300", description = "Me presto plata mi tio", income = true, Date()))
+            Movement(MovementParams("Ingreso 1", amount = 300, description = "Me presto plata mi tio", income = true, Date()))
         }
     }
 }
