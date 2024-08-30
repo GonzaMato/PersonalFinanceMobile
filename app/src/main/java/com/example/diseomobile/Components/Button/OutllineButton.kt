@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -29,9 +30,8 @@ fun OutlineButton(text : String, type : ButtonType, onClick : () -> Unit ) {
 
     Box(modifier = Modifier
         .border(width = 2.dp , color = backgroundColor, shape = RoundedCornerShape(10.dp))
-        .padding(16.dp)
         .fillMaxWidth()
-        .height(40.dp)
+        .fillMaxHeight()
         .clickable { onClick() },
         contentAlignment = Alignment.Center
     ) {
