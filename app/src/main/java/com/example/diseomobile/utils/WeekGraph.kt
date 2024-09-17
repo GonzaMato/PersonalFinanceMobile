@@ -9,6 +9,7 @@ import com.example.diseomobile.ui.theme.BodyRegular
 import java.time.LocalDate
 import java.time.YearMonth
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 import kotlin.math.log10
 
@@ -63,37 +64,52 @@ fun getLengthForWeekDays(week: Map<DayOfWeek, Int>, minScale: Int = 20): Map<Day
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
-fun generateWeeksForMonth(year: Int, month: Int): List<List<DayParams>> {
-    val firstDayOfMonth = LocalDate.of(year, month, 1)
-    val yearMonth = YearMonth.of(year, month)
-    val daysInMonth = yearMonth.lengthOfMonth()
-
+fun getWeeksForMonth(lastDay: Date, amountOfWeeks: Int): List<List<DayParams>> {
     val weeks = mutableListOf<List<DayParams>>()
-    var week = mutableListOf<DayParams>()
+    val lastDayCalendar = Calendar.getInstance().apply { time = lastDay }
+    var currentDay = Calendar.getInstance().apply { time = lastDay }
 
-    // Calcular el día de la semana en que comienza el mes
-    val firstDayOfWeek = firstDayOfMonth.dayOfWeek.value
+    currentDay.add(Calendar.DAY_OF_MONTH, -(amountOfWeeks * 7 - 1))
 
-    // Rellenar los días anteriores si el mes no comienza en lunes
-    for (i in 1 until firstDayOfWeek) {
-        week.add(DayParams(day = "", number = 0))  // Día vacío
-    }
+    for (week in 1..amountOfWeeks) {
+        val thisWeek = mutableListOf<DayParams>()
 
-    for (day in 1..daysInMonth) {
-        val date = LocalDate.of(year, month, day)
-        val dayOfWeek = date.dayOfWeek.getDisplayName(BodyRegular, Locale.ENGLISH)
-
-        week.add(DayParams(day = dayOfWeek, number = day))
-
-        if (date.dayOfWeek.value == 7 || day == daysInMonth) {
-            while (week.size < 7) {
-                week.add(DayParams(day = "", number = 0))  // Día vacío
+        for (day in 0..6) {
+            val isSameMonth = currentDay.get(Calendar.MONTH) == lastDayCalendar.get(Calendar.MONTH)
+            val dayOfWeek = currentDay.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault())
+            dayOfWeek?.let {
+                if (isSameMonth) {
+                    thisWeek.add(DayParams(it, currentDay.get(Calendar.DAY_OF_MONTH)))
+                } else {
+                    thisWeek.add(DayParams(it, currentDay.get(Calendar.DAY_OF_MONTH), false))
+                }
             }
-            weeks.add(week)
-            week = mutableListOf()
+            currentDay.add(Calendar.DAY_OF_MONTH, 1)
         }
+
+        weeks.add(thisWeek)
     }
 
     return weeks
+}
+
+fun getMonthByDate(date: Date): String {
+    val calendar = Calendar.getInstance().apply { time = date }
+    return calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())?.take(3) ?: ""
+}
+
+fun getLastDayOfPreviousMonth(currentDate: Date): Date {
+    val calendar = Calendar.getInstance()
+    calendar.time = currentDate
+    calendar.add(Calendar.MONTH, -1)
+    calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH))
+    return calendar.time
+}
+
+fun getLastDayOfNextMonth(currentDate: Date): Date {
+    val calendar = Calendar.getInstance()
+    calendar.time = currentDate
+    calendar.add(Calendar.MONTH, 1)
+    calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH))
+    return calendar.time
 }

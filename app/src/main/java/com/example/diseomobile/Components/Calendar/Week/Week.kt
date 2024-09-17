@@ -1,10 +1,12 @@
 package com.example.diseomobile.Components.Calendar.Week
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -17,32 +19,38 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.diseomobile.ui.theme.BodyRegular
 import com.example.diseomobile.ui.theme.PrimaryColor
+import com.example.diseomobile.ui.theme.Tertiary400
 
 data class DayParams(
     val day : String,
-    val number: Int
+    val number: Int,
+    val inTheMonth : Boolean = true
 )
 
 @Composable
-fun WeekCompose(dayParams : List<DayParams>, selected : Boolean = true) {
+fun WeekCompose(dayParams : List<DayParams>, selected : Boolean = true, onClick : () -> Unit = {}) {
     val colorBackground = if (selected) PrimaryColor.copy(alpha = 0.5f) else Color.Transparent
+
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
             .background(color = colorBackground, shape= RoundedCornerShape(10.dp))
+            .fillMaxWidth()
+            .clickable { onClick() }
     ) {
         for (day in dayParams){
+            val textColor = if (day.inTheMonth || selected) Color.Black else Tertiary400
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .padding( top = 8.dp, bottom = 8.dp, start = 8.dp, end = 8.dp)
             ) {
-                Text(text = day.number.toString(), style = BodyRegular)
+                Text(text = day.number.toString(), style = BodyRegular, color = textColor)
                 Spacer(modifier = Modifier.height(4.dp))
-                Text(text = day.day, style = BodyRegular)
+                Text(text = day.day, style = BodyRegular, color = textColor)
             }
         }
     }

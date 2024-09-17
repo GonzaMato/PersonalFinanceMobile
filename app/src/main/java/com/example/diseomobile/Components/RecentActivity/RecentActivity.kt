@@ -97,8 +97,6 @@ fun RecentActivity(movements: List<MovementParams>) {
                 .background(Color.White)
                 .width(312.dp)
         ) {
-
-
             RecentActivity(
                 movements = listOf(
                     MovementParams(

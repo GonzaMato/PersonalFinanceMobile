@@ -23,12 +23,13 @@ import com.example.diseomobile.Components.RecentActivity.MovementParams
 import com.example.diseomobile.ui.theme.PrimaryColor
 import com.example.diseomobile.ui.theme.Title2Regular
 import com.example.diseomobile.ui.theme.TitleRegular
+import com.example.diseomobile.utils.DayOfWeek
 import com.example.diseomobile.utils.SeparateByWeek
 import com.example.diseomobile.utils.getLengthForWeekDays
 import java.util.Calendar
 
 @Composable
-fun GraphWeekly(movements: List<MovementParams>) {
+fun GraphWeekly(movements: List<MovementParams>, onDaySelected: (DayOfWeek) -> Unit = {}) {
     val weeklyMovement = SeparateByWeek(movements)
     val scaledWeek = getLengthForWeekDays(weeklyMovement)
     val selected = remember { mutableStateOf(-1) }  // Index of the selected column
@@ -68,6 +69,7 @@ fun GraphWeekly(movements: List<MovementParams>) {
                             selected = selected.value == index,
                             onClick = {
                                 selected.value = index
+                                onDaySelected(day)
                             }
                         )
                     }
