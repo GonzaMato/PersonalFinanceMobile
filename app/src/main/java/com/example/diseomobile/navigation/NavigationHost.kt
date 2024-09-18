@@ -9,6 +9,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.diseomobile.pages.AddFunds
 import com.example.diseomobile.pages.GraphPage
 import com.example.diseomobile.pages.HomePage
 
@@ -23,7 +24,10 @@ fun NavHostComposable(navController: NavHostController, innerPadding: PaddingVal
             .padding(horizontal = 24.dp)
     ) {
         composable(WiseRipOffScreens.Home.name) {
-            HomePage()
+            HomePage( navController)
+        }
+        composable(WiseRipOffScreens.NewTransaction.name) {
+            AddFunds()
         }
 
         composable(WiseRipOffScreens.Graphs.name) {

@@ -28,18 +28,24 @@ fun TextFieldCustom(
     placeHolder: String
 ) {
     BasicTextField(
-        value = value, onValueChange = onValueChange,
+        value = value,
+        onValueChange = { onValueChange(it)},
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
             .background(Color.Gray.copy(alpha = 0.1f), RoundedCornerShape(10.dp))
-            .border(1.dp , Color.Black, RoundedCornerShape(10.dp))
+            .border(1.dp, Color.Black, RoundedCornerShape(10.dp))
             .padding(16.dp),
         decorationBox = { innerTextField ->
-            if (value.isEmpty()) {
-                Text(text = placeHolder, color = Color.Gray, style = BodyRegular)
-            } else {
+            Box {
                 innerTextField()
+                if (value.isEmpty()) {
+                    Text(
+                        text = placeHolder,
+                        color = Color.Gray,
+                        style = BodyRegular,
+                        modifier = Modifier.padding(start = 4.dp, top = 4.dp)
+                    )
+                }
             }
         },
         textStyle = BodyRegular

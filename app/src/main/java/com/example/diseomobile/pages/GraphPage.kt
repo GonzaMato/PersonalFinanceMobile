@@ -78,7 +78,6 @@ fun GraphPage() {
                         movementDayOfWeek == selectedDay.value
                     }
                 } else {
-                    // If no day is selected, show all movements
                     movements
                 }
 

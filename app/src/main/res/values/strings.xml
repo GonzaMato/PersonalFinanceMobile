@@ -17,4 +17,8 @@
     <string name="thursday">Thu</string>
     <string name="friday">Fri</string>
     <string name="saturday">Sat</string>
+    <string name="Title">Title</string>
+    <string name="Description">Description</string>
+    <string name="Amount">Amount</string>
+    <string name="Date">Date</string>
 </resources>

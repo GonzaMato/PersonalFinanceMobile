@@ -17,17 +17,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.diseomobile.Components.BalanceCard
 import com.example.diseomobile.Components.Button.ButtonType
 import com.example.diseomobile.Components.Button.OutlineButton
 import com.example.diseomobile.Components.RecentActivity.MovementParams
 import com.example.diseomobile.Components.RecentActivity.RecentActivity
 import com.example.diseomobile.R
+import com.example.diseomobile.navigation.WiseRipOffScreens
 import com.example.diseomobile.ui.theme.Title2Regular
 import com.example.diseomobile.ui.theme.TitleRegular
 
 @Composable
-fun HomePage() {
+fun HomePage(navecontroller : NavHostController) {
     Box(
         modifier = Modifier
             .background(color = Color.White)
@@ -54,10 +56,9 @@ fun HomePage() {
                 ) {
                     OutlineButton(
                         text = stringResource(id = R.string.AddFunds),
-                        type = ButtonType.PRIMARY
-                    ) {
-
-                    }
+                        type = ButtonType.PRIMARY,
+                        onClick = { navecontroller.navigate(WiseRipOffScreens.NewTransaction.name)}
+                    )
                 }
                 Spacer(modifier = Modifier.padding(12.dp))
                 RecentActivity(
@@ -86,6 +87,6 @@ fun HomePage() {
 @Preview
 @Composable
 fun PreviewHomePage() {
-    HomePage()
+
 }
 

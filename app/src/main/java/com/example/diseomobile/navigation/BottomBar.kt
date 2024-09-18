@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -48,7 +49,7 @@ fun BottomBar(
     )
 
     val graphItem = IconBarItems(
-        icon = Icons.Default.Call,
+        icon = Icons.Default.DateRange,
         title = WiseRipOffScreens.Graphs.name
     )
 

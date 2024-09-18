@@ -2,7 +2,8 @@ package com.example.diseomobile.navigation
 
 enum class WiseRipOffScreens {
     Home,
-    Graphs
+    Graphs,
+    NewTransaction
 }
 
 val basePages = listOf(

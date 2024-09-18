@@ -1,28 +1,45 @@
 package com.example.diseomobile.Components.ViewModel
 
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import javax.inject.Inject
 
-class AddFundsViewModel : ViewModel() {
-    val title = mutableStateOf("")
-    val description = mutableStateOf("")
-    val amount = mutableStateOf("")
-    val date = mutableStateOf("")
+@HiltViewModel
+class AddFundsViewModel @Inject constructor() : ViewModel() {
+    private val _title = MutableStateFlow("")
+    val title = _title.asStateFlow()
 
-    fun onTitleChange(newTitle: String) {
-        title.value = newTitle
+    private val _description = MutableStateFlow("")
+    val description = _description.asStateFlow()
+
+    private val _amount = MutableStateFlow("")
+    val amount = _amount.asStateFlow()
+
+    private val _date = MutableStateFlow("")
+    val date = _date.asStateFlow()
+
+    fun setTitle(title: String) {
+        _title.value = title
     }
 
-    fun onDescriptionChange(newDescription: String) {
-        description.value = newDescription
+    fun setDescription(description: String) {
+        _description.value = description
     }
 
-    fun onAmountChange(newAmount: String) {
-        amount.value = newAmount
+    fun setAmount(amount: String) {
+        _amount.value = amount
     }
 
-    fun onDateChange(newDate: String) {
-        date.value = newDate
+    fun setDate(date: String) {
+        _date.value = date
     }
 
+    fun clearFields() {
+        _title.value = ""
+        _description.value = ""
+        _amount.value = ""
+        _date.value = ""
+    }
 }
