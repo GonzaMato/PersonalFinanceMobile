@@ -4,10 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.example.diseomobile.data.converters.Converters
 import com.example.diseomobile.data.models.Transaction
 import com.example.diseomobile.data.models.TransactionDao
 
 @Database(entities = [Transaction::class] , version = 1)
+@TypeConverters(Converters::class)
 abstract class WiseRipOffDatabase : RoomDatabase(){
     abstract fun transactionDao(): TransactionDao
 
@@ -20,7 +23,7 @@ abstract class WiseRipOffDatabase : RoomDatabase(){
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     WiseRipOffDatabase::class.java,
-                    "unscramble_database"
+                    "wise_rip_off_database"
                 ).build()
                 INSTANCE = instance
                 instance
