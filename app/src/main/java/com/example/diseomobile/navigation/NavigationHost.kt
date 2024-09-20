@@ -9,9 +9,9 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.diseomobile.pages.AddFunds
+import com.example.diseomobile.pages.newTransaction.AddFunds
 import com.example.diseomobile.pages.GraphPage
-import com.example.diseomobile.pages.HomePage
+import com.example.diseomobile.pages.homePage.HomePage
 
 @Composable
 fun NavHostComposable(navController: NavHostController, innerPadding: PaddingValues) {

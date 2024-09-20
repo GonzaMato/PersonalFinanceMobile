@@ -1,4 +1,4 @@
-package com.example.diseomobile.pages
+package com.example.diseomobile.pages.homePage
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,7 +25,6 @@ import com.example.diseomobile.Components.RecentActivity.RecentActivity
 import com.example.diseomobile.R
 import com.example.diseomobile.navigation.WiseRipOffScreens
 import com.example.diseomobile.ui.theme.Title2Regular
-import com.example.diseomobile.ui.theme.TitleRegular
 
 @Composable
 fun HomePage(navecontroller : NavHostController) {

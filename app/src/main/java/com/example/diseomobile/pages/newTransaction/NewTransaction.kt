@@ -1,5 +1,6 @@
-package com.example.diseomobile.pages
+package com.example.diseomobile.pages.newTransaction
 
+import android.app.DatePickerDialog
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,7 +16,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -25,21 +25,51 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.diseomobile.Components.Button.ButtonType
 import com.example.diseomobile.Components.Button.FilledButton
 import com.example.diseomobile.Components.TextField.TextFieldCustom
-import com.example.diseomobile.Components.ViewModel.AddFundsViewModel
 import com.example.diseomobile.R
-import com.example.diseomobile.ui.theme.BodySemiBold
 import com.example.diseomobile.ui.theme.SubtitleRegular
-import com.example.diseomobile.ui.theme.SubtitleSemiBold
 import com.example.diseomobile.ui.theme.TitleRegular
-
+import java.util.Calendar
+import android.app.TimePickerDialog
+import androidx.compose.foundation.layout.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.platform.LocalContext
+import java.text.SimpleDateFormat
+import java.util.*
 @Composable
 fun AddFunds() {
-    val viewModel = hiltViewModel<AddFundsViewModel>()
+    val viewModel = hiltViewModel<ViewModelNewTransaction>()
 
     val title by viewModel.title.collectAsState()
     val description by viewModel.description.collectAsState()
     val amount by viewModel.amount.collectAsState()
-    val date by viewModel.date.collectAsState()
+    val selectedDate by viewModel.date.collectAsState()
+
+    val calendar = Calendar.getInstance()
+
+    // Inicializamos el calendar con el valor de selectedDate
+    LaunchedEffect(selectedDate) {
+        calendar.time = selectedDate
+    }
+
+    // Date Picker Dialog
+    val datePickerDialog = DatePickerDialog(
+        LocalContext.current,
+        { _, year, month, dayOfMonth ->
+            calendar.set(year, month, dayOfMonth)
+        },
+        calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)
+    )
+
+    // Time Picker Dialog
+    val timePickerDialog = TimePickerDialog(
+        LocalContext.current,
+        { _, hourOfDay, minute ->
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+            calendar.set(Calendar.MINUTE, minute)
+            viewModel.setDate(calendar.time) // Guardar el valor en el ViewModel como Date
+        },
+        calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true
+    )
 
 
     Box(modifier = Modifier
@@ -82,12 +112,16 @@ fun AddFunds() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            Text(text = stringResource(id = R.string.Date) , style = SubtitleRegular)
-            TextFieldCustom(
-                value = date,
-                onValueChange = viewModel::setDate,
-                placeHolder = stringResource(id = R.string.Date)
+            Text(text = stringResource(id = R.string.Date), style = SubtitleRegular)
+            FilledButton(
+                text = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(selectedDate),
+                type = ButtonType.SECONDARY,
+                onClick = {
+                    datePickerDialog.show() // Mostrar el selector de fecha
+                    timePickerDialog.show()  // Mostrar el selector de hora después de la fecha
+                }
             )
+
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -106,6 +140,13 @@ fun AddFunds() {
                         type = ButtonType.PRIMARY,
                         onClick = {
                             viewModel.clearFields()
+                            viewModel.addTransaction(
+                                title = title,
+                                description = description,
+                                amount = amount,
+                                date = selectedDate,
+                                income = true
+                            )
                         }
                     )
                 }
