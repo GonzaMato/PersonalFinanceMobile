@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DiseñoMobile</string>
+    <string name="app_name">WiseRipOff</string>
     <string name="RecentActivity">Recent Activity</string>
     <string name="ShowAll">Show All</string>
     <string name="Today">Today</string>
@@ -21,4 +21,9 @@
     <string name="Description">Description</string>
     <string name="Amount">Amount</string>
     <string name="Date">Date</string>
+    <string name="ErrorToastTitleNotFilled">Please fill the title</string>
+    <string name="ErrorToastTitleNotDescription">Please fill the description</string>
+    <string name="ErrorToastAmountNotFilled">Please fill the amount</string>
+    <string name="ErrorToastDateNotValid">Date has to be in the past</string>
+    <string name="TransactionAdded">Transaction added successfully</string>
 </resources>
