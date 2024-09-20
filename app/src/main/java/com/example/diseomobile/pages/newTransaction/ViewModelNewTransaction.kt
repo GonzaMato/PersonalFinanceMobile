@@ -1,9 +1,13 @@
 package com.example.diseomobile.pages.newTransaction
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.widget.Toast
+import androidx.compose.ui.res.stringResource
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.diseomobile.R
 import com.example.diseomobile.data.PreferencesKeys
 import com.example.diseomobile.data.WiseRipOffDatabase
 import com.example.diseomobile.data.getFromDataStore
@@ -46,8 +50,13 @@ class ViewModelNewTransaction @Inject constructor(
         _description.value = description
     }
 
+    @SuppressLint("DefaultLocale")
     fun setAmount(amount: String) {
-        _amount.value = amount
+        val newAmount = amount.toFloatOrNull()
+        if (newAmount != null && newAmount >= 0) {
+            val formattedAmount = String.format("%.2f", newAmount)
+            _amount.value = formattedAmount
+        }
     }
 
     fun setDate(date: Date) {
@@ -63,16 +72,17 @@ class ViewModelNewTransaction @Inject constructor(
 
 
     fun addTransaction(title : String, description : String, amount : String, date : Date, income : Boolean) {
-        viewModelScope.launch {
-            wiseRipOffDatabase.transactionDao().insertTransaction(
-                Transaction(
-                    title = title,
-                    description = description,
-                    amount = amount.toDouble(),
-                    date = date,
-                    income = income
+            viewModelScope.launch {
+                wiseRipOffDatabase.transactionDao().insertTransaction(
+                    Transaction(
+                        title = title,
+                        description = description,
+                        amount = amount.toDouble(),
+                        date = date,
+                        income = income
+                    )
                 )
-            )
-        }
+            }
     }
+
 }

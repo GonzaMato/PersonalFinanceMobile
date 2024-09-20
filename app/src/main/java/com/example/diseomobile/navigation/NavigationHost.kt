@@ -21,13 +21,13 @@ fun NavHostComposable(navController: NavHostController, innerPadding: PaddingVal
         modifier = Modifier
             .fillMaxWidth()
             .padding(innerPadding)
-            .padding(horizontal = 24.dp)
+            .padding(horizontal = 1.dp)
     ) {
         composable(WiseRipOffScreens.Home.name) {
             HomePage( navController)
         }
         composable(WiseRipOffScreens.NewTransaction.name) {
-            AddFunds()
+            AddFunds(navController)
         }
 
         composable(WiseRipOffScreens.Graphs.name) {

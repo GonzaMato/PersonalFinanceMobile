@@ -20,20 +20,24 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.diseomobile.ui.theme.BodyRegular
+import com.example.diseomobile.ui.theme.SecondaryColor
 
 @Composable
 fun TextFieldCustom(
     value: String,
     onValueChange: (String) -> Unit,
-    placeHolder: String
+    placeHolder: String,
+    error: Boolean,
 ) {
+    val borderColor = if (error) SecondaryColor else Color.Black
+
     BasicTextField(
         value = value,
         onValueChange = { onValueChange(it)},
         modifier = Modifier
             .fillMaxWidth()
             .background(Color.Gray.copy(alpha = 0.1f), RoundedCornerShape(10.dp))
-            .border(1.dp, Color.Black, RoundedCornerShape(10.dp))
+            .border(1.dp, borderColor, RoundedCornerShape(10.dp))
             .padding(16.dp),
         decorationBox = { innerTextField ->
             Box {
@@ -65,6 +69,8 @@ fun TextFieldPreview() {
     ) {
         TextFieldCustom(value = text, onValueChange = {
             text = it
-        }, placeHolder = "Email")
+        }, placeHolder = "Email",
+            error = false
+        )
     }
 }
