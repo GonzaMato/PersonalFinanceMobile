@@ -26,4 +26,6 @@
     <string name="ErrorToastAmountNotFilled">Please fill the amount</string>
     <string name="ErrorToastDateNotValid">Date has to be in the past</string>
     <string name="TransactionAdded">Transaction added successfully</string>
+    <string name="Income">Income</string>
+    <string name="Expense">Expense</string>
 </resources>

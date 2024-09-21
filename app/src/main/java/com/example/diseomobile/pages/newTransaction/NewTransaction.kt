@@ -30,8 +30,12 @@ import com.example.diseomobile.ui.theme.SubtitleRegular
 import com.example.diseomobile.ui.theme.TitleRegular
 import java.util.Calendar
 import android.app.TimePickerDialog
+import android.widget.CheckBox
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Slider
+import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchColors
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
@@ -49,6 +53,9 @@ fun AddFunds(navecontroller: NavHostController) {
     val description by viewModel.description.collectAsState()
     val amount by viewModel.amount.collectAsState()
     val selectedDate by viewModel.date.collectAsState()
+    var income by remember {
+        mutableStateOf(true)
+    }
 
     val errorToastTitleNotFilled = stringResource(id = R.string.ErrorToastTitleNotFilled)
     val errorToastDescriptionNotFilled = stringResource(id = R.string.ErrorToastTitleNotDescription)
@@ -181,6 +188,23 @@ fun AddFunds(navecontroller: NavHostController) {
 
 
             Spacer(modifier = Modifier.height(16.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+
+
+                Text(text = stringResource(id = R.string.Expense), style = SubtitleRegular)
+                Spacer(modifier = Modifier.width(8.dp))
+                Switch(checked = income, onCheckedChange = {
+                    income = it
+                }
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(text = stringResource(id = R.string.Income), style = SubtitleRegular)
+            }
+            Spacer(modifier = Modifier.height(16.dp))
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -189,7 +213,7 @@ fun AddFunds(navecontroller: NavHostController) {
 
                 Box(
                     modifier = Modifier
-                        .fillMaxHeight(0.2f)
+                        .fillMaxHeight(0.3f)
                         .fillMaxWidth(0.6f)
                 ) {
                     FilledButton(
@@ -241,7 +265,7 @@ fun AddFunds(navecontroller: NavHostController) {
                                     description = description,
                                     amount = amount,
                                     date = selectedDate,
-                                    income = true,
+                                    income = income,
                                     profileId = 1
                                 )
                                 Toast.makeText(

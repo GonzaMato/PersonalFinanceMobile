@@ -27,24 +27,32 @@ class ViewModelHomePage @Inject constructor(
     private val _balance = MutableStateFlow<Double?>(0.0) // Hold the balance
     val balance = _balance.asStateFlow()
 
-
-
     fun loadProfileBalance(profileId: Int) {
         viewModelScope.launch {
             _balance.value = wiseRipOffDatabase.profileDao().getProfileBalance(profileId)
         }
     }
 
-    suspend fun getTransactions(profileId: Int, limit: Int, offset: Int) : List<Transaction> {
-        return wiseRipOffDatabase.transactionDao().getTransactionsWithPagination(profileId, limit, offset)
+    fun setTransaction( transactions : List<Transaction>){
+        _transactions.value = transactions
     }
 
-    fun createProfileIfNonExistant(){
+    suspend fun getTransactions(profileId: Int, limit: Int, offset: Int): List<Transaction> {
+        return wiseRipOffDatabase.transactionDao()
+            .getTransactionsWithPagination(profileId, limit, offset)
+    }
+
+    fun createProfileIfNonExistant() {
         viewModelScope.launch {
             val profile = wiseRipOffDatabase.profileDao().getProfileById(1)
             if (profile == null) {
-                // Insert the profile if it doesn't exist
-                wiseRipOffDatabase.profileDao().insertProfile(Profile(1, "Gonzalo Mato", 0.0))
+                wiseRipOffDatabase.profileDao().insertProfile(
+                    Profile(
+                        name = "Gonzalo Mato",
+                        balance = 0.0
+                    )
+                )
+                _balance.value = 0.0
             }
         }
     }
