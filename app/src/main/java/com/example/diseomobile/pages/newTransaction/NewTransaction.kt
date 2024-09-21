@@ -42,14 +42,14 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @Composable
-fun AddFunds(navecontroller : NavHostController) {
+fun AddFunds(navecontroller: NavHostController) {
     val viewModel = hiltViewModel<ViewModelNewTransaction>()
     val context = LocalContext.current
     val title by viewModel.title.collectAsState()
     val description by viewModel.description.collectAsState()
     val amount by viewModel.amount.collectAsState()
     val selectedDate by viewModel.date.collectAsState()
-    
+
     val errorToastTitleNotFilled = stringResource(id = R.string.ErrorToastTitleNotFilled)
     val errorToastDescriptionNotFilled = stringResource(id = R.string.ErrorToastTitleNotDescription)
     val errorToastAmountNotFilled = stringResource(id = R.string.ErrorToastAmountNotFilled)
@@ -98,7 +98,9 @@ fun AddFunds(navecontroller : NavHostController) {
                 calendar.get(Calendar.DAY_OF_MONTH) == calendar.get(Calendar.DAY_OF_MONTH)
             ) {
                 if (hourOfDay <= calendar.get(Calendar.HOUR_OF_DAY) &&
-                    (hourOfDay < calendar.get(Calendar.HOUR_OF_DAY) || minute <= calendar.get(Calendar.MINUTE))
+                    (hourOfDay < calendar.get(Calendar.HOUR_OF_DAY) || minute <= calendar.get(
+                        Calendar.MINUTE
+                    ))
                 ) {
                     calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
                     calendar.set(Calendar.MINUTE, minute)
@@ -239,7 +241,8 @@ fun AddFunds(navecontroller : NavHostController) {
                                     description = description,
                                     amount = amount,
                                     date = selectedDate,
-                                    income = true
+                                    income = true,
+                                    profileId = 1
                                 )
                                 Toast.makeText(
                                     context,

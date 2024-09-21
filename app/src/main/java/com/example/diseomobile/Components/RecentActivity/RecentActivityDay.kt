@@ -90,14 +90,14 @@ fun PreviewRecentActivityDay() {
             recentMovement = listOf(
                 MovementParams(
                     "Gasto 1",
-                    1000,
+                    100.0,
                     "Gasto en comida",
                     false,
                     java.util.Date()
                 ),
                 MovementParams(
                     "Ingreso 1",
-                    1000,
+                    100.0,
                     "Ingreso en trabajo",
                     true,
                     java.util.Date()

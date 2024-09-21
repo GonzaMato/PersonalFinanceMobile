@@ -93,15 +93,15 @@ fun PreviewGraph() {
         .background(color = Color.White)) {
         GraphWeekly(
             movements = listOf(
-                MovementParams("title", 25000, "description", true, twoDaysAgo.time),
-                MovementParams("title", 2000, "description", true, twoDaysAgo.time),
-                MovementParams("title", 0, "description", true, yesterday.time),
-                MovementParams("title", 1000, "description", true, java.util.Date()),
-                MovementParams("title", 3000, "description", true, java.util.Date()),
-                MovementParams("title", 500000, "description", true, java.util.Date()),
-                MovementParams("title", 800000000, "description", true, java.util.Date()),
-                MovementParams("title", 70, "description", true, java.util.Date()),
-                MovementParams("title", 1, "description", true, java.util.Date())
+                MovementParams("title", 25000.0, "description", true, twoDaysAgo.time),
+                MovementParams("title", 2000.0, "description", true, twoDaysAgo.time),
+                MovementParams("title", 0.0, "description", true, yesterday.time),
+                MovementParams("title", 1000.0, "description", true, java.util.Date()),
+                MovementParams("title", 3000.0, "description", true, java.util.Date()),
+                MovementParams("title", 500000.0, "description", true, java.util.Date()),
+                MovementParams("title", 800000000.0, "description", true, java.util.Date()),
+                MovementParams("title", 70.0, "description", true, java.util.Date()),
+                MovementParams("title", 1.0, "description", true, java.util.Date())
             )
         )
     }

@@ -65,13 +65,6 @@ fun RecentActivity(movements: List<MovementParams>) {
             ) {
                 Text(text = stringResource(R.string.RecentActivity), style = SubtitleSemiBold)
 
-                Box(
-                    modifier = Modifier
-                        .width(116.dp)
-                        .height(40.dp)
-                ) {
-                    FilledButton(text = stringResource(R.string.ShowAll) , type = ButtonType.PRIMARY) {}
-                }
             }
 
             Column {
@@ -101,21 +94,21 @@ fun RecentActivity(movements: List<MovementParams>) {
                 movements = listOf(
                     MovementParams(
                         "Gasto 1",
-                        200,
+                        20.0,
                         "Le pague a mi tio",
                         false,
                         Date()
                     ),
                     MovementParams(
                         "Gasto 2",
-                        200,
+                        20.0,
                         "Le pague a mi tio",
                         false,
                         Date()
                     ),
                     MovementParams(
                         "Gasto 3",
-                        200,
+                        20.0,
                         "Le pague a mi tio",
                         false,
                         Date(2, 23,30)

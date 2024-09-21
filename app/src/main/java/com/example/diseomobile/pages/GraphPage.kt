@@ -26,16 +26,16 @@ fun GraphPage() {
     val selectedDay = remember { mutableStateOf<DayOfWeek?>(null) }
 
     val movements = listOf(
-        MovementParams("2021-10-01", 100, "Gasto en comida", false, java.util.Date()),
-        MovementParams("2021-10-02", 20, "Ingreso en trabajo", true, java.util.Date()),
-        MovementParams("2021-10-03", 50, "Gasto en comida", false, java.util.Date()),
-        MovementParams("2021-10-04", 100, "Gasto en comida", false, java.util.Date()),
-        MovementParams("2021-10-05", 20, "Ingreso en trabajo", true, java.util.Date()),
-        MovementParams("2021-10-06", 50, "Gasto en comida", false, java.util.Date()),
-        MovementParams("2021-10-07", 100, "Gasto en comida", false, java.util.Date()),
-        MovementParams("2021-10-08", 20, "Ingreso en trabajo", true, java.util.Date()),
-        MovementParams("2021-10-09", 50, "Gasto en comida", false, java.util.Date()),
-        MovementParams("2021-10-10", 100, "Gasto en comida", false, java.util.Date()),
+        MovementParams("2021-10-01", 10.0, "Gasto en comida", false, java.util.Date()),
+        MovementParams("2021-10-02", 20.0, "Ingreso en trabajo", true, java.util.Date()),
+        MovementParams("2021-10-03", 50.0, "Gasto en comida", false, java.util.Date()),
+        MovementParams("2021-10-04", 10.0, "Gasto en comida", false, java.util.Date()),
+        MovementParams("2021-10-05", 2.00, "Ingreso en trabajo", true, java.util.Date()),
+        MovementParams("2021-10-06", 5.0, "Gasto en comida", false, java.util.Date()),
+        MovementParams("2021-10-07", 1.00, "Gasto en comida", false, java.util.Date()),
+        MovementParams("2021-10-08", 2.0, "Ingreso en trabajo", true, java.util.Date()),
+        MovementParams("2021-10-09", 50.0, "Gasto en comida", false, java.util.Date()),
+        MovementParams("2021-10-10", 100.0, "Gasto en comida", false, java.util.Date()),
     )
     Box(
         modifier = Modifier

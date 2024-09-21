@@ -24,7 +24,7 @@ import java.util.Date
 
 data class MovementParams(
     val title: String,
-    val amount: Int,
+    val amount: Double,
     val description: String,
     val income: Boolean,
     val date : Date
@@ -50,11 +50,11 @@ fun Movement(movementData : MovementParams) {
     }
 }
 
-fun roundAmount(amount : Int) : String {
+fun roundAmount(amount : Double) : String {
     return when {
         amount < 1000 -> "$$amount"
-        amount < 1000000 -> "$${amount / 1000}K"
-        else -> "$${amount / 1000000}M"
+        amount < 1000000 -> "$${amount.toInt() / 1000}K"
+        else -> "$${amount.toInt() / 1000000}M"
     }
 }
 
@@ -67,9 +67,9 @@ fun PreviewMovement(){
     ) {
         Column(
         ) {
-            Movement(MovementParams("Gasto 1",20000, "Le pague a mi tio", false, Date()))
+            Movement(MovementParams("Gasto 1",200003.0, "Le pague a mi tio", false, Date()))
 
-            Movement(MovementParams("Ingreso 1", amount = 300, description = "Me presto plata mi tio", income = true, Date()))
+            Movement(MovementParams("Ingreso 1", amount = 300.0, description = "Me presto plata mi tio", income = true, Date()))
         }
     }
 }
