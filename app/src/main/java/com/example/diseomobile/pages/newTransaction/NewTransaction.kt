@@ -84,11 +84,22 @@ fun AddFunds(navecontroller: NavHostController) {
         calendar.time = selectedDate
     }
 
-    // Date Picker Dialog
+// Date Picker Dialog
     val datePickerDialog = DatePickerDialog(
         LocalContext.current,
         { _, year, month, dayOfMonth ->
-            calendar.set(year, month, dayOfMonth)
+            // Set the calendar's date fields
+            calendar.set(Calendar.YEAR, year)
+            calendar.set(Calendar.MONTH, month)
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+            // Optionally, reset the time if necessary
+            calendar.set(Calendar.HOUR_OF_DAY, 0)
+            calendar.set(Calendar.MINUTE, 0)
+            calendar.set(Calendar.SECOND, 0)
+
+            // Update the viewModel with the updated date
+            viewModel.setDate(calendar.time)
         },
         calendar.get(Calendar.YEAR),
         calendar.get(Calendar.MONTH),
@@ -96,28 +107,17 @@ fun AddFunds(navecontroller: NavHostController) {
     )
     datePickerDialog.datePicker.maxDate = calendar.timeInMillis
 
-    // Time Picker Dialog
+// Time Picker Dialog
     val timePickerDialog = TimePickerDialog(
         LocalContext.current,
         { _, hourOfDay, minute ->
-            if (calendar.get(Calendar.YEAR) == calendar.get(Calendar.YEAR) &&
-                calendar.get(Calendar.MONTH) == calendar.get(Calendar.MONTH) &&
-                calendar.get(Calendar.DAY_OF_MONTH) == calendar.get(Calendar.DAY_OF_MONTH)
-            ) {
-                if (hourOfDay <= calendar.get(Calendar.HOUR_OF_DAY) &&
-                    (hourOfDay < calendar.get(Calendar.HOUR_OF_DAY) || minute <= calendar.get(
-                        Calendar.MINUTE
-                    ))
-                ) {
-                    calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
-                    calendar.set(Calendar.MINUTE, minute)
-                    viewModel.setDate(calendar.time)
-                }
-            } else {
-                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
-                calendar.set(Calendar.MINUTE, minute)
-                viewModel.setDate(calendar.time)
-            }
+            // Always update the time, no matter if the day is the same
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+            calendar.set(Calendar.MINUTE, minute)
+            calendar.set(Calendar.SECOND, 0)
+
+            // Update the viewModel with the updated time
+            viewModel.setDate(calendar.time)
         },
         calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true
     )

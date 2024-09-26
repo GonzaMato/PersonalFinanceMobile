@@ -10,7 +10,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.diseomobile.pages.newTransaction.AddFunds
-import com.example.diseomobile.pages.GraphPage
+import com.example.diseomobile.pages.grapghPage.GraphPage
 import com.example.diseomobile.pages.homePage.HomePage
 
 @Composable

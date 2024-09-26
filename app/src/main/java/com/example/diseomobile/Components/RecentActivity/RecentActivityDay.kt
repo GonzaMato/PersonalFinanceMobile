@@ -34,7 +34,6 @@ import java.util.Date
 @Composable
 fun RecentActivityDay(recentMovement : List<MovementParams>) {
 
-
     Box(
         modifier = Modifier.border(
             width = 3.dp,
@@ -46,12 +45,24 @@ fun RecentActivityDay(recentMovement : List<MovementParams>) {
             modifier = Modifier.padding(16.dp)
         ) {
 
-            Column {
-                Text(text = getDateName(date = recentMovement.get(0).date) , style = Title2SemiBold, color = Primary400)
-                Spacer(modifier = Modifier.height(16.dp))
-                recentMovement.forEach { it ->
+            if (recentMovement.isEmpty()) {
+                Text(
+                    text = stringResource(id = R.string.no_movements),
+                    style = SubtitleSemiBold,
+                    color = Primary400
+                )
+            } else {
+                Column {
+                    Text(
+                        text = getDateName(date = recentMovement[0].date),
+                        style = Title2SemiBold,
+                        color = Primary400
+                    )
                     Spacer(modifier = Modifier.height(16.dp))
-                    Movement(movementData = it)
+                    recentMovement.forEach { it ->
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Movement(movementData = it)
+                    }
                 }
             }
         }

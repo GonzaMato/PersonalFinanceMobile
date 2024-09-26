@@ -28,4 +28,5 @@
     <string name="TransactionAdded">Transaction added successfully</string>
     <string name="Income">Income</string>
     <string name="Expense">Expense</string>
+    <string name="no_movements">No movements in this day</string>
 </resources>

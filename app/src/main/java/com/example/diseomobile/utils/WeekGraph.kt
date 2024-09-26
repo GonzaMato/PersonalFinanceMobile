@@ -60,7 +60,14 @@ fun getLengthForWeekDays(week: Map<DayOfWeek, Int>, minScale: Int = 20): Map<Day
 
         val scaledValue = (logValue / logMax) * 100
 
-        scaledValue.coerceAtLeast(minScale.toDouble()).toInt()
+
+        val valueA = scaledValue.coerceAtLeast(minScale.toDouble()).toInt()
+
+        if (valueA == 0) {
+            10
+        } else {
+            valueA
+        }
     }
 }
 
