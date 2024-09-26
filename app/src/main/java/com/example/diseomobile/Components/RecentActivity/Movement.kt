@@ -20,7 +20,9 @@ import com.example.diseomobile.ui.theme.PrimaryColor
 import com.example.diseomobile.ui.theme.SecondaryColor
 import com.example.diseomobile.ui.theme.SubtitleRegular
 import com.example.diseomobile.ui.theme.SubtitleSemiBold
+import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 data class MovementParams(
     val title: String,
@@ -45,6 +47,7 @@ fun Movement(movementData : MovementParams) {
         Column {
             Text(text = movementData.title, color = Color.Black, style = SubtitleSemiBold)
             Text(text = movementData.description, color = Color.Black, style = BodyRegular)
+            Text(text = formatDate(movementData.date), color = Color.Black, style = BodyRegular)
         }
         Text(text = movementAmount, color = movementColor, style = SubtitleRegular)
     }
@@ -56,6 +59,11 @@ fun roundAmount(amount : Double) : String {
         amount < 1000000 -> "$${amount.toInt() / 1000}K"
         else -> "$${amount.toInt() / 1000000}M"
     }
+}
+
+fun formatDate(date: Date): String {
+    val formatter = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+    return formatter.format(date)
 }
 
 @Preview
