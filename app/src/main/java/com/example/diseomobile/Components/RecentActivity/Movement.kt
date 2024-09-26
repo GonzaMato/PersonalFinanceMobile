@@ -20,11 +20,13 @@ import com.example.diseomobile.ui.theme.PrimaryColor
 import com.example.diseomobile.ui.theme.SecondaryColor
 import com.example.diseomobile.ui.theme.SubtitleRegular
 import com.example.diseomobile.ui.theme.SubtitleSemiBold
+import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 data class MovementParams(
     val title: String,
-    val amount: Int,
+    val amount: Double,
     val description: String,
     val income: Boolean,
     val date : Date
@@ -45,17 +47,23 @@ fun Movement(movementData : MovementParams) {
         Column {
             Text(text = movementData.title, color = Color.Black, style = SubtitleSemiBold)
             Text(text = movementData.description, color = Color.Black, style = BodyRegular)
+            Text(text = formatDate(movementData.date), color = Color.Black, style = BodyRegular)
         }
         Text(text = movementAmount, color = movementColor, style = SubtitleRegular)
     }
 }
 
-fun roundAmount(amount : Int) : String {
+fun roundAmount(amount : Double) : String {
     return when {
         amount < 1000 -> "$$amount"
-        amount < 1000000 -> "$${amount / 1000}K"
-        else -> "$${amount / 1000000}M"
+        amount < 1000000 -> "$${amount.toInt() / 1000}K"
+        else -> "$${amount.toInt() / 1000000}M"
     }
+}
+
+fun formatDate(date: Date): String {
+    val formatter = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+    return formatter.format(date)
 }
 
 @Preview
@@ -67,9 +75,9 @@ fun PreviewMovement(){
     ) {
         Column(
         ) {
-            Movement(MovementParams("Gasto 1",20000, "Le pague a mi tio", false, Date()))
+            Movement(MovementParams("Gasto 1",200003.0, "Le pague a mi tio", false, Date()))
 
-            Movement(MovementParams("Ingreso 1", amount = 300, description = "Me presto plata mi tio", income = true, Date()))
+            Movement(MovementParams("Ingreso 1", amount = 300.0, description = "Me presto plata mi tio", income = true, Date()))
         }
     }
 }

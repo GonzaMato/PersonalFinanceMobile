@@ -30,8 +30,12 @@ import com.example.diseomobile.ui.theme.SubtitleRegular
 import com.example.diseomobile.ui.theme.TitleRegular
 import java.util.Calendar
 import android.app.TimePickerDialog
+import android.widget.CheckBox
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Slider
+import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchColors
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
@@ -42,14 +46,17 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @Composable
-fun AddFunds(navecontroller : NavHostController) {
+fun AddFunds(navecontroller: NavHostController) {
     val viewModel = hiltViewModel<ViewModelNewTransaction>()
     val context = LocalContext.current
     val title by viewModel.title.collectAsState()
     val description by viewModel.description.collectAsState()
     val amount by viewModel.amount.collectAsState()
     val selectedDate by viewModel.date.collectAsState()
-    
+    var income by remember {
+        mutableStateOf(true)
+    }
+
     val errorToastTitleNotFilled = stringResource(id = R.string.ErrorToastTitleNotFilled)
     val errorToastDescriptionNotFilled = stringResource(id = R.string.ErrorToastTitleNotDescription)
     val errorToastAmountNotFilled = stringResource(id = R.string.ErrorToastAmountNotFilled)
@@ -77,11 +84,22 @@ fun AddFunds(navecontroller : NavHostController) {
         calendar.time = selectedDate
     }
 
-    // Date Picker Dialog
+// Date Picker Dialog
     val datePickerDialog = DatePickerDialog(
         LocalContext.current,
         { _, year, month, dayOfMonth ->
-            calendar.set(year, month, dayOfMonth)
+            // Set the calendar's date fields
+            calendar.set(Calendar.YEAR, year)
+            calendar.set(Calendar.MONTH, month)
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+            // Optionally, reset the time if necessary
+            calendar.set(Calendar.HOUR_OF_DAY, 0)
+            calendar.set(Calendar.MINUTE, 0)
+            calendar.set(Calendar.SECOND, 0)
+
+            // Update the viewModel with the updated date
+            viewModel.setDate(calendar.time)
         },
         calendar.get(Calendar.YEAR),
         calendar.get(Calendar.MONTH),
@@ -89,26 +107,17 @@ fun AddFunds(navecontroller : NavHostController) {
     )
     datePickerDialog.datePicker.maxDate = calendar.timeInMillis
 
-    // Time Picker Dialog
+// Time Picker Dialog
     val timePickerDialog = TimePickerDialog(
         LocalContext.current,
         { _, hourOfDay, minute ->
-            if (calendar.get(Calendar.YEAR) == calendar.get(Calendar.YEAR) &&
-                calendar.get(Calendar.MONTH) == calendar.get(Calendar.MONTH) &&
-                calendar.get(Calendar.DAY_OF_MONTH) == calendar.get(Calendar.DAY_OF_MONTH)
-            ) {
-                if (hourOfDay <= calendar.get(Calendar.HOUR_OF_DAY) &&
-                    (hourOfDay < calendar.get(Calendar.HOUR_OF_DAY) || minute <= calendar.get(Calendar.MINUTE))
-                ) {
-                    calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
-                    calendar.set(Calendar.MINUTE, minute)
-                    viewModel.setDate(calendar.time)
-                }
-            } else {
-                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
-                calendar.set(Calendar.MINUTE, minute)
-                viewModel.setDate(calendar.time)
-            }
+            // Always update the time, no matter if the day is the same
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+            calendar.set(Calendar.MINUTE, minute)
+            calendar.set(Calendar.SECOND, 0)
+
+            // Update the viewModel with the updated time
+            viewModel.setDate(calendar.time)
         },
         calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true
     )
@@ -179,6 +188,23 @@ fun AddFunds(navecontroller : NavHostController) {
 
 
             Spacer(modifier = Modifier.height(16.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+
+
+                Text(text = stringResource(id = R.string.Expense), style = SubtitleRegular)
+                Spacer(modifier = Modifier.width(8.dp))
+                Switch(checked = income, onCheckedChange = {
+                    income = it
+                }
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(text = stringResource(id = R.string.Income), style = SubtitleRegular)
+            }
+            Spacer(modifier = Modifier.height(16.dp))
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -187,7 +213,7 @@ fun AddFunds(navecontroller : NavHostController) {
 
                 Box(
                     modifier = Modifier
-                        .fillMaxHeight(0.2f)
+                        .fillMaxHeight(0.3f)
                         .fillMaxWidth(0.6f)
                 ) {
                     FilledButton(
@@ -239,7 +265,8 @@ fun AddFunds(navecontroller : NavHostController) {
                                     description = description,
                                     amount = amount,
                                     date = selectedDate,
-                                    income = true
+                                    income = income,
+                                    profileId = 1
                                 )
                                 Toast.makeText(
                                     context,

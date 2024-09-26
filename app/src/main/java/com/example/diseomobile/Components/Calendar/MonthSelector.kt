@@ -1,6 +1,7 @@
 package com.example.diseomobile.Components.Calendar
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -37,7 +38,7 @@ import com.example.diseomobile.utils.getWeeksForMonth
 import java.util.Date
 
 @Composable
-fun MonthSelector() {
+fun MonthSelector(selectedWeekDate : (List<Date>) -> Unit = {}, closeCalendar : (Boolean) -> Unit = {}) {
     val amountOfWeeks = 5
     val lastDayOfCalendar: MutableState<Date> = remember {
         mutableStateOf(Date())
@@ -77,6 +78,9 @@ fun MonthSelector() {
                 modifier = Modifier
                     .background(color = PrimaryColor, shape = RoundedCornerShape(10.dp))
                     .padding(start = 60.dp, end = 60.dp, top = 20.dp, bottom = 20.dp)
+                    .clickable {
+                        closeCalendar(false)
+                    }
             ) {
                 Text(
                     text = getMonthByDate(lastDayOfCalendar.value),
@@ -101,7 +105,10 @@ fun MonthSelector() {
             WeekCompose(
                 dayParams = calendarWeeks.value[i],
                 selected = selectedWeek.intValue == i,
-                onClick = { selectedWeek.intValue = i }
+                onClick = {
+                    selectedWeek.intValue = i
+                    selectedWeekDate(calendarWeeks.value[i].map { it.date })
+                }
             )
             Spacer(modifier = Modifier.height(16.dp))
         }

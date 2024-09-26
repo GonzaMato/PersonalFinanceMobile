@@ -2,18 +2,10 @@ package com.example.diseomobile.pages.newTransaction
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.widget.Toast
-import androidx.compose.ui.res.stringResource
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.diseomobile.R
-import com.example.diseomobile.data.PreferencesKeys
 import com.example.diseomobile.data.WiseRipOffDatabase
-import com.example.diseomobile.data.getFromDataStore
-import com.example.diseomobile.data.models.Transaction
-import com.example.diseomobile.data.saveToDataStore
-import com.google.gson.Gson
+import com.example.diseomobile.data.models.transaction.Transaction
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -71,18 +63,31 @@ class ViewModelNewTransaction @Inject constructor(
     }
 
 
-    fun addTransaction(title : String, description : String, amount : String, date : Date, income : Boolean) {
-            viewModelScope.launch {
-                wiseRipOffDatabase.transactionDao().insertTransaction(
-                    Transaction(
-                        title = title,
-                        description = description,
-                        amount = amount.toDouble(),
-                        date = date,
-                        income = income
-                    )
+    fun addTransaction(
+        title: String,
+        description: String,
+        amount: String,
+        date: Date,
+        income: Boolean,
+        profileId: Int
+    ) {
+        viewModelScope.launch {
+            wiseRipOffDatabase.transactionDao().insertTransaction(
+                Transaction(
+                    title = title,
+                    description = description,
+                    amount = amount.toDouble(),
+                    date = date,
+                    income = income,
+                    profileId = profileId
                 )
+            )
+            wiseRipOffDatabase.profileDao().getProfileBalance(profileId)?.let {
+                val newBalance = if (income) it + amount.toDouble() else it - amount.toDouble()
+                wiseRipOffDatabase.profileDao().updateBalance(profileId, newBalance)
             }
+
+        }
     }
 
 }
