@@ -74,7 +74,7 @@ fun getLengthForWeekDays(week: Map<DayOfWeek, Int>, minScale: Int = 20): Map<Day
 fun getWeeksForMonth(lastDay: Date, amountOfWeeks: Int): List<List<DayParams>> {
     val weeks = mutableListOf<List<DayParams>>()
     val lastDayCalendar = Calendar.getInstance().apply { time = lastDay }
-    var currentDay = Calendar.getInstance().apply { time = lastDay }
+    val currentDay = Calendar.getInstance().apply { time = lastDay }
 
     currentDay.add(Calendar.DAY_OF_MONTH, -(amountOfWeeks * 7 - 1))
 
@@ -86,9 +86,9 @@ fun getWeeksForMonth(lastDay: Date, amountOfWeeks: Int): List<List<DayParams>> {
             val dayOfWeek = currentDay.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault())
             dayOfWeek?.let {
                 if (isSameMonth) {
-                    thisWeek.add(DayParams(it, currentDay.get(Calendar.DAY_OF_MONTH)))
+                    thisWeek.add(DayParams(it, currentDay.get(Calendar.DAY_OF_MONTH), true, currentDay.time))
                 } else {
-                    thisWeek.add(DayParams(it, currentDay.get(Calendar.DAY_OF_MONTH), false))
+                    thisWeek.add(DayParams(it, currentDay.get(Calendar.DAY_OF_MONTH), false, currentDay.time))
                 }
             }
             currentDay.add(Calendar.DAY_OF_MONTH, 1)

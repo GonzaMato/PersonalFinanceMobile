@@ -29,7 +29,7 @@ import com.example.diseomobile.utils.getLengthForWeekDays
 import java.util.Calendar
 
 @Composable
-fun GraphWeekly(movements: List<MovementParams>, onDaySelected: (DayOfWeek) -> Unit = {}) {
+fun GraphWeekly(movements: List<MovementParams>, onDaySelected: (DayOfWeek) -> Unit = {}, openCalendar: (Boolean) -> Unit = {}) {
     val weeklyMovement = SeparateByWeek(movements)
     val scaledWeek = getLengthForWeekDays(weeklyMovement)
     val selected = remember { mutableStateOf(-1) }  // Index of the selected column
@@ -47,6 +47,9 @@ fun GraphWeekly(movements: List<MovementParams>, onDaySelected: (DayOfWeek) -> U
                 modifier = Modifier
                     .background(color = PrimaryColor, shape = RoundedCornerShape(50.dp))
                     .padding(start = 60.dp, end = 60.dp)
+                    .clickable {
+                        openCalendar(true)
+                    }
             ) {
                 Text(text = "Weekly", color = Color.Black, style = Title2Regular)
             }

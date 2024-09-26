@@ -20,11 +20,13 @@ import androidx.compose.ui.unit.dp
 import com.example.diseomobile.ui.theme.BodyRegular
 import com.example.diseomobile.ui.theme.PrimaryColor
 import com.example.diseomobile.ui.theme.Tertiary400
+import java.util.Date
 
 data class DayParams(
     val day : String,
     val number: Int,
-    val inTheMonth : Boolean = true
+    val inTheMonth : Boolean = true,
+    val date : Date = Date()
 )
 
 @Composable

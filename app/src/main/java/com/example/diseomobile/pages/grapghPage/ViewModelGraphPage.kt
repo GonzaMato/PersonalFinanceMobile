@@ -41,6 +41,7 @@ class ViewModelGraphPage @Inject constructor(
                 _firstWeekDay.value,
                 _lastWeekDay.value
             )
+            println("Movements: ${_movements.value}")
         }
     }
 
