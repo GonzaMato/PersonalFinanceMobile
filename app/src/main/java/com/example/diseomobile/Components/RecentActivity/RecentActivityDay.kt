@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -52,16 +53,18 @@ fun RecentActivityDay(recentMovement : List<MovementParams>) {
                     color = Primary400
                 )
             } else {
-                Column {
-                    Text(
-                        text = getDateName(date = recentMovement[0].date),
-                        style = Title2SemiBold,
-                        color = Primary400
-                    )
-                    Spacer(modifier = Modifier.height(16.dp))
-                    recentMovement.forEach { it ->
+                LazyColumn {
+                    item {
+                        Text(
+                            text = getDateName(date = recentMovement[0].date),
+                            style = Title2SemiBold,
+                            color = Primary400
+                        )
                         Spacer(modifier = Modifier.height(16.dp))
-                        Movement(movementData = it)
+                        recentMovement.forEach { it ->
+                            Spacer(modifier = Modifier.height(16.dp))
+                            Movement(movementData = it)
+                        }
                     }
                 }
             }

@@ -13,14 +13,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemColors
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -53,7 +51,12 @@ fun BottomBar(
         title = WiseRipOffScreens.Graphs.name
     )
 
-    val barItems = listOf(homeItem, graphItem)
+    val dolarItem = IconBarItems(
+        icon = Icons.Default.LocationOn,
+        title = WiseRipOffScreens.Currencies.name
+    )
+
+    val barItems = listOf(dolarItem, homeItem, graphItem)
 
     TabView(barItems = barItems, onNavigate = onNavigate)
 }
@@ -66,7 +69,7 @@ data class IconBarItems(
 
 @Composable
 fun TabView(barItems: List<IconBarItems>, onNavigate: (String) -> Unit) {
-    var selectedTabIndex by rememberSaveable { mutableIntStateOf(0) }
+    var selectedTabIndex by rememberSaveable { mutableIntStateOf(1) }
 
     NavigationBar {
         barItems.forEachIndexed { index, item ->
@@ -114,7 +117,7 @@ fun IconView(
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-            modifier = Modifier.width(64.dp)
+            modifier = Modifier.width(72.dp)
         ) {
             Icon(
                 imageVector = icon,

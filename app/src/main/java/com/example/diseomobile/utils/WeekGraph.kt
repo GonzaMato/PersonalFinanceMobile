@@ -113,6 +113,14 @@ fun getLastDayOfPreviousMonth(currentDate: Date): Date {
     return calendar.time
 }
 
+fun getLastDayOfThisMonth(currentDate: Date): Date {
+    val calendar = Calendar.getInstance()
+    calendar.time = currentDate
+    calendar.add(Calendar.MONTH, 0)
+    calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH))
+    return calendar.time
+}
+
 fun getLastDayOfNextMonth(currentDate: Date): Date {
     val calendar = Calendar.getInstance()
     calendar.time = currentDate

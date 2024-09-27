@@ -7,7 +7,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -45,16 +48,16 @@ fun HomePage(navecontroller : NavHostController) {
         viewmodel.setTransaction(transaction + viewmodel.getTransactions(1, 10 , 0))
     }
 
-    Box(
+    Column(
         modifier = Modifier
             .background(color = Color.White)
+            .verticalScroll(rememberScrollState()) // Habilita el scroll en toda la pantalla
             .fillMaxHeight()
+            .padding(start = 24.dp, end = 24.dp)
     ) {
-        Box(modifier = Modifier
-            .padding(start = 24.dp, end = 24.dp)) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
                 Spacer(modifier = Modifier.padding(12.dp))
                 Row(modifier = Modifier.fillMaxWidth()) {
                     Text(
@@ -67,7 +70,7 @@ fun HomePage(navecontroller : NavHostController) {
                 Spacer(modifier = Modifier.padding(12.dp))
                 Box(
                     modifier = Modifier
-                        .fillMaxHeight(0.1f)
+                        .height(60.dp)
                 ) {
                     OutlineButton(
                         text = stringResource(id = R.string.AddFunds),
@@ -82,7 +85,7 @@ fun HomePage(navecontroller : NavHostController) {
             }
         }
     }
-}
+
 
 fun getMovements(transactions: List<Transaction>): List<MovementParams> {
     return transactions.map {

@@ -10,7 +10,7 @@
       </SelectionState>
       <SelectionState runConfigName="WiseRipoff">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-09-20T16:34:34.484084500Z">
+        <DropdownSelection timestamp="2024-09-26T23:09:16.512406300Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\gonza\.android\avd\Pixel_5_API_35.avd" />
@@ -21,7 +21,7 @@
           <targets>
             <Target type="DEFAULT_BOOT">
               <handle>
-                <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\gonza\.android\avd\Medium_Phone_API_35.ini" />
+                <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\gonza\.android\avd\Pixel_5_API_35.avd" />
               </handle>
             </Target>
           </targets>

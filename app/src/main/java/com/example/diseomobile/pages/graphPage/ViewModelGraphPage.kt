@@ -1,4 +1,4 @@
-package com.example.diseomobile.pages.grapghPage
+package com.example.diseomobile.pages.graphPage
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
@@ -22,9 +22,6 @@ class ViewModelGraphPage @Inject constructor(
 
     private val wiseRipOffDatabase = WiseRipOffDatabase.getDataBase(context)
 
-    private val _movements = MutableStateFlow<List<Transaction>>(listOf())
-    val movements = _movements.asStateFlow()
-
     private val _selectedDate = MutableStateFlow<DayOfWeek?>(null)
     val selectedDate = _selectedDate.asStateFlow()
 
@@ -34,6 +31,8 @@ class ViewModelGraphPage @Inject constructor(
     private val _firstWeekDay = MutableStateFlow<Date>(getMondayOfCurrentWeek())
     val firstWeekDay = _firstWeekDay.asStateFlow()
 
+    private val _movements = MutableStateFlow<List<Transaction>>(listOf())
+    val movements = _movements.asStateFlow()
 
     fun loadMovementsOfTheWeek() {
         viewModelScope.launch {

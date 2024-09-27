@@ -1,0 +1,138 @@
+package com.example.diseomobile.pages.dolarPrices
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.diseomobile.Components.Button.ButtonType
+import com.example.diseomobile.Components.Button.OutlineButton
+import com.example.diseomobile.Components.CurrencyValue.CurrencyValue
+import com.example.diseomobile.R
+import com.example.diseomobile.api.DolarPrice
+import com.example.diseomobile.ui.theme.BodyRegular
+import com.example.diseomobile.ui.theme.Primary200
+import com.example.diseomobile.ui.theme.Primary300
+import com.example.diseomobile.ui.theme.PrimaryColor
+import com.example.diseomobile.ui.theme.SubtitleRegular
+import com.example.diseomobile.ui.theme.TitleSemiBold
+
+@Composable
+fun DolarPricePage() {
+    val viewModelDolarPrice = hiltViewModel<ViewModelDolarPrice>()
+    val dolarPrices by viewModelDolarPrice.dolarPrices.collectAsState()
+    val loading by viewModelDolarPrice.loadingPrices.collectAsState()
+    val showRetry by viewModelDolarPrice.showRetry.collectAsState()
+
+    if (loading) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            CircularProgressIndicator(
+                modifier = Modifier
+                    .size(64.dp)
+                    .align(Alignment.Center),
+                color = Primary200,
+                trackColor = Primary300,
+            )
+        }
+    } else if (showRetry) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center,
+        ) {
+            Column(
+                horizontalAlignment = CenterHorizontally
+            ) {
+
+                Text(
+                    text = stringResource(id = R.string.error_loading_prices),
+                    style = SubtitleRegular,
+                    color = Color.Black,
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                Box(
+                    modifier = Modifier
+                        .height(64.dp)
+                        .width(200.dp)
+                ) {
+                    OutlineButton(
+                        text = stringResource(id = R.string.retry),
+                        type = ButtonType.PRIMARY,
+                        onClick = {
+                            viewModelDolarPrice.retry()
+                        }
+                    )
+                }
+            }
+        }
+    } else {
+
+        Box(
+            modifier = Modifier
+                .fillMaxHeight()
+                .fillMaxWidth()
+                .background(color = Color.White)
+        ) {
+            Box(modifier = Modifier.padding(16.dp)) {
+
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = CenterHorizontally,
+                ) {
+
+                    Text(text = stringResource(id = R.string.dolar_price), style = TitleSemiBold)
+                    Spacer(modifier = Modifier.height(24.dp))
+                    separateDolarInGroups(2, dolarPrices).map {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceEvenly
+                        ) {
+                            it.map {
+                                CurrencyValue(it.nombre, it.compra, it.venta, R.drawable.usaflag)
+                            }
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                    }
+                }
+            }
+        }
+    }
+}
+
+fun separateDolarInGroups(amount: Int, dolarPrices: List<DolarPrice>): List<List<DolarPrice>> {
+    return dolarPrices.chunked(amount)
+}
+
+
+@Preview
+@Composable
+fun DolarPricePagePreview() {
+    Box(
+        modifier = Modifier
+            .fillMaxHeight()
+            .fillMaxWidth()
+    ) {
+        DolarPricePage()
+    }
+}

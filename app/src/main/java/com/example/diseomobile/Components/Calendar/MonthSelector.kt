@@ -33,6 +33,7 @@ import com.example.diseomobile.ui.theme.PrimaryColor
 import com.example.diseomobile.ui.theme.Title2Regular
 import com.example.diseomobile.utils.getLastDayOfNextMonth
 import com.example.diseomobile.utils.getLastDayOfPreviousMonth
+import com.example.diseomobile.utils.getLastDayOfThisMonth
 import com.example.diseomobile.utils.getMonthByDate
 import com.example.diseomobile.utils.getWeeksForMonth
 import java.util.Date
@@ -41,7 +42,7 @@ import java.util.Date
 fun MonthSelector(selectedWeekDate : (List<Date>) -> Unit = {}, closeCalendar : (Boolean) -> Unit = {}) {
     val amountOfWeeks = 5
     val lastDayOfCalendar: MutableState<Date> = remember {
-        mutableStateOf(Date())
+        mutableStateOf(getLastDayOfThisMonth(Date()) )
     }
     val calendarWeeks: MutableState<List<List<DayParams>>> = remember {
         mutableStateOf(getWeeksForMonth(lastDayOfCalendar.value, amountOfWeeks))

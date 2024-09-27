@@ -17,6 +17,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.diseomobile.Components.RecentActivity.MovementParams
@@ -27,12 +28,21 @@ import com.example.diseomobile.utils.DayOfWeek
 import com.example.diseomobile.utils.SeparateByWeek
 import com.example.diseomobile.utils.getLengthForWeekDays
 import java.util.Calendar
+import com.example.diseomobile.R
+import java.text.SimpleDateFormat
+import java.util.Date
 
 @Composable
-fun GraphWeekly(movements: List<MovementParams>, onDaySelected: (DayOfWeek) -> Unit = {}, openCalendar: (Boolean) -> Unit = {}) {
+fun GraphWeekly(movements: List<MovementParams>, onDaySelected: (DayOfWeek) -> Unit = {}, openCalendar: (Boolean) -> Unit = {}, week : String) {
     val weeklyMovement = SeparateByWeek(movements)
     val scaledWeek = getLengthForWeekDays(weeklyMovement)
     val selected = remember { mutableStateOf(-1) }  // Index of the selected column
+
+    val weekText = if (week == "") {
+        stringResource(id = R.string.selectWeek)
+    } else {
+        week
+    }
 
     Box(
         modifier = Modifier
@@ -51,7 +61,7 @@ fun GraphWeekly(movements: List<MovementParams>, onDaySelected: (DayOfWeek) -> U
                         openCalendar(true)
                     }
             ) {
-                Text(text = "Weekly", color = Color.Black, style = Title2Regular)
+                Text(text = weekText, color = Color.Black, style = Title2Regular)
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -82,7 +92,6 @@ fun GraphWeekly(movements: List<MovementParams>, onDaySelected: (DayOfWeek) -> U
     }
 }
 
-
 @Preview
 @Composable
 fun PreviewGraph() {
@@ -105,7 +114,8 @@ fun PreviewGraph() {
                 MovementParams("title", 800000000.0, "description", true, java.util.Date()),
                 MovementParams("title", 70.0, "description", true, java.util.Date()),
                 MovementParams("title", 1.0, "description", true, java.util.Date())
-            )
+            ),
+            week = "Week 1"
         )
     }
 }
