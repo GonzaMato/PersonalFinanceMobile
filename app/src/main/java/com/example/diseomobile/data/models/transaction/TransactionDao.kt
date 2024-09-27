@@ -15,4 +15,7 @@ interface TransactionDao {
 
     @Query("SELECT * FROM `Transaction` WHERE profileId = :profileId ORDER BY date DESC LIMIT :limit OFFSET :offset")
     suspend fun getTransactionsWithPagination(profileId: Int, limit: Int, offset: Int): List<Transaction>
+
+    @Query("SELECT * FROM `Transaction` WHERE profileId = :profileId ORDER BY date DESC")
+    suspend fun getTransactions(profileId: Int): List<Transaction>
 }

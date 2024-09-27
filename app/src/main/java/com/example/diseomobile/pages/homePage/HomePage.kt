@@ -46,7 +46,7 @@ fun HomePage(navecontroller : NavHostController) {
     LaunchedEffect(Unit) {
         viewmodel.createProfileIfNonExistant()
         viewmodel.loadProfileBalance(1)
-        viewmodel.setTransaction(transaction + viewmodel.getTransactions(1, 10 , 0))
+        viewmodel.setTransaction(viewmodel.getTransactions(1))
     }
 
     Column(

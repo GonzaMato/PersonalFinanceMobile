@@ -42,9 +42,9 @@ class ViewModelHomePage @Inject constructor(
         _transactions.value = transactions
     }
 
-    suspend fun getTransactions(profileId: Int, limit: Int, offset: Int): List<Transaction> {
+    suspend fun getTransactions(profileId: Int): List<Transaction> {
         return wiseRipOffDatabase.transactionDao()
-            .getTransactionsWithPagination(profileId, limit, offset)
+            .getTransactions(profileId)
     }
 
     fun createProfileIfNonExistant() {
