@@ -1,6 +1,7 @@
 package com.example.diseomobile.Components.Calendar
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -23,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.diseomobile.Components.Button.ButtonType
@@ -37,12 +39,16 @@ import com.example.diseomobile.utils.getLastDayOfThisMonth
 import com.example.diseomobile.utils.getMonthByDate
 import com.example.diseomobile.utils.getWeeksForMonth
 import java.util.Date
+import com.example.diseomobile.R
 
 @Composable
-fun MonthSelector(selectedWeekDate : (List<Date>) -> Unit = {}, closeCalendar : (Boolean) -> Unit = {},) {
+fun MonthSelector(
+    selectedWeekDate: (List<Date>) -> Unit = {},
+    closeCalendar: (Boolean) -> Unit = {},
+) {
     val amountOfWeeks = 5
     val lastDayOfCalendar: MutableState<Date> = remember {
-        mutableStateOf(getLastDayOfThisMonth(Date()) )
+        mutableStateOf(getLastDayOfThisMonth(Date()))
     }
     val calendarWeeks: MutableState<List<List<DayParams>>> = remember {
         mutableStateOf(getWeeksForMonth(lastDayOfCalendar.value, amountOfWeeks))
@@ -68,6 +74,7 @@ fun MonthSelector(selectedWeekDate : (List<Date>) -> Unit = {}, closeCalendar : 
                 modifier = Modifier
                     .width(48.dp)
                     .height(48.dp)
+
             ) {
                 OutlineButton(onClick = {
                     lastDayOfCalendar.value = getLastDayOfPreviousMonth(lastDayOfCalendar.value)
@@ -78,7 +85,8 @@ fun MonthSelector(selectedWeekDate : (List<Date>) -> Unit = {}, closeCalendar : 
             Box(
                 modifier = Modifier
                     .background(color = PrimaryColor, shape = RoundedCornerShape(10.dp))
-                    .padding(start = 60.dp, end = 60.dp, top = 20.dp, bottom = 20.dp)
+                    .border(2.dp, Color.Black, shape = RoundedCornerShape(10.dp))
+                    .padding(start = 40.dp, end = 40.dp, top = 18.dp, bottom = 18.dp)
                     .clickable {
                         closeCalendar(false)
                     }
@@ -112,6 +120,12 @@ fun MonthSelector(selectedWeekDate : (List<Date>) -> Unit = {}, closeCalendar : 
                 }
             )
             Spacer(modifier = Modifier.height(16.dp))
+        }
+
+        Box(modifier = Modifier.height(48.dp)) {
+            OutlineButton(text = stringResource(id = R.string.close), type = ButtonType.PRIMARY) {
+                closeCalendar(false)
+            }
         }
     }
 

@@ -35,4 +35,5 @@
     <string name="retry">Retry</string>
     <string name="selectWeek">Select Week</string>
     <string name="LastWeek">Last Week</string>
+    <string name="close">Close</string>
 </resources>

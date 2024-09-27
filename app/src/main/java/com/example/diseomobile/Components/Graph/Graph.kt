@@ -1,6 +1,7 @@
 package com.example.diseomobile.Components.Graph
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -56,6 +57,7 @@ fun GraphWeekly(movements: List<MovementParams>, onDaySelected: (DayOfWeek) -> U
             Box(
                 modifier = Modifier
                     .background(color = PrimaryColor, shape = RoundedCornerShape(50.dp))
+                    .border(2.dp, Color.Black, shape = RoundedCornerShape(50.dp))
                     .padding(start = 60.dp, end = 60.dp)
                     .clickable {
                         openCalendar(true)
