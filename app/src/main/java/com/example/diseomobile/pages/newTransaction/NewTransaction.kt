@@ -84,21 +84,16 @@ fun AddFunds(navecontroller: NavHostController) {
         calendar.time = selectedDate
     }
 
-// Date Picker Dialog
     val datePickerDialog = DatePickerDialog(
         LocalContext.current,
         { _, year, month, dayOfMonth ->
-            // Set the calendar's date fields
+            // Set only the calendar's date fields (year, month, day) without modifying the time
             calendar.set(Calendar.YEAR, year)
             calendar.set(Calendar.MONTH, month)
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
-            // Optionally, reset the time if necessary
-            calendar.set(Calendar.HOUR_OF_DAY, 0)
-            calendar.set(Calendar.MINUTE, 0)
-            calendar.set(Calendar.SECOND, 0)
-
-            // Update the viewModel with the updated date
+            // Do not reset the time; keep it as is
+            // Update the viewModel with the updated date (date + current time)
             viewModel.setDate(calendar.time)
         },
         calendar.get(Calendar.YEAR),
@@ -111,17 +106,18 @@ fun AddFunds(navecontroller: NavHostController) {
     val timePickerDialog = TimePickerDialog(
         LocalContext.current,
         { _, hourOfDay, minute ->
-            // Always update the time, no matter if the day is the same
+            // Update only the time fields (hour, minute)
             calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
             calendar.set(Calendar.MINUTE, minute)
             calendar.set(Calendar.SECOND, 0)
 
-            // Update the viewModel with the updated time
+            // Update the viewModel with the updated time (current date + new time)
             viewModel.setDate(calendar.time)
         },
-        calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true
+        calendar.get(Calendar.HOUR_OF_DAY),
+        calendar.get(Calendar.MINUTE),
+        true
     )
-
     Box(
         modifier = Modifier
             .fillMaxSize()

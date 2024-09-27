@@ -27,9 +27,14 @@ class ViewModelHomePage @Inject constructor(
     private val _balance = MutableStateFlow<Double?>(0.0) // Hold the balance
     val balance = _balance.asStateFlow()
 
+    private val _nameProfile = MutableStateFlow<String?>("Gonzalo Mato")
+    val nameProfile = _nameProfile.asStateFlow()
+
     fun loadProfileBalance(profileId: Int) {
         viewModelScope.launch {
-            _balance.value = wiseRipOffDatabase.profileDao().getProfileBalance(profileId)
+            val profile = wiseRipOffDatabase.profileDao().getProfileById(profileId)
+            _balance.value = profile?.balance
+            _nameProfile.value = profile?.name
         }
     }
 
@@ -52,6 +57,7 @@ class ViewModelHomePage @Inject constructor(
                         balance = 0.0
                     )
                 )
+                _nameProfile.value = "Gonzalo Mato"
                 _balance.value = 0.0
             }
         }

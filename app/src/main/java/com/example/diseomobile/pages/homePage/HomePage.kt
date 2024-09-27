@@ -38,6 +38,7 @@ fun HomePage(navecontroller : NavHostController) {
     val viewmodel = hiltViewModel<ViewModelHomePage>()
     val transaction by viewmodel.transactions.collectAsState()
     val balance by viewmodel.balance.collectAsState()
+    val nameProfile by viewmodel.nameProfile.collectAsState()
 
     val newTransactionButtonType : ButtonType = if (balance!! < 0.0) ButtonType.SECONDARY else ButtonType.PRIMARY
 
@@ -51,7 +52,7 @@ fun HomePage(navecontroller : NavHostController) {
     Column(
         modifier = Modifier
             .background(color = Color.White)
-            .verticalScroll(rememberScrollState()) // Habilita el scroll en toda la pantalla
+            .verticalScroll(rememberScrollState())
             .fillMaxHeight()
             .padding(start = 24.dp, end = 24.dp)
     ) {
@@ -61,7 +62,7 @@ fun HomePage(navecontroller : NavHostController) {
                 Spacer(modifier = Modifier.padding(12.dp))
                 Row(modifier = Modifier.fillMaxWidth()) {
                     Text(
-                        text = stringResource(R.string.WelcomMessage) + "Gonzalo Mato!",
+                        text = stringResource(R.string.WelcomMessage) + " " + nameProfile,
                         style = Title2Regular
                     )
                 }
