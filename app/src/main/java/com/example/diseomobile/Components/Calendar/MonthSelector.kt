@@ -39,7 +39,7 @@ import com.example.diseomobile.utils.getWeeksForMonth
 import java.util.Date
 
 @Composable
-fun MonthSelector(selectedWeekDate : (List<Date>) -> Unit = {}, closeCalendar : (Boolean) -> Unit = {}) {
+fun MonthSelector(selectedWeekDate : (List<Date>) -> Unit = {}, closeCalendar : (Boolean) -> Unit = {},) {
     val amountOfWeeks = 5
     val lastDayOfCalendar: MutableState<Date> = remember {
         mutableStateOf(getLastDayOfThisMonth(Date()) )

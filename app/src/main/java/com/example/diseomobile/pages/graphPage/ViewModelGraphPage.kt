@@ -75,13 +75,15 @@ class ViewModelGraphPage @Inject constructor(
     private fun getSundayOfCurrentWeek(): Date {
         val calendar = Calendar.getInstance()
 
-        // Get the current day of the week
+        // Set the calendar to the current day of the week
         val currentDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
 
-        // Adjust the calendar to the previous or current Sunday
-        calendar.add(Calendar.DAY_OF_WEEK, Calendar.SUNDAY - currentDayOfWeek)
+        // Calculate how many days to subtract to get to Sunday
+        val daysToSunday = currentDayOfWeek - Calendar.SUNDAY
+
+        // Subtract the difference to get the previous or current Sunday
+        calendar.add(Calendar.DAY_OF_WEEK, daysToSunday -1)
 
         return calendar.time
     }
-
 }

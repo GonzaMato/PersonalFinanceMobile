@@ -30,8 +30,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.diseomobile.R
 import com.example.diseomobile.ui.theme.BodyRegular
 import com.example.diseomobile.ui.theme.Primary200
 import com.example.diseomobile.ui.theme.PrimaryColor
@@ -42,17 +44,17 @@ fun BottomBar(
 ) {
 
     val homeItem = IconBarItems(
-        icon = Icons.Default.Home,
+        icon = R.drawable.home,
         title = WiseRipOffScreens.Home.name
     )
 
     val graphItem = IconBarItems(
-        icon = Icons.Default.DateRange,
+        icon = R.drawable.graph,
         title = WiseRipOffScreens.Graphs.name
     )
 
     val dolarItem = IconBarItems(
-        icon = Icons.Default.LocationOn,
+        icon = R.drawable.differentcurrencies,
         title = WiseRipOffScreens.Currencies.name
     )
 
@@ -62,7 +64,7 @@ fun BottomBar(
 }
 
 data class IconBarItems(
-    val icon : ImageVector,
+    val icon : Int,
     val title : String
 )
 
@@ -77,7 +79,7 @@ fun TabView(barItems: List<IconBarItems>, onNavigate: (String) -> Unit) {
                 selectedTabIndex = index
                 onNavigate(item.title)
             }, icon = {
-                IconView(isSelected = selectedTabIndex == index, title = item.title, icon = item.icon)
+                IconView(isSelected = selectedTabIndex == index, title = item.title, iconRes = item.icon)
             },
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = Color.Black,
@@ -95,7 +97,7 @@ fun TabView(barItems: List<IconBarItems>, onNavigate: (String) -> Unit) {
 fun IconView(
     isSelected: Boolean,
     title: String,
-    icon: ImageVector
+    iconRes: Int
 ) {
     val backgroundColor = if (isSelected) PrimaryColor else Color.Transparent
     val borderColor = if (isSelected) Primary200 else Color.Transparent
@@ -120,7 +122,7 @@ fun IconView(
             modifier = Modifier.width(72.dp)
         ) {
             Icon(
-                imageVector = icon,
+                painter = painterResource(id = iconRes),
                 contentDescription = null,
                 tint = iconTint,
                 modifier = Modifier.size(24.dp)
