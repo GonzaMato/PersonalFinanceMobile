@@ -21,16 +21,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.example.diseomobile.Components.Button.ButtonType
-import com.example.diseomobile.Components.Button.FilledButton
 import com.example.diseomobile.R
-import com.example.diseomobile.ui.theme.BodyRegular
-import com.example.diseomobile.ui.theme.BodySemiBold
-import com.example.diseomobile.ui.theme.Primary300
 import com.example.diseomobile.ui.theme.Primary400
 import com.example.diseomobile.ui.theme.SubtitleSemiBold
-import com.example.diseomobile.ui.theme.Title2Regular
 import com.example.diseomobile.ui.theme.Title2SemiBold
 import com.example.diseomobile.utils.categorizeMovementsByDate
 import java.util.Date
@@ -39,6 +32,7 @@ import java.util.Date
 fun RecentActivity(movements: List<MovementParams>) {
     val nameByDate = mapOf(
         "Today" to stringResource(R.string.Today),
+        "ThisWeek" to stringResource(R.string.ThisWeek),
         "LastWeek" to stringResource(R.string.LastWeek),
         "ThisMonth" to stringResource(R.string.ThisMonth),
         "LastMonth" to stringResource(R.string.LastMonth),

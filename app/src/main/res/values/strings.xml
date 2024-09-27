@@ -3,7 +3,7 @@
     <string name="RecentActivity">Recent Activity</string>
     <string name="ShowAll">Show All</string>
     <string name="Today">Today</string>
-    <string name="LastWeek">Last Week</string>
+    <string name="ThisWeek">This Week</string>
     <string name="ThisMonth">This Month</string>
     <string name="LastMonth">Last Month</string>
     <string name="ThisYear">This Year</string>
@@ -34,4 +34,5 @@
     <string name="error_loading_prices">Error while loading prices</string>
     <string name="retry">Retry</string>
     <string name="selectWeek">Select Week</string>
+    <string name="LastWeek">Last Week</string>
 </resources>
