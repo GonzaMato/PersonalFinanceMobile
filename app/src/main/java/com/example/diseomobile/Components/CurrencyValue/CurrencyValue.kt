@@ -30,33 +30,37 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.diseomobile.R
 import com.example.diseomobile.ui.theme.BodySemiBold
 import com.example.diseomobile.ui.theme.SubtitleSemiBold
+import com.example.diseomobile.ui.theme.currencyImageSize
+import com.example.diseomobile.ui.theme.mediumBorder
+import com.example.diseomobile.ui.theme.roundedCorners
+import com.example.diseomobile.ui.theme.smallDP
 
 @Composable
 fun CurrencyValue(name : String , priceBuy : Double, priceSell : Double, imageRes : Int) {
 
     Box(
         modifier = Modifier.border(
-            BorderStroke(2.dp, Color.Black),
-            shape = RoundedCornerShape(10.dp)
+            BorderStroke(mediumBorder, Color.Black),
+            shape = RoundedCornerShape(roundedCorners)
         )
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
-                .padding(8.dp) // Usa menos padding si deseas más espacio alrededor
+                .padding(smallDP)
                 .width(150.dp)
         ) {
             Image(
                 painter = painterResource(id = imageRes),
                 contentDescription = null,
                 modifier = Modifier
-                    .size(60.dp)
+                    .size(currencyImageSize)
                     .clip(CircleShape)
-                    .align(Alignment.CenterHorizontally),  // Asegura que la imagen esté centrada
+                    .align(Alignment.CenterHorizontally),
                 contentScale = ContentScale.Crop
             )
 
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(smallDP))
 
             Text(
                 text = name,

@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.example.diseomobile.ui.theme.PrimaryColor
 import com.example.diseomobile.ui.theme.SecondaryColor
 import com.example.diseomobile.ui.theme.SubtitleSemiBold
+import com.example.diseomobile.ui.theme.roundedCorners
 
 enum class ButtonType {
     PRIMARY,
@@ -33,7 +34,7 @@ fun FilledButton(text : String, type : ButtonType, onClick : () -> Unit ) {
     }
     
     Box(modifier = Modifier
-        .background(backgroundColor, RoundedCornerShape(10.dp))
+        .background(backgroundColor, RoundedCornerShape(roundedCorners))
         .fillMaxWidth()
         .fillMaxHeight()
         .clickable { onClick() },

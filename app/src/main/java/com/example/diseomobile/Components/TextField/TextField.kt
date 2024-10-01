@@ -21,6 +21,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.diseomobile.ui.theme.BodyRegular
 import com.example.diseomobile.ui.theme.SecondaryColor
+import com.example.diseomobile.ui.theme.largePadding
+import com.example.diseomobile.ui.theme.roundedCorners
+import com.example.diseomobile.ui.theme.smallBorder
+import com.example.diseomobile.ui.theme.smallPadding
 
 @Composable
 fun TextFieldCustom(
@@ -36,9 +40,9 @@ fun TextFieldCustom(
         onValueChange = { onValueChange(it)},
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color.Gray.copy(alpha = 0.1f), RoundedCornerShape(10.dp))
-            .border(1.dp, borderColor, RoundedCornerShape(10.dp))
-            .padding(16.dp),
+            .background(Color.Gray.copy(alpha = 0.1f), RoundedCornerShape(roundedCorners))
+            .border(smallBorder, borderColor, RoundedCornerShape(roundedCorners))
+            .padding(largePadding),
         decorationBox = { innerTextField ->
             Box {
                 innerTextField()
@@ -47,7 +51,7 @@ fun TextFieldCustom(
                         text = placeHolder,
                         color = Color.Gray,
                         style = BodyRegular,
-                        modifier = Modifier.padding(start = 4.dp, top = 4.dp)
+                        modifier = Modifier.padding(start =smallPadding, top = smallPadding)
                     )
                 }
             }

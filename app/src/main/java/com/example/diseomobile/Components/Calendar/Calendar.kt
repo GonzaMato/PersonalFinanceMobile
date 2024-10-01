@@ -13,15 +13,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.diseomobile.ui.theme.Tertiary400
+import com.example.diseomobile.ui.theme.mediumLargePadding
+import com.example.diseomobile.ui.theme.roundedCorners
+import com.example.diseomobile.ui.theme.smallDP
 import java.util.Date
 
 @Composable
 fun CalendarComposable(selectedWeekDate : (List<Date>) -> Unit = {}, closeCalendar : (Boolean) -> Unit = {}) {
 
     Box(modifier = Modifier
-        .padding(14.dp)
-        .shadow(elevation = 8.dp, shape = RoundedCornerShape(10.dp))
-        .background(color = Color.White, shape = RoundedCornerShape(10.dp)))
+        .padding(mediumLargePadding)
+        .shadow(elevation = smallDP, shape = RoundedCornerShape(roundedCorners))
+        .background(color = Color.White, shape = RoundedCornerShape(roundedCorners)))
     {
         MonthSelector(selectedWeekDate, closeCalendar)
     }

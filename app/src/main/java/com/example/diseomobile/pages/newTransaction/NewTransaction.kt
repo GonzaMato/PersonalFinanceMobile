@@ -42,6 +42,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import com.example.diseomobile.Components.Button.OutlineButton
 import com.example.diseomobile.navigation.WiseRipOffScreens
+import com.example.diseomobile.ui.theme.eightyPercentWidth
+import com.example.diseomobile.ui.theme.largePadding
+import com.example.diseomobile.ui.theme.mediumDP
+import com.example.diseomobile.ui.theme.sixtyPercentWidth
+import com.example.diseomobile.ui.theme.smallDP
+import com.example.diseomobile.ui.theme.thertyPercentWidth
+import com.example.diseomobile.ui.theme.twentyPercentWidth
+import com.example.diseomobile.ui.theme.veryLargePadding
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -126,12 +134,12 @@ fun AddFunds(navecontroller: NavHostController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp),
+                .padding(largePadding),
 
             ) {
             Text(text = stringResource(id = R.string.AddFunds), style = TitleRegular)
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(veryLargePadding))
 
             Text(text = stringResource(id = R.string.Title), style = SubtitleRegular)
             TextFieldCustom(
@@ -141,7 +149,7 @@ fun AddFunds(navecontroller: NavHostController) {
                 error = titleError
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(largePadding))
 
             Text(text = stringResource(id = R.string.Description), style = SubtitleRegular)
             TextFieldCustom(
@@ -151,7 +159,7 @@ fun AddFunds(navecontroller: NavHostController) {
                 error = descriptionError
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(mediumDP))
 
             Text(text = stringResource(id = R.string.Amount), style = SubtitleRegular)
             TextFieldCustom(
@@ -161,13 +169,13 @@ fun AddFunds(navecontroller: NavHostController) {
                 error = amountError
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(mediumDP))
 
             Text(text = stringResource(id = R.string.Date), style = SubtitleRegular)
             Box(
                 modifier = Modifier
-                    .fillMaxHeight(0.2f)
-                    .fillMaxWidth(0.8f)
+                    .fillMaxHeight(twentyPercentWidth)
+                    .fillMaxWidth(eightyPercentWidth)
                     .align(Alignment.CenterHorizontally),
             ) {
                 OutlineButton(
@@ -183,7 +191,7 @@ fun AddFunds(navecontroller: NavHostController) {
             }
 
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(mediumDP))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center,
@@ -192,15 +200,15 @@ fun AddFunds(navecontroller: NavHostController) {
 
 
                 Text(text = stringResource(id = R.string.Expense), style = SubtitleRegular)
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(smallDP))
                 Switch(checked = income, onCheckedChange = {
                     income = it
                 }
                 )
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(smallDP))
                 Text(text = stringResource(id = R.string.Income), style = SubtitleRegular)
             }
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(mediumDP))
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -209,8 +217,8 @@ fun AddFunds(navecontroller: NavHostController) {
 
                 Box(
                     modifier = Modifier
-                        .fillMaxHeight(0.3f)
-                        .fillMaxWidth(0.6f)
+                        .fillMaxHeight(thertyPercentWidth)
+                        .fillMaxWidth(sixtyPercentWidth)
                 ) {
                     FilledButton(
                         "Save",

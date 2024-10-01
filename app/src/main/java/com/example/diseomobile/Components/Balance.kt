@@ -22,6 +22,9 @@ import com.example.diseomobile.R
 import com.example.diseomobile.ui.theme.SecondaryColor
 import com.example.diseomobile.ui.theme.Title2Regular
 import com.example.diseomobile.ui.theme.Title2SemiBold
+import com.example.diseomobile.ui.theme.largePadding
+import com.example.diseomobile.ui.theme.roundedCorners
+import com.example.diseomobile.ui.theme.smallDP
 
 @Composable
 fun BalanceCard(balance: String, negative : Boolean) {
@@ -29,16 +32,16 @@ val backgroundColor = if(negative) SecondaryColor else PrimaryColor
 val textColor = if(negative) Color.White else Color.Black
 
     Box(modifier = Modifier
-        .background(backgroundColor, RoundedCornerShape(10.dp))
+        .background(backgroundColor, RoundedCornerShape(roundedCorners))
         .fillMaxWidth()
-        .padding(16.dp),
+        .padding(largePadding),
         contentAlignment = Alignment.TopStart
     ) {
         Column (
             horizontalAlignment = Alignment.Start
         ) {
             Text(text = stringResource(R.string.Balance), color = textColor, style = Title2SemiBold)
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(smallDP))
             Text(text = balance, color = textColor, style = Title2Regular)
         }
     }

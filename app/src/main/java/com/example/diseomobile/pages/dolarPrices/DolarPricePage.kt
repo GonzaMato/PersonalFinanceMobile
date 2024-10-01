@@ -38,6 +38,9 @@ import com.example.diseomobile.ui.theme.Primary300
 import com.example.diseomobile.ui.theme.PrimaryColor
 import com.example.diseomobile.ui.theme.SubtitleRegular
 import com.example.diseomobile.ui.theme.TitleSemiBold
+import com.example.diseomobile.ui.theme.largeDP
+import com.example.diseomobile.ui.theme.mediumDP
+import com.example.diseomobile.ui.theme.xxlDP
 
 @Composable
 fun DolarPricePage() {
@@ -50,7 +53,7 @@ fun DolarPricePage() {
         Box(modifier = Modifier.fillMaxSize()) {
             CircularProgressIndicator(
                 modifier = Modifier
-                    .size(64.dp)
+                    .size(xxlDP)
                     .align(Alignment.Center),
                 color = Primary200,
                 trackColor = Primary300,
@@ -70,10 +73,10 @@ fun DolarPricePage() {
                     style = SubtitleRegular,
                     color = Color.Black,
                 )
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(mediumDP))
                 Box(
                     modifier = Modifier
-                        .height(64.dp)
+                        .height(xxlDP)
                         .width(200.dp)
                 ) {
                     OutlineButton(
@@ -94,7 +97,7 @@ fun DolarPricePage() {
                 .fillMaxWidth()
                 .background(color = Color.White)
         ) {
-            Box(modifier = Modifier.padding(16.dp)) {
+            Box(modifier = Modifier.padding(mediumDP)) {
 
                 Column(
                     modifier = Modifier.fillMaxWidth(),
@@ -102,7 +105,7 @@ fun DolarPricePage() {
                 ) {
 
                     Text(text = stringResource(id = R.string.dolar_price), style = TitleSemiBold)
-                    Spacer(modifier = Modifier.height(24.dp))
+                    Spacer(modifier = Modifier.height(largeDP))
                     separateDolarInGroups(2, dolarPrices).map {
                         Row(
                             modifier = Modifier.fillMaxWidth(),

@@ -40,6 +40,14 @@ import com.example.diseomobile.utils.getMonthByDate
 import com.example.diseomobile.utils.getWeeksForMonth
 import java.util.Date
 import com.example.diseomobile.R
+import com.example.diseomobile.ui.theme.calendarButtonWidth
+import com.example.diseomobile.ui.theme.largePadding
+import com.example.diseomobile.ui.theme.mediumBorder
+import com.example.diseomobile.ui.theme.mediumDP
+import com.example.diseomobile.ui.theme.nientyPercentWidth
+import com.example.diseomobile.ui.theme.roundedCorners
+import com.example.diseomobile.ui.theme.smallDP
+import com.example.diseomobile.ui.theme.xxlPadding
 
 @Composable
 fun MonthSelector(
@@ -59,21 +67,21 @@ fun MonthSelector(
 
     Column(
         modifier = Modifier
-            .padding(8.dp),
+            .padding(smallDP),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
         Row(
             modifier = Modifier
-                .fillMaxWidth(0.9f)
-                .padding(bottom = 16.dp),
+                .fillMaxWidth(nientyPercentWidth)
+                .padding(bottom = mediumDP),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Box(
                 modifier = Modifier
-                    .width(48.dp)
-                    .height(48.dp)
+                    .width(calendarButtonWidth)
+                    .height(calendarButtonWidth)
 
             ) {
                 OutlineButton(onClick = {
@@ -84,9 +92,9 @@ fun MonthSelector(
 
             Box(
                 modifier = Modifier
-                    .background(color = PrimaryColor, shape = RoundedCornerShape(10.dp))
-                    .border(2.dp, Color.Black, shape = RoundedCornerShape(10.dp))
-                    .padding(start = 40.dp, end = 40.dp, top = 18.dp, bottom = 18.dp)
+                    .background(color = PrimaryColor, shape = RoundedCornerShape(roundedCorners))
+                    .border(mediumBorder, Color.Black, shape = RoundedCornerShape(roundedCorners))
+                    .padding(start = xxlPadding, end = xxlPadding, top = largePadding, bottom = largePadding)
                     .clickable {
                         closeCalendar(false)
                     }
@@ -100,8 +108,8 @@ fun MonthSelector(
 
             Box(
                 modifier = Modifier
-                    .width(48.dp)
-                    .height(48.dp)
+                    .width(calendarButtonWidth)
+                    .height(calendarButtonWidth)
             ) {
                 OutlineButton(onClick = {
                     lastDayOfCalendar.value = getLastDayOfNextMonth(lastDayOfCalendar.value)
@@ -119,10 +127,10 @@ fun MonthSelector(
                     selectedWeekDate(calendarWeeks.value[i].map { it.date })
                 }
             )
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(mediumDP))
         }
 
-        Box(modifier = Modifier.height(48.dp)) {
+        Box(modifier = Modifier.height(calendarButtonWidth)) {
             OutlineButton(text = stringResource(id = R.string.close), type = ButtonType.PRIMARY) {
                 closeCalendar(false)
             }

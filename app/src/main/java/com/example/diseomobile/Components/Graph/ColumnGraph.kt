@@ -22,6 +22,13 @@ import androidx.compose.ui.unit.dp
 import com.example.diseomobile.ui.theme.BodyRegular
 import com.example.diseomobile.ui.theme.Primary300
 import com.example.diseomobile.ui.theme.PrimaryColor
+import com.example.diseomobile.ui.theme.graphColumnWidth
+import com.example.diseomobile.ui.theme.roundedCorners
+import com.example.diseomobile.ui.theme.smallBorder
+import com.example.diseomobile.ui.theme.smallDP
+import com.example.diseomobile.ui.theme.veryLargeDP
+import com.example.diseomobile.ui.theme.verySmallDP
+import com.example.diseomobile.ui.theme.xlDP
 
 @Composable
 fun ColumnGraph(amount: Int, day: String, lengthPercentage: Int, selected: Boolean, onClick : () -> Unit = {}) {
@@ -30,7 +37,7 @@ fun ColumnGraph(amount: Int, day: String, lengthPercentage: Int, selected: Boole
 
     Column(
         modifier = Modifier
-            .width(45.dp)
+            .width(graphColumnWidth)
             .fillMaxHeight()
             .clickable { onClick() },
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -42,7 +49,7 @@ fun ColumnGraph(amount: Int, day: String, lengthPercentage: Int, selected: Boole
             style = BodyRegular,
             color = colorOfColumn,
         )
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(smallDP))
 
         // Box for the dynamic height of the bar
         Box(
@@ -50,21 +57,21 @@ fun ColumnGraph(amount: Int, day: String, lengthPercentage: Int, selected: Boole
                 .fillMaxWidth()
                 .fillMaxHeight(lengthPercentage / 120f)  // Scaled based on the percentage
                 .border(
-                    width = 1.dp,
+                    width = smallBorder,
                     color = borderColor,
-                    shape = RoundedCornerShape(topEnd = 10.dp, topStart = 10.dp)
+                    shape = RoundedCornerShape(topEnd = roundedCorners, topStart =roundedCorners)
                 )
                 .background(
                     color = colorOfColumn,
-                    shape = RoundedCornerShape(topEnd = 10.dp, topStart = 10.dp)
+                    shape = RoundedCornerShape(topEnd = roundedCorners, topStart = roundedCorners)
                 )
         )
 
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(verySmallDP))
 
         // Amount text on top of the bar
-        Box(modifier = Modifier.height(31.dp)
-            .width(40.dp)
+        Box(modifier = Modifier.height(veryLargeDP)
+            .width(xlDP)
             .align(Alignment.CenterHorizontally)) {
             Text(
                 text = day,

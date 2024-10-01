@@ -20,6 +20,9 @@ import androidx.compose.ui.unit.dp
 import com.example.diseomobile.ui.theme.BodyRegular
 import com.example.diseomobile.ui.theme.PrimaryColor
 import com.example.diseomobile.ui.theme.Tertiary400
+import com.example.diseomobile.ui.theme.roundedCorners
+import com.example.diseomobile.ui.theme.smallDP
+import com.example.diseomobile.ui.theme.verySmallDP
 import java.util.Date
 
 data class DayParams(
@@ -38,7 +41,7 @@ fun WeekCompose(dayParams : List<DayParams>, selected : Boolean = true, onClick 
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
-            .background(color = colorBackground, shape= RoundedCornerShape(10.dp))
+            .background(color = colorBackground, shape= RoundedCornerShape(roundedCorners))
             .fillMaxWidth()
             .clickable { onClick() }
     ) {
@@ -48,10 +51,10 @@ fun WeekCompose(dayParams : List<DayParams>, selected : Boolean = true, onClick 
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
-                    .padding( top = 8.dp, bottom = 8.dp, start = 8.dp, end = 8.dp)
+                    .padding( top = smallDP, bottom = smallDP, start = smallDP, end = smallDP)
             ) {
                 Text(text = day.number.toString(), style = BodyRegular, color = textColor)
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(verySmallDP))
                 Text(text = day.day, style = BodyRegular, color = textColor)
             }
         }

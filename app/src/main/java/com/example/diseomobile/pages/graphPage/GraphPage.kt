@@ -20,6 +20,9 @@ import com.example.diseomobile.Components.Calendar.CalendarComposable
 import com.example.diseomobile.Components.Graph.GraphWeekly
 import com.example.diseomobile.Components.RecentActivity.RecentActivityDay
 import com.example.diseomobile.pages.homePage.getMovements
+import com.example.diseomobile.ui.theme.fortyfivePercentWidth
+import com.example.diseomobile.ui.theme.largePadding
+import com.example.diseomobile.ui.theme.veryLargePadding
 import com.example.diseomobile.utils.DayOfWeek
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -42,15 +45,15 @@ fun GraphPage() {
     ) {
         Box(
             modifier = Modifier
-                .padding(22.dp)
+                .padding(veryLargePadding)
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Box(
                     modifier = Modifier
-                        .fillMaxHeight(0.45f)
-                        .padding(bottom = 18.dp)
+                        .fillMaxHeight(fortyfivePercentWidth)
+                        .padding(bottom = largePadding)
                 ) {
                     GraphWeekly(
                         movements = getMovements(movements),

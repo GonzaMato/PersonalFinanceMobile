@@ -32,6 +32,10 @@ import com.example.diseomobile.R
 import com.example.diseomobile.data.models.transaction.Transaction
 import com.example.diseomobile.navigation.WiseRipOffScreens
 import com.example.diseomobile.ui.theme.Title2Regular
+import com.example.diseomobile.ui.theme.mediumLargePadding
+import com.example.diseomobile.ui.theme.mediumSemiLarge
+import com.example.diseomobile.ui.theme.veryLargePadding
+import com.example.diseomobile.ui.theme.xxlDP
 
 @Composable
 fun HomePage(navecontroller : NavHostController) {
@@ -54,24 +58,24 @@ fun HomePage(navecontroller : NavHostController) {
             .background(color = Color.White)
             .verticalScroll(rememberScrollState())
             .fillMaxHeight()
-            .padding(start = 24.dp, end = 24.dp)
+            .padding(start = veryLargePadding, end = veryLargePadding)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-                Spacer(modifier = Modifier.padding(12.dp))
+                Spacer(modifier = Modifier.padding(mediumSemiLarge))
                 Row(modifier = Modifier.fillMaxWidth()) {
                     Text(
                         text = stringResource(R.string.WelcomMessage) + " " + nameProfile,
                         style = Title2Regular
                     )
                 }
-                Spacer(modifier = Modifier.padding(12.dp))
+                Spacer(modifier = Modifier.padding(mediumSemiLarge))
                 BalanceCard(balance = balance.toString() , negative = balance!! < 0.0)
-                Spacer(modifier = Modifier.padding(12.dp))
+                Spacer(modifier = Modifier.padding(mediumSemiLarge))
                 Box(
                     modifier = Modifier
-                        .height(60.dp)
+                        .height(xxlDP)
                 ) {
                     OutlineButton(
                         text = stringResource(id = R.string.AddFunds),
@@ -79,7 +83,7 @@ fun HomePage(navecontroller : NavHostController) {
                         onClick = { navecontroller.navigate(WiseRipOffScreens.NewTransaction.name)}
                     )
                 }
-                Spacer(modifier = Modifier.padding(12.dp))
+                Spacer(modifier = Modifier.padding(mediumSemiLarge))
                 RecentActivity(
                     movements = getMovements(transaction)
                 )

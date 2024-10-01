@@ -25,6 +25,12 @@ import com.example.diseomobile.R
 import com.example.diseomobile.ui.theme.Primary400
 import com.example.diseomobile.ui.theme.SubtitleSemiBold
 import com.example.diseomobile.ui.theme.Title2SemiBold
+import com.example.diseomobile.ui.theme.largeBorder
+import com.example.diseomobile.ui.theme.largePadding
+import com.example.diseomobile.ui.theme.mediumDP
+import com.example.diseomobile.ui.theme.mediumPadding
+import com.example.diseomobile.ui.theme.roundedCorners
+import com.example.diseomobile.ui.theme.smallDP
 import com.example.diseomobile.utils.categorizeMovementsByDate
 import java.util.Date
 
@@ -42,13 +48,13 @@ fun RecentActivity(movements: List<MovementParams>) {
 
     Box(
         modifier = Modifier.border(
-            width = 3.dp,
+            width = largeBorder,
             color = Color.Black,
-            shape = RoundedCornerShape(10.dp)
+            shape = RoundedCornerShape(roundedCorners)
         )
     ) {
         Column(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(largePadding)
         ) {
 
             Row(
@@ -63,10 +69,10 @@ fun RecentActivity(movements: List<MovementParams>) {
 
             Column {
                categorizedMovements.forEach { (date , movement) ->
-                   Spacer(modifier = Modifier.height(16.dp))
+                   Spacer(modifier = Modifier.height(mediumDP))
                    Text(text = date , style = Title2SemiBold, color = Primary400)
                      movement.forEach {
-                         Spacer(modifier = Modifier.height(8.dp))
+                         Spacer(modifier = Modifier.height(smallDP))
                          Movement(it)
                      }
                }

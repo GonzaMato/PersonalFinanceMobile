@@ -20,6 +20,8 @@ import androidx.compose.ui.unit.dp
 import com.example.diseomobile.ui.theme.PrimaryColor
 import com.example.diseomobile.ui.theme.SecondaryColor
 import com.example.diseomobile.ui.theme.SubtitleSemiBold
+import com.example.diseomobile.ui.theme.mediumBorder
+import com.example.diseomobile.ui.theme.roundedCorners
 
 @Composable
 fun OutlineButton(text : String, type : ButtonType, onClick : () -> Unit ) {
@@ -29,7 +31,7 @@ fun OutlineButton(text : String, type : ButtonType, onClick : () -> Unit ) {
     }
 
     Box(modifier = Modifier
-        .border(width = 2.dp , color = backgroundColor, shape = RoundedCornerShape(10.dp))
+        .border(width = mediumBorder , color = backgroundColor, shape = RoundedCornerShape(roundedCorners))
         .fillMaxWidth()
         .fillMaxHeight()
         .clickable { onClick() },

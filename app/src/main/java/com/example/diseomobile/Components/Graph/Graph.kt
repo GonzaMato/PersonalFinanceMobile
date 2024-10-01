@@ -30,6 +30,10 @@ import com.example.diseomobile.utils.SeparateByWeek
 import com.example.diseomobile.utils.getLengthForWeekDays
 import java.util.Calendar
 import com.example.diseomobile.R
+import com.example.diseomobile.ui.theme.mediumBorder
+import com.example.diseomobile.ui.theme.mediumDP
+import com.example.diseomobile.ui.theme.veryRoundedCorners
+import com.example.diseomobile.ui.theme.xxxlPadding
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -56,9 +60,9 @@ fun GraphWeekly(movements: List<MovementParams>, onDaySelected: (DayOfWeek) -> U
 
             Box(
                 modifier = Modifier
-                    .background(color = PrimaryColor, shape = RoundedCornerShape(50.dp))
-                    .border(2.dp, Color.Black, shape = RoundedCornerShape(50.dp))
-                    .padding(start = 60.dp, end = 60.dp)
+                    .background(color = PrimaryColor, shape = RoundedCornerShape(veryRoundedCorners))
+                    .border(mediumBorder, Color.Black, shape = RoundedCornerShape(veryRoundedCorners))
+                    .padding(start =xxxlPadding, end =xxxlPadding)
                     .clickable {
                         openCalendar(true)
                     }
@@ -66,7 +70,7 @@ fun GraphWeekly(movements: List<MovementParams>, onDaySelected: (DayOfWeek) -> U
                 Text(text = weekText, color = Color.Black, style = Title2Regular)
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(mediumDP))
 
             Row(
                 modifier = Modifier
