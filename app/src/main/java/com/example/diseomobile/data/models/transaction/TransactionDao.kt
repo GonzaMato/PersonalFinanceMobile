@@ -1,5 +1,6 @@
 package com.example.diseomobile.data.models.transaction
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -17,5 +18,5 @@ interface TransactionDao {
     suspend fun getTransactionsWithPagination(profileId: Int, limit: Int, offset: Int): List<Transaction>
 
     @Query("SELECT * FROM `Transaction` WHERE profileId = :profileId ORDER BY date DESC")
-    suspend fun getTransactions(profileId: Int): List<Transaction>
+    fun getTransactions(profileId: Int): LiveData<List<Transaction>>
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WiseRipOff</string>
+    <string name="app_name" translatable="false">WiseRipOff</string>
     <string name="RecentActivity">Recent Activity</string>
     <string name="ShowAll">Show All</string>
     <string name="Today">Today</string>
@@ -29,11 +29,14 @@
     <string name="Income">Income</string>
     <string name="Expense">Expense</string>
     <string name="no_movements">No movements in this day</string>
-    <string name="dolar_api_url">https://dolarapi.com/</string>
     <string name="dolar_price">Currency Prices</string>
     <string name="error_loading_prices">Error while loading prices</string>
     <string name="retry">Retry</string>
     <string name="selectWeek">Select Week</string>
     <string name="LastWeek">Last Week</string>
     <string name="close">Close</string>
+    <string name="sellValue">Sell</string>
+    <string name="buyValue">Buy</string>
+    <string name="noRecentActivity">No recent Activty</string>
+    <string name="errorText">Error</string>
 </resources>

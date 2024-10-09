@@ -21,6 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -68,12 +69,12 @@ fun CurrencyValue(name : String , priceBuy : Double, priceSell : Double, imageRe
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
             Text(
-                text = "Venta $$priceSell",
+                text = stringResource(id = R.string.sellValue) + " $$priceSell",
                 style = BodySemiBold,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
             Text(
-                text = "Compra $$priceBuy",
+                text = stringResource(id = R.string.buyValue) +" $$priceBuy",
                 style = BodySemiBold,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )

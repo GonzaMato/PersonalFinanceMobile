@@ -1,5 +1,6 @@
 package com.example.diseomobile.data.models.profile
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -16,5 +17,8 @@ interface ProfileDAO {
     suspend fun getProfileById(profileId: Int): Profile?
 
     @Query("SELECT balance FROM Profile WHERE id = :profileId")
-    suspend fun getProfileBalance(profileId: Int): Double?
+    fun getProfileBalanceLiveData(profileId: Int): LiveData<Double>
+
+    @Query("SELECT balance FROM Profile WHERE id = :profileId")
+    suspend fun getProfileBalance(profileId: Int): Double
 }

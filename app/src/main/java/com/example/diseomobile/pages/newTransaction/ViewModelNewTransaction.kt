@@ -44,6 +44,10 @@ class ViewModelNewTransaction @Inject constructor(
 
     @SuppressLint("DefaultLocale")
     fun setAmount(amount: String) {
+        if (amount == ""){
+            _amount.value = ""
+            return
+        }
         val newAmount = amount.toFloatOrNull()
         if (newAmount != null && newAmount >= 0) {
             val formattedAmount = String.format("%.2f", newAmount)
@@ -82,7 +86,7 @@ class ViewModelNewTransaction @Inject constructor(
                     profileId = profileId
                 )
             )
-            wiseRipOffDatabase.profileDao().getProfileBalance(profileId)?.let {
+            wiseRipOffDatabase.profileDao().getProfileBalance(profileId).let {
                 val newBalance = if (income) it + amount.toDouble() else it - amount.toDouble()
                 wiseRipOffDatabase.profileDao().updateBalance(profileId, newBalance)
             }

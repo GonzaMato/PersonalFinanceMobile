@@ -1,8 +1,10 @@
 package com.example.diseomobile.pages.dolarPrices
 
 import android.content.Context
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.diseomobile.R
 import com.example.diseomobile.api.DolarApiServiceImpl
 import com.example.diseomobile.api.DolarPrice
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,8 +17,9 @@ import javax.inject.Inject
 @HiltViewModel
 class ViewModelDolarPrice @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val dolarApiServiceImpl: DolarApiServiceImpl
+    private val dolarApiServiceImpl: DolarApiServiceImpl,
 ) : ViewModel() {
+
 
     private val _loadingPrices = MutableStateFlow<Boolean>(false)
     val loadingPrices = _loadingPrices.asStateFlow()
@@ -53,7 +56,8 @@ class ViewModelDolarPrice @Inject constructor(
             },
             loadingFinished = {
                 _loadingPrices.value = false
-            }
+            },
+            errorText = context.getString(R.string.errorText)
         )
     }
 

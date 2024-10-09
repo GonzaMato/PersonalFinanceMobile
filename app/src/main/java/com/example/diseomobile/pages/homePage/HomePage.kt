@@ -20,37 +20,34 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.diseomobile.Components.BalanceCard
 import com.example.diseomobile.Components.Button.ButtonType
 import com.example.diseomobile.Components.Button.OutlineButton
+import com.example.diseomobile.Components.NoRecentActivity.NoRecentActivity
 import com.example.diseomobile.Components.RecentActivity.MovementParams
 import com.example.diseomobile.Components.RecentActivity.RecentActivity
 import com.example.diseomobile.R
 import com.example.diseomobile.data.models.transaction.Transaction
 import com.example.diseomobile.navigation.WiseRipOffScreens
 import com.example.diseomobile.ui.theme.Title2Regular
-import com.example.diseomobile.ui.theme.mediumLargePadding
 import com.example.diseomobile.ui.theme.mediumSemiLarge
 import com.example.diseomobile.ui.theme.veryLargePadding
 import com.example.diseomobile.ui.theme.xxlDP
 
 @Composable
-fun HomePage(navecontroller : NavHostController) {
+fun HomePage(navcontroller : NavHostController) {
     val viewmodel = hiltViewModel<ViewModelHomePage>()
-    val transaction by viewmodel.transactions.collectAsState()
-    val balance by viewmodel.balance.collectAsState()
+    val transaction by viewmodel.transactions.collectAsState(listOf())
+    val balance by viewmodel.balance.collectAsState(0.0)
     val nameProfile by viewmodel.nameProfile.collectAsState()
 
-    val newTransactionButtonType : ButtonType = if (balance!! < 0.0) ButtonType.SECONDARY else ButtonType.PRIMARY
+    val newTransactionButtonType : ButtonType = if (balance < 0.0) ButtonType.SECONDARY else ButtonType.PRIMARY
 
 
     LaunchedEffect(Unit) {
         viewmodel.createProfileIfNonExistant()
-        viewmodel.loadProfileBalance(1)
-        viewmodel.setTransaction(viewmodel.getTransactions(1))
     }
 
     Column(
@@ -80,13 +77,18 @@ fun HomePage(navecontroller : NavHostController) {
                     OutlineButton(
                         text = stringResource(id = R.string.AddFunds),
                         type = newTransactionButtonType,
-                        onClick = { navecontroller.navigate(WiseRipOffScreens.NewTransaction.name)}
+                        onClick = { navcontroller.navigate(WiseRipOffScreens.NewTransaction.name)}
                     )
                 }
                 Spacer(modifier = Modifier.padding(mediumSemiLarge))
-                RecentActivity(
-                    movements = getMovements(transaction)
-                )
+
+                if (transaction.isEmpty()){
+                    NoRecentActivity()
+                } else {
+                    RecentActivity(
+                        movements = getMovements(transaction)
+                    )
+                }
             }
         }
     }

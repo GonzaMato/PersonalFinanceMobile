@@ -2,6 +2,7 @@ package com.example.diseomobile.api
 
 import android.content.Context
 import android.widget.Toast
+import androidx.compose.ui.res.stringResource
 import com.example.diseomobile.R
 import retrofit.Callback
 import retrofit.GsonConverterFactory
@@ -9,13 +10,15 @@ import retrofit.Response
 import retrofit.Retrofit
 import javax.inject.Inject
 
-class DolarApiServiceImpl @Inject constructor() {
+class DolarApiServiceImpl @Inject constructor(
+) {
 
     fun getDolarPrice(
         context: Context,
         onSuccess: (List<DolarPrice>) -> Unit,
         onFail: () -> Unit,
-        loadingFinished: () -> Unit
+        loadingFinished: () -> Unit,
+        errorText : String
     ) {
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(
@@ -41,7 +44,7 @@ class DolarApiServiceImpl @Inject constructor() {
             }
 
             override fun onFailure(t: Throwable?) {
-                Toast.makeText(context, "Error: ${t?.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, errorText + ": ${t?.message}", Toast.LENGTH_SHORT).show()
                 onFail()
                 loadingFinished()
             }
