@@ -39,4 +39,6 @@
     <string name="buyValue">Buy</string>
     <string name="noRecentActivity">No recent Activty</string>
     <string name="errorText">Error</string>
+    <string name="authentication_failed">Authentication Failed</string>
+    <string name="tryagain">Try Again.</string>
 </resources>

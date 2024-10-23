@@ -25,10 +25,10 @@ fun NavHostComposable(navController: NavHostController, innerPadding: PaddingVal
             .padding(horizontal = 1.dp)
     ) {
         composable(WiseRipOffScreens.Home.name) {
-            HomePage(navController)
+            HomePage { navController.navigate(WiseRipOffScreens.NewTransaction.name) }
         }
         composable(WiseRipOffScreens.NewTransaction.name) {
-            AddFunds(navController)
+            AddFunds { navController.navigate(WiseRipOffScreens.Home.name) }
         }
         composable(WiseRipOffScreens.Currencies.name) {
             DolarPricePage()

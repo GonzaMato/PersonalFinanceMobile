@@ -82,4 +82,6 @@ dependencies {
     kapt("androidx.room:room-compiler:2.6.1")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit:converter-gson:2.0.0-beta2")
+    implementation("androidx.biometric:biometric:1.2.0-alpha05")
+
 }

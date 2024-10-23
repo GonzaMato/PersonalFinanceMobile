@@ -22,6 +22,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigator
 import com.example.diseomobile.Components.BalanceCard
 import com.example.diseomobile.Components.Button.ButtonType
 import com.example.diseomobile.Components.Button.OutlineButton
@@ -31,13 +33,14 @@ import com.example.diseomobile.Components.RecentActivity.RecentActivity
 import com.example.diseomobile.R
 import com.example.diseomobile.data.models.transaction.Transaction
 import com.example.diseomobile.navigation.WiseRipOffScreens
+import com.example.diseomobile.ui.theme.DiseñoMobileTheme
 import com.example.diseomobile.ui.theme.Title2Regular
 import com.example.diseomobile.ui.theme.mediumSemiLarge
 import com.example.diseomobile.ui.theme.veryLargePadding
 import com.example.diseomobile.ui.theme.xxlDP
 
 @Composable
-fun HomePage(navcontroller : NavHostController) {
+fun HomePage(navigateToNewTransaction : () -> Unit) {
     val viewmodel = hiltViewModel<ViewModelHomePage>()
     val transaction by viewmodel.transactions.collectAsState(listOf())
     val balance by viewmodel.balance.collectAsState(0.0)
@@ -52,7 +55,7 @@ fun HomePage(navcontroller : NavHostController) {
 
     Column(
         modifier = Modifier
-            .background(color = Color.White)
+            .background(Color.White)
             .verticalScroll(rememberScrollState())
             .fillMaxHeight()
             .padding(start = veryLargePadding, end = veryLargePadding)
@@ -77,7 +80,7 @@ fun HomePage(navcontroller : NavHostController) {
                     OutlineButton(
                         text = stringResource(id = R.string.AddFunds),
                         type = newTransactionButtonType,
-                        onClick = { navcontroller.navigate(WiseRipOffScreens.NewTransaction.name)}
+                        onClick = { navigateToNewTransaction()}
                     )
                 }
                 Spacer(modifier = Modifier.padding(mediumSemiLarge))

@@ -19,8 +19,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.diseomobile.Components.Button.ButtonType
 import com.example.diseomobile.Components.Button.FilledButton
@@ -30,12 +28,9 @@ import com.example.diseomobile.ui.theme.SubtitleRegular
 import com.example.diseomobile.ui.theme.TitleRegular
 import java.util.Calendar
 import android.app.TimePickerDialog
-import android.widget.CheckBox
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
-import androidx.compose.material3.SwitchColors
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
@@ -54,7 +49,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @Composable
-fun AddFunds(navecontroller: NavHostController) {
+fun AddFunds(navController: () -> Unit) {
     val viewModel = hiltViewModel<ViewModelNewTransaction>()
     val context = LocalContext.current
     val title by viewModel.title.collectAsState()
@@ -277,7 +272,7 @@ fun AddFunds(navecontroller: NavHostController) {
                                     transactionAdded,
                                     Toast.LENGTH_SHORT
                                 ).show()
-                                navecontroller.navigate(WiseRipOffScreens.Home.name)
+                                navController()
                             } catch (e: Exception) {
                                 Toast.makeText(
                                     context,
