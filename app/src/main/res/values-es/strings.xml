@@ -37,4 +37,8 @@
     <string name="close">Cerrar</string>
     <string name="sellValue">Vender</string>
     <string name="buyValue">Comprar</string>
+    <string name="noRecentActivity">No hay actividad reciente</string>
+    <string name="errorText">Error</string>
+    <string name="authentication_failed">Error al autenticar</string>
+    <string name="tryagain">Intenta denuevo.</string>
 </resources>

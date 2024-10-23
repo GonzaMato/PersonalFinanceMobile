@@ -37,7 +37,7 @@
     <string name="close">Close</string>
     <string name="sellValue">Sell</string>
     <string name="buyValue">Buy</string>
-    <string name="noRecentActivity">No recent Activty</string>
+    <string name="noRecentActivity">No recent Activity</string>
     <string name="errorText">Error</string>
     <string name="authentication_failed">Authentication Failed</string>
     <string name="tryagain">Try Again.</string>
