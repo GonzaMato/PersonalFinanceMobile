@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -26,6 +27,7 @@ import com.example.diseomobile.Components.Button.ButtonType
 import com.example.diseomobile.Components.Button.FilledButton
 import com.example.diseomobile.R
 import com.example.diseomobile.ui.theme.Primary400
+import com.example.diseomobile.ui.theme.PrimaryColor
 import com.example.diseomobile.ui.theme.SubtitleSemiBold
 import com.example.diseomobile.ui.theme.Title2SemiBold
 import com.example.diseomobile.ui.theme.largeBorder
@@ -43,7 +45,7 @@ fun RecentActivityDay(recentMovement : List<MovementParams>) {
     Box(
         modifier = Modifier.border(
             width = largeBorder,
-            color = Color.Black,
+            color = MaterialTheme.colorScheme.primary, //Arpo
             shape = RoundedCornerShape(roundedCorners)
         )
     ) {
@@ -55,7 +57,7 @@ fun RecentActivityDay(recentMovement : List<MovementParams>) {
                 Text(
                     text = stringResource(id = R.string.no_movements),
                     style = SubtitleSemiBold,
-                    color = Primary400
+                    color = MaterialTheme.colorScheme.secondary
                 )
             } else {
                 LazyColumn {
@@ -63,7 +65,7 @@ fun RecentActivityDay(recentMovement : List<MovementParams>) {
                         Text(
                             text = getDateName(date = recentMovement[0].date),
                             style = Title2SemiBold,
-                            color = Primary400
+                            color = MaterialTheme.colorScheme.secondary
                         )
                         Spacer(modifier = Modifier.height(mediumDP))
                         recentMovement.forEach { it ->

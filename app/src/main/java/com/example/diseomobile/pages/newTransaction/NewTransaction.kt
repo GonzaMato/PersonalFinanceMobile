@@ -30,7 +30,9 @@ import java.util.Calendar
 import android.app.TimePickerDialog
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
@@ -124,7 +126,7 @@ fun AddFunds(navController: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color.White)
+            .background(color = MaterialTheme.colorScheme.background)
     ) {
         Column(
             modifier = Modifier
@@ -198,7 +200,13 @@ fun AddFunds(navController: () -> Unit) {
                 Spacer(modifier = Modifier.width(smallDP))
                 Switch(checked = income, onCheckedChange = {
                     income = it
-                }
+                },
+                    colors = SwitchDefaults.colors(
+                        checkedThumbColor = Color.White,
+                        checkedTrackColor = MaterialTheme.colorScheme.secondary,
+                        uncheckedThumbColor = Color.White,
+                        uncheckedTrackColor = MaterialTheme.colorScheme.secondary
+                    )
                 )
                 Spacer(modifier = Modifier.width(smallDP))
                 Text(text = stringResource(id = R.string.Income), style = SubtitleRegular)

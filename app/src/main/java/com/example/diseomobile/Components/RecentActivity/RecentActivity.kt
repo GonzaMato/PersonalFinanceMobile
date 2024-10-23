@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -49,7 +50,7 @@ fun RecentActivity(movements: List<MovementParams>) {
     Box(
         modifier = Modifier.border(
             width = largeBorder,
-            color = Color.Black,
+            color = MaterialTheme.colorScheme.primary, //Aproposito para que en en blackTheme no se vea
             shape = RoundedCornerShape(roundedCorners)
         )
     ) {
@@ -70,7 +71,7 @@ fun RecentActivity(movements: List<MovementParams>) {
             Column {
                categorizedMovements.forEach { (date , movement) ->
                    Spacer(modifier = Modifier.height(mediumDP))
-                   Text(text = date , style = Title2SemiBold, color = Primary400)
+                   Text(text = date , style = Title2SemiBold, color = MaterialTheme.colorScheme.secondary)
                      movement.forEach {
                          Spacer(modifier = Modifier.height(smallDP))
                          Movement(it)

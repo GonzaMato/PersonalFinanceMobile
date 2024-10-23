@@ -14,15 +14,15 @@ import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
     primary = Color.White,
-    secondary = Primary200,
-    tertiary = Primary300,
+    secondary = PrimaryColor,
+    tertiary = PrimaryColor,
     background = Color.Black,
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = Color.Black,
-    secondary = Secondary200,
-    tertiary = Secondary300,
+    secondary = Primary400,
+    tertiary = Primary200,
     background = Color.White,
 
     /* Other default colors to override
@@ -40,7 +40,7 @@ private val LightColorScheme = lightColorScheme(
 fun DiseñoMobileTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {

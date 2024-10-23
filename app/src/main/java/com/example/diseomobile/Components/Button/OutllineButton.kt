@@ -37,7 +37,7 @@ fun OutlineButton(text : String, type : ButtonType, onClick : () -> Unit ) {
         .clickable { onClick() },
         contentAlignment = Alignment.Center
     ) {
-        Text(text = text, color = Color.Black, style = SubtitleSemiBold)
+        Text(text = text, style = SubtitleSemiBold)
     }
 }
 
