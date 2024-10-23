@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -55,7 +56,7 @@ fun HomePage(navigateToNewTransaction : () -> Unit) {
 
     Column(
         modifier = Modifier
-            .background(Color.White)
+            .background(MaterialTheme.colorScheme.background)
             .verticalScroll(rememberScrollState())
             .fillMaxHeight()
             .padding(start = veryLargePadding, end = veryLargePadding)
@@ -71,7 +72,7 @@ fun HomePage(navigateToNewTransaction : () -> Unit) {
                     )
                 }
                 Spacer(modifier = Modifier.padding(mediumSemiLarge))
-                BalanceCard(balance = balance.toString() , negative = balance!! < 0.0)
+                BalanceCard(balance = balance.toString() , negative = balance < 0.0)
                 Spacer(modifier = Modifier.padding(mediumSemiLarge))
                 Box(
                     modifier = Modifier

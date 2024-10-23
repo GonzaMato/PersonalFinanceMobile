@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -41,12 +42,12 @@ fun WeekCompose(dayParams : List<DayParams>, selected : Boolean = true, onClick 
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
-            .background(color = colorBackground, shape= RoundedCornerShape(roundedCorners))
+            .background(color = colorBackground, shape = RoundedCornerShape(roundedCorners))
             .fillMaxWidth()
             .clickable { onClick() }
     ) {
         for (day in dayParams){
-            val textColor = if (day.inTheMonth || selected) Color.Black else Tertiary400
+            val textColor = if (day.inTheMonth || selected) MaterialTheme.colorScheme.primary else Tertiary400
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,

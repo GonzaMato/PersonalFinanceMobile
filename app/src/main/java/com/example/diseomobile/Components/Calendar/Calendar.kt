@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -24,7 +25,7 @@ fun CalendarComposable(selectedWeekDate : (List<Date>) -> Unit = {}, closeCalend
     Box(modifier = Modifier
         .padding(mediumLargePadding)
         .shadow(elevation = smallDP, shape = RoundedCornerShape(roundedCorners))
-        .background(color = Color.White, shape = RoundedCornerShape(roundedCorners)))
+        .background(color = MaterialTheme.colorScheme.background, shape = RoundedCornerShape(roundedCorners)))
     {
         MonthSelector(selectedWeekDate, closeCalendar)
     }
@@ -33,7 +34,8 @@ fun CalendarComposable(selectedWeekDate : (List<Date>) -> Unit = {}, closeCalend
 @Preview
 @Composable
 fun PreviewCalendarComposable() {
-    Box(modifier = Modifier.background(color = Tertiary400)
+    Box(modifier = Modifier
+        .background(color = Tertiary400)
         .fillMaxHeight()
         .fillMaxWidth()
     ) {

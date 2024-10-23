@@ -45,9 +45,9 @@ fun Movement(movementData : MovementParams) {
         verticalAlignment = Alignment.CenterVertically
     ){
         Column {
-            Text(text = movementData.title, color = Color.Black, style = SubtitleSemiBold)
-            Text(text = movementData.description, color = Color.Black, style = BodyRegular)
-            Text(text = formatDate(movementData.date), color = Color.Black, style = BodyRegular)
+            Text(text = movementData.title, color = MaterialTheme.colorScheme.primary, style = SubtitleSemiBold)
+            Text(text = movementData.description, color = MaterialTheme.colorScheme.primary, style = BodyRegular)
+            Text(text = formatDate(movementData.date), color = MaterialTheme.colorScheme.primary, style = BodyRegular)
         }
         Text(text = movementAmount, color = movementColor, style = SubtitleRegular)
     }
