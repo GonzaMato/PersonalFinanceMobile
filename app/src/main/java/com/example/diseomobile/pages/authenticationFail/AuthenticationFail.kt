@@ -48,8 +48,8 @@ fun AuthenticationFail() {
                 contentScale = ContentScale.Crop
             )
             Spacer(modifier = Modifier.size(16.dp))
-            Text( text = stringResource(id = R.string.authentication_failed), style = Title2SemiBold)
-            Text( text = stringResource(id = R.string.tryagain), style = Title2SemiBold)
+            Text( text = stringResource(id = R.string.authentication_failed), style = Title2SemiBold, color = MaterialTheme.colorScheme.primary)
+            Text( text = stringResource(id = R.string.tryagain), style = Title2SemiBold, color = MaterialTheme.colorScheme.primary)
 
         }
     }

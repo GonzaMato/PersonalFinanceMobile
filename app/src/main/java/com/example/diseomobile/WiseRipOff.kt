@@ -41,8 +41,10 @@ class WiseRipOff : FragmentActivity() {
             if (isAuthenticated) {
                 loadMainContent()
             } else {
+                DiseñoMobileTheme {
                 AuthenticationFail()
-                Toast.makeText(this, "Authentication Error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Authentication Error", Toast.LENGTH_SHORT).show()}
+
             }
         }
     }
