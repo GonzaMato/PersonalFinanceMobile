@@ -41,4 +41,7 @@
     <string name="errorText">Error</string>
     <string name="authentication_failed">Authentication Failed</string>
     <string name="tryagain">Try Again.</string>
+    <string name="createName">Select a Name:</string>
+    <string name="EnterName">Enter your Name</string>
+    <string name="accept">Accept</string>
 </resources>
