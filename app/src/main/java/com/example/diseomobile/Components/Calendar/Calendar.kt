@@ -23,26 +23,25 @@ import com.example.diseomobile.ui.theme.smallDP
 import java.util.Date
 
 @Composable
-fun CalendarComposable(selectedWeekDate : (List<Date>) -> Unit = {}, closeCalendar : (Boolean) -> Unit = {}) {
-
-    Box(modifier = Modifier
-        .padding(mediumLargePadding)
-        .border(width = mediumBorder, color = MaterialTheme.colorScheme.primary ,shape = RoundedCornerShape(roundedCorners))
-        .background(color = MaterialTheme.colorScheme.background, shape = RoundedCornerShape(roundedCorners)))
-    {
-        MonthSelector(selectedWeekDate, closeCalendar)
-    }
-}
-
-@Preview
-@Composable
-fun PreviewCalendarComposable() {
-    Box(modifier = Modifier
-        .background(color = Tertiary400)
-        .fillMaxHeight()
-        .fillMaxWidth()
+fun CalendarComposable(
+    monthSelectorViewModel: MonthSelectorViewModel, // Accept ViewModel as a parameter
+    selectedWeekDate: (List<Date>) -> Unit = {},
+    closeCalendar: (Boolean) -> Unit = {}
+) {
+    Box(
+        modifier = Modifier
+            .padding(mediumLargePadding)
+            .border(
+                width = mediumBorder,
+                color = MaterialTheme.colorScheme.primary,
+                shape = RoundedCornerShape(roundedCorners)
+            )
+            .background(
+                color = MaterialTheme.colorScheme.background,
+                shape = RoundedCornerShape(roundedCorners)
+            )
     ) {
-        CalendarComposable()
+        // Pass the ViewModel to MonthSelector
+        MonthSelector(monthSelectorViewModel, selectedWeekDate, closeCalendar)
     }
-
 }

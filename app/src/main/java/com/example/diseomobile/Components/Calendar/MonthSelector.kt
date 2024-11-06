@@ -18,6 +18,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.formatWithSkeleton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -51,19 +53,13 @@ import com.example.diseomobile.ui.theme.xxlPadding
 
 @Composable
 fun MonthSelector(
+    viewModel: MonthSelectorViewModel,
     selectedWeekDate: (List<Date>) -> Unit = {},
     closeCalendar: (Boolean) -> Unit = {},
 ) {
-    val amountOfWeeks = 5
-    val lastDayOfCalendar: MutableState<Date> = remember {
-        mutableStateOf(getLastDayOfThisMonth(Date()))
-    }
-    val calendarWeeks: MutableState<List<List<DayParams>>> = remember {
-        mutableStateOf(getWeeksForMonth(lastDayOfCalendar.value, amountOfWeeks))
-    }
-    val selectedWeek = remember {
-        mutableIntStateOf(amountOfWeeks - 1)
-    }
+    val lastDayOfCalendar by viewModel.lastDayOfCalendar.collectAsState()
+    val calendarWeeks by viewModel.calendarWeeks.collectAsState()
+    val selectedWeek by viewModel.selectedWeek.collectAsState()
 
     Column(
         modifier = Modifier
@@ -84,10 +80,9 @@ fun MonthSelector(
                     .height(calendarButtonWidth)
 
             ) {
-                OutlineButton(onClick = {
-                    lastDayOfCalendar.value = getLastDayOfPreviousMonth(lastDayOfCalendar.value)
-                    calendarWeeks.value = getWeeksForMonth(lastDayOfCalendar.value, amountOfWeeks)
-                }, type = ButtonType.PRIMARY, text = "<")
+                OutlineButton(
+                    onClick = { viewModel.updateToPreviousMonth() },
+                    type = ButtonType.PRIMARY, text = "<")
             }
 
             Box(
@@ -100,7 +95,7 @@ fun MonthSelector(
                     }
             ) {
                 Text(
-                    text = getMonthByDate(lastDayOfCalendar.value),
+                    text = getMonthByDate(lastDayOfCalendar),
                     color = Color.Black,
                     style = Title2Regular
                 )
@@ -111,24 +106,24 @@ fun MonthSelector(
                     .width(calendarButtonWidth)
                     .height(calendarButtonWidth)
             ) {
-                OutlineButton(onClick = {
-                    lastDayOfCalendar.value = getLastDayOfNextMonth(lastDayOfCalendar.value)
-                    calendarWeeks.value = getWeeksForMonth(lastDayOfCalendar.value, amountOfWeeks)
-                }, type = ButtonType.PRIMARY, text = ">")
+                OutlineButton(
+                    onClick = { viewModel.updateToNextMonth() },
+                    type = ButtonType.PRIMARY, text = ">")
             }
         }
 
-        for (i in calendarWeeks.value.indices) {
+        calendarWeeks.forEachIndexed { index, week ->
             WeekCompose(
-                dayParams = calendarWeeks.value[i],
-                selected = selectedWeek.intValue == i,
+                dayParams = week,
+                selected = selectedWeek == index,
                 onClick = {
-                    selectedWeek.intValue = i
-                    selectedWeekDate(calendarWeeks.value[i].map { it.date })
+                    viewModel.setSelectedWeek(index)
+                    selectedWeekDate(week.map { it.date })
                 }
             )
             Spacer(modifier = Modifier.height(mediumDP))
         }
+
 
         Box(modifier = Modifier.height(calendarButtonWidth)) {
             OutlineButton(text = stringResource(id = R.string.close), type = ButtonType.PRIMARY) {
@@ -137,18 +132,4 @@ fun MonthSelector(
         }
     }
 
-}
-
-
-@Preview
-@Composable
-fun PreviewMonthSelector() {
-    Box(
-        modifier = Modifier
-            .fillMaxHeight()
-            .fillMaxWidth()
-            .background(color = Color.White)
-    ) {
-        MonthSelector()
-    }
 }

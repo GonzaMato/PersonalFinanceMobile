@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.diseomobile.Components.Calendar.CalendarComposable
+import com.example.diseomobile.Components.Calendar.MonthSelectorViewModel
 import com.example.diseomobile.Components.Graph.GraphWeekly
 import com.example.diseomobile.Components.RecentActivity.RecentActivityDay
 import com.example.diseomobile.pages.homePage.getMovements
@@ -32,6 +33,8 @@ import java.util.Date
 @Composable
 fun GraphPage() {
     val viewModelGraphPage = hiltViewModel<ViewModelGraphPage>()
+    val monthSelectorViewModel = hiltViewModel<MonthSelectorViewModel>() // Obtain MonthSelectorViewModel
+
     val selectedDay by viewModelGraphPage.selectedDate.collectAsState()
     val movements by viewModelGraphPage.movements.collectAsState()
     val firstDayOfWeek by viewModelGraphPage.firstWeekDay.collectAsState()
@@ -67,6 +70,7 @@ fun GraphPage() {
                         week = formatDateRange(firstDayOfWeek, lastDayOfWeek)
                     )
                 }
+
                 val filteredMovements = if (selectedDay != null) {
                     movements.filter { movement ->
                         val calendar = Calendar.getInstance()
@@ -88,20 +92,22 @@ fun GraphPage() {
                 }
 
                 RecentActivityDay(getMovements(filteredMovements))
-                }
             }
+        }
 
         if (isCalendarVisible.value) {
-                CalendarComposable(
-                    selectedWeekDate = {
-                        viewModelGraphPage.setFirstWeekDay(it.first())
-                        viewModelGraphPage.setLastWeekDay(it.last())
-                        viewModelGraphPage.loadMovementsOfTheWeek()
-                    },
-                    closeCalendar = {
-                        isCalendarVisible.value = false
-                    }
-                )
+            // Pass the monthSelectorViewModel to CalendarComposable
+            CalendarComposable(
+                monthSelectorViewModel = monthSelectorViewModel,
+                selectedWeekDate = {
+                    viewModelGraphPage.setFirstWeekDay(it.first())
+                    viewModelGraphPage.setLastWeekDay(it.last())
+                    viewModelGraphPage.loadMovementsOfTheWeek()
+                },
+                closeCalendar = {
+                    isCalendarVisible.value = false
+                }
+            )
         }
     }
 }
