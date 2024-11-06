@@ -18,17 +18,22 @@ class MainActivityAuthentication @Inject constructor(
     private val _isAuthenticated = MutableStateFlow(false)
     val isAuthenticated: StateFlow<Boolean> = _isAuthenticated.asStateFlow()
 
+    private val authError = MutableStateFlow(false)
+    val authErrorState: StateFlow<Boolean> = authError.asStateFlow()
+
     fun authenticate(context : Context) {
         biometricAuthManager.authenticate(
             context = context,
             onError = {
                 _isAuthenticated.value = false
+                authError.value = true
             },
             onSuccess = {
                 _isAuthenticated.value = true
             },
             onFail = {
                 _isAuthenticated.value = false
+                authError.value = true
             }
         )
     }

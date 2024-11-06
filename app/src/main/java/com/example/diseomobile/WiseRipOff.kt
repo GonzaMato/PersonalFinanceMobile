@@ -33,6 +33,7 @@ class WiseRipOff : FragmentActivity() {
         setContent {
             val authViewModel : MainActivityAuthentication = hiltViewModel()
             val isAuthenticated by authViewModel.isAuthenticated.collectAsState()
+            val authError by authViewModel.authErrorState.collectAsState()
 
             if (!isAuthenticated) {
                 authViewModel.authenticate(this)
@@ -40,11 +41,13 @@ class WiseRipOff : FragmentActivity() {
 
             if (isAuthenticated) {
                 loadMainContent()
-            } else {
+            }
+
+            if (authError) {
                 DiseñoMobileTheme {
                 AuthenticationFail()
-                Toast.makeText(this, "Authentication Error", Toast.LENGTH_SHORT).show()}
-
+                Toast.makeText(this, "Authentication Error", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
