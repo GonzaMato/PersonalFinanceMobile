@@ -128,3 +128,28 @@ fun getLastDayOfNextMonth(currentDate: Date): Date {
     calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH))
     return calendar.time
 }
+
+fun orderWeekEntriesByFirstDay(
+    weekEntries: Map<DayOfWeek, Int>,
+    firstDay: Date
+): List<Map.Entry<DayOfWeek, Int>> {
+    // Determine the DayOfWeek for the given firstDay
+    val calendar = Calendar.getInstance().apply { time = firstDay }
+    val firstDayOfWeek = when (calendar.get(Calendar.DAY_OF_WEEK)) {
+        Calendar.MONDAY -> DayOfWeek.Monday
+        Calendar.TUESDAY -> DayOfWeek.Tuesday
+        Calendar.WEDNESDAY -> DayOfWeek.Wednesday
+        Calendar.THURSDAY -> DayOfWeek.Thursday
+        Calendar.FRIDAY -> DayOfWeek.Friday
+        Calendar.SATURDAY -> DayOfWeek.Saturday
+        Calendar.SUNDAY -> DayOfWeek.Sunday
+        else -> throw Exception("Invalid day of the week")
+    }
+
+    // Reorder the days of the week starting from firstDayOfWeek
+    val daysInOrder = DayOfWeek.entries.dropWhile { it != firstDayOfWeek } +
+            DayOfWeek.entries.takeWhile { it != firstDayOfWeek }
+
+    // Return the ordered entries
+    return daysInOrder.mapNotNull { day -> weekEntries.entries.find { it.key == day } }
+}

@@ -34,14 +34,16 @@ import com.example.diseomobile.ui.theme.mediumBorder
 import com.example.diseomobile.ui.theme.mediumDP
 import com.example.diseomobile.ui.theme.veryRoundedCorners
 import com.example.diseomobile.ui.theme.xxxlPadding
+import com.example.diseomobile.utils.orderWeekEntriesByFirstDay
 import java.text.SimpleDateFormat
 import java.util.Date
 
 @Composable
-fun GraphWeekly(movements: List<MovementParams>, onDaySelected: (DayOfWeek) -> Unit = {}, openCalendar: (Boolean) -> Unit = {}, week : String) {
+fun GraphWeekly(movements: List<MovementParams>, onDaySelected: (DayOfWeek) -> Unit = {}, openCalendar: (Boolean) -> Unit = {}, week : String, firstDay : Date) {
     val weeklyMovement = SeparateByWeek(movements)
     val scaledWeek = getLengthForWeekDays(weeklyMovement)
     val selected = remember { mutableStateOf(-1) }  // Index of the selected column
+    val orderedWeekEntries = orderWeekEntriesByFirstDay(scaledWeek, firstDay)
 
     val weekText = if (week == "") {
         stringResource(id = R.string.selectWeek)
@@ -79,7 +81,7 @@ fun GraphWeekly(movements: List<MovementParams>, onDaySelected: (DayOfWeek) -> U
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.Bottom
             ) {
-                scaledWeek.entries.forEachIndexed { index, (day, length) ->
+                orderedWeekEntries.forEachIndexed { index, (day, length) ->
                     weeklyMovement[day]?.let {
                         ColumnGraph(
                             amount = it,
@@ -121,7 +123,8 @@ fun PreviewGraph() {
                 MovementParams("title", 70.0, "description", true, java.util.Date()),
                 MovementParams("title", 1.0, "description", true, java.util.Date())
             ),
-            week = "Week 1"
+            week = "Week 1",
+            firstDay = Date()
         )
     }
 }

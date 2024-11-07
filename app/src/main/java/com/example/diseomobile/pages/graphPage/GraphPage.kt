@@ -67,7 +67,8 @@ fun GraphPage() {
                         openCalendar = {
                             isCalendarVisible.value = it
                         },
-                        week = formatDateRange(firstDayOfWeek, lastDayOfWeek)
+                        week = formatDateRange(firstDayOfWeek, lastDayOfWeek),
+                        firstDay = firstDayOfWeek
                     )
                 }
 
