@@ -9,6 +9,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.example.diseomobile.pages.dolarPrices.DolarPricePage
 import com.example.diseomobile.pages.newTransaction.AddFunds
 import com.example.diseomobile.pages.graphPage.GraphPage
@@ -26,7 +27,10 @@ fun NavHostComposable(navController: NavHostController, innerPadding: PaddingVal
             .padding(horizontal = 1.dp)
     ) {
         composable(WiseRipOffScreens.Home.name) {
-            HomePage { navController.navigate(WiseRipOffScreens.NewTransaction.name) }
+            HomePage (
+                navigateToNewTransaction = { navController.navigate(WiseRipOffScreens.NewTransaction.name) },
+                navigateToMovement = { movementId -> navController.navigate("${WiseRipOffScreens.Movement.name}/$movementId") }
+            )
         }
         composable(WiseRipOffScreens.NewTransaction.name) {
             AddFunds { navController.navigate(WiseRipOffScreens.Home.name) }
@@ -35,8 +39,19 @@ fun NavHostComposable(navController: NavHostController, innerPadding: PaddingVal
             DolarPricePage()
         }
         composable(WiseRipOffScreens.Graphs.name) {
-            GraphPage()
+            GraphPage(
+                navigateToMovement = { movementId -> navController.navigate("${WiseRipOffScreens.Movement.name}/$movementId") }
+            )
+        }
+        composable(
+            route = WiseRipOffScreens.Movement.name + "/{MovementId}",
+            arguments = listOf(navArgument("MovementId") { defaultValue = 0 })
+        ) { backStackEntry ->
+            val movementId = backStackEntry.arguments?.getInt("MovementId") ?: 0
+            MovementPage(navController = { navController.popBackStack() }, movementId)
         }
 
     }
 }
+
+

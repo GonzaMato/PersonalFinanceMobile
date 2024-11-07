@@ -40,7 +40,7 @@ import java.util.Calendar
 import java.util.Date
 
 @Composable
-fun RecentActivityDay(recentMovement : List<MovementParams>) {
+fun RecentActivityDay(recentMovement : List<MovementParams>, navigationToMovement : (Int) -> Unit) {
 
     Box(
         modifier = Modifier.border(
@@ -70,7 +70,7 @@ fun RecentActivityDay(recentMovement : List<MovementParams>) {
                         Spacer(modifier = Modifier.height(mediumDP))
                         recentMovement.forEach { it ->
                             Spacer(modifier = Modifier.height(mediumDP))
-                            Movement(movementData = it)
+                            Movement(movementData = it, navigationToMovement)
                         }
                     }
                 }
@@ -98,32 +98,4 @@ fun getDateName(date: Date): String {
     }
 
     return dayOfWeekStringRes?.let { stringResource(it) } ?: ""
-}
-
-@Preview
-@Composable
-fun PreviewRecentActivityDay() {
-    Box(modifier = Modifier
-        .background(color = Color.White)
-        .fillMaxHeight()
-        .fillMaxWidth()) {
-        RecentActivityDay(
-            recentMovement = listOf(
-                MovementParams(
-                    "Gasto 1",
-                    100.0,
-                    "Gasto en comida",
-                    false,
-                    java.util.Date()
-                ),
-                MovementParams(
-                    "Ingreso 1",
-                    100.0,
-                    "Ingreso en trabajo",
-                    true,
-                    java.util.Date()
-                )
-            )
-        )
-    }
 }

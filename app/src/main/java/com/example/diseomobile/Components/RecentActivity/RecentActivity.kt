@@ -36,7 +36,7 @@ import com.example.diseomobile.utils.categorizeMovementsByDate
 import java.util.Date
 
 @Composable
-fun RecentActivity(movements: List<MovementParams>) {
+fun RecentActivity(movements: List<MovementParams>, navigationToMovement : (Int) -> Unit) {
     val nameByDate = mapOf(
         "Today" to stringResource(R.string.Today),
         "ThisWeek" to stringResource(R.string.ThisWeek),
@@ -74,47 +74,10 @@ fun RecentActivity(movements: List<MovementParams>) {
                    Text(text = date , style = Title2SemiBold, color = MaterialTheme.colorScheme.secondary)
                      movement.forEach {
                          Spacer(modifier = Modifier.height(smallDP))
-                         Movement(it)
+                         Movement(it, navigationToMovement)
                      }
                }
             }
         }
     }
 }
-
-
-    @Preview
-    @Composable
-    fun PreviewRecentActivity() {
-        Surface(
-            modifier = Modifier
-                .background(Color.White)
-                .width(312.dp)
-        ) {
-            RecentActivity(
-                movements = listOf(
-                    MovementParams(
-                        "Gasto 1",
-                        20.0,
-                        "Le pague a mi tio",
-                        false,
-                        Date()
-                    ),
-                    MovementParams(
-                        "Gasto 2",
-                        20.0,
-                        "Le pague a mi tio",
-                        false,
-                        Date()
-                    ),
-                    MovementParams(
-                        "Gasto 3",
-                        20.0,
-                        "Le pague a mi tio",
-                        false,
-                        Date(2, 23,30)
-                    ),
-                )
-            )
-        }
-    }

@@ -58,7 +58,7 @@ import com.example.diseomobile.ui.theme.veryLargePadding
 import com.example.diseomobile.ui.theme.xxlDP
 
 @Composable
-fun HomePage(navigateToNewTransaction : () -> Unit) {
+fun HomePage(navigateToNewTransaction : () -> Unit, navigateToMovement : (Int) -> Unit) {
     val viewmodel = hiltViewModel<ViewModelHomePage>()
     val transaction by viewmodel.transactions.collectAsState(listOf())
     val balance by viewmodel.balance.collectAsState(initial = 0.0)
@@ -107,7 +107,8 @@ fun HomePage(navigateToNewTransaction : () -> Unit) {
                     NoRecentActivity()
                 } else {
                     RecentActivity(
-                        movements = getMovements(transaction)
+                        movements = getMovements(transaction),
+                        navigationToMovement = navigateToMovement
                     )
                 }
             }

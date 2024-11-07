@@ -4,7 +4,8 @@ enum class WiseRipOffScreens {
     Home,
     Graphs,
     NewTransaction,
-    Currencies
+    Currencies,
+    Movement
 }
 
 val basePages = listOf(

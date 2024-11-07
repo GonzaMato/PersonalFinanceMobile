@@ -32,7 +32,7 @@ import java.util.Calendar
 import java.util.Date
 
 @Composable
-fun GraphPage() {
+fun GraphPage( navigateToMovement : (Int) -> Unit) {
     val viewModelGraphPage = hiltViewModel<ViewModelGraphPage>()
     val monthSelectorViewModel = hiltViewModel<MonthSelectorViewModel>() // Obtain MonthSelectorViewModel
 
@@ -97,7 +97,7 @@ fun GraphPage() {
                     listOf()
                 }
 
-                RecentActivityDay(getMovements(filteredMovements))
+                RecentActivityDay(getMovements(filteredMovements), navigateToMovement)
             }
         }
 
@@ -125,8 +125,3 @@ fun formatDateRange(date1: Date, date2: Date): String {
     return "$day1Month1 - $day2Month2"
 }
 
-@Preview
-@Composable
-fun PreviewGraphPage() {
-    GraphPage()
-}
