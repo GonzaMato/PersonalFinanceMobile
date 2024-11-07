@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,8 +31,6 @@ import com.example.diseomobile.ui.theme.currencyImageSize
 import com.example.diseomobile.ui.theme.mediumBorder
 import com.example.diseomobile.ui.theme.mediumDP
 import com.example.diseomobile.ui.theme.roundedCorners
-import com.example.diseomobile.ui.theme.smallBorder
-import com.example.diseomobile.ui.theme.veryLargeDP
 
 @Composable
 fun NoRecentActivity () {

@@ -1,7 +1,6 @@
 package com.example.diseomobile.pages.dolarPrices
 
 import android.content.Context
-import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.diseomobile.R

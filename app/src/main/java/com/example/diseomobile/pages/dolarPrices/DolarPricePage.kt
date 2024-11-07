@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -33,10 +32,8 @@ import com.example.diseomobile.Components.Button.OutlineButton
 import com.example.diseomobile.Components.CurrencyValue.CurrencyValue
 import com.example.diseomobile.R
 import com.example.diseomobile.api.DolarPrice
-import com.example.diseomobile.ui.theme.BodyRegular
 import com.example.diseomobile.ui.theme.Primary200
 import com.example.diseomobile.ui.theme.Primary300
-import com.example.diseomobile.ui.theme.PrimaryColor
 import com.example.diseomobile.ui.theme.SubtitleRegular
 import com.example.diseomobile.ui.theme.TitleSemiBold
 import com.example.diseomobile.ui.theme.largeDP

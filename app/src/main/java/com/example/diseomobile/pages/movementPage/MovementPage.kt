@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -29,10 +28,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.diseomobile.Components.Button.ButtonType
 import com.example.diseomobile.Components.Button.FilledButton
@@ -46,14 +41,10 @@ import com.example.diseomobile.ui.theme.PrimaryColor
 import com.example.diseomobile.ui.theme.SecondaryColor
 import com.example.diseomobile.ui.theme.SubtitleRegular
 import com.example.diseomobile.ui.theme.SubtitleSemiBold
-import com.example.diseomobile.ui.theme.Title2Regular
 import com.example.diseomobile.ui.theme.largeDP
 import com.example.diseomobile.ui.theme.mediumBorder
 import com.example.diseomobile.ui.theme.mediumDP
-import com.example.diseomobile.ui.theme.ninetyPercentWidth
-import com.example.diseomobile.ui.theme.smallBorder
 import com.example.diseomobile.ui.theme.smallDP
-import com.example.diseomobile.ui.theme.twentyPercentWidth
 import com.example.diseomobile.ui.theme.xxlDP
 import java.text.SimpleDateFormat
 import java.util.Date

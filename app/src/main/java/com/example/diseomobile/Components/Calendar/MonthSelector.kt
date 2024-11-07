@@ -24,11 +24,9 @@ import androidx.compose.ui.res.stringResource
 import com.example.diseomobile.Components.Button.ButtonType
 import com.example.diseomobile.Components.Button.OutlineButton
 import com.example.diseomobile.Components.Calendar.Week.WeekCompose
+import com.example.diseomobile.R
 import com.example.diseomobile.ui.theme.PrimaryColor
 import com.example.diseomobile.ui.theme.Title2Regular
-import com.example.diseomobile.utils.getMonthByDate
-import java.util.Date
-import com.example.diseomobile.R
 import com.example.diseomobile.ui.theme.calendarButtonWidth
 import com.example.diseomobile.ui.theme.largePadding
 import com.example.diseomobile.ui.theme.mediumBorder
@@ -37,6 +35,8 @@ import com.example.diseomobile.ui.theme.ninetyPercentWidth
 import com.example.diseomobile.ui.theme.roundedCorners
 import com.example.diseomobile.ui.theme.smallDP
 import com.example.diseomobile.ui.theme.xxlPadding
+import com.example.diseomobile.utils.getMonthByDate
+import java.util.Date
 
 @Composable
 fun MonthSelector(

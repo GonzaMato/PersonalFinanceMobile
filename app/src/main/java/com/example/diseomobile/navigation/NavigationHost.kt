@@ -11,10 +11,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.diseomobile.pages.dolarPrices.DolarPricePage
-import com.example.diseomobile.pages.newTransaction.AddFunds
 import com.example.diseomobile.pages.graphPage.GraphPage
 import com.example.diseomobile.pages.homePage.HomePage
 import com.example.diseomobile.pages.movementPage.MovementPage
+import com.example.diseomobile.pages.newTransaction.AddFunds
 
 @Composable
 fun NavHostComposable(navController: NavHostController, innerPadding: PaddingValues) {

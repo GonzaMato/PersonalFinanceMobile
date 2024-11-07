@@ -23,15 +23,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role.Companion.Image
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import coil.compose.rememberAsyncImagePainter
 import com.example.diseomobile.R
 import com.example.diseomobile.ui.theme.BodySemiBold
-import com.example.diseomobile.ui.theme.SubtitleSemiBold
 import com.example.diseomobile.ui.theme.currencyImageSize
 import com.example.diseomobile.ui.theme.mediumBorder
 import com.example.diseomobile.ui.theme.roundedCorners
