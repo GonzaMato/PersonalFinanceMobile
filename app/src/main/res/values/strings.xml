@@ -50,4 +50,5 @@
     <string name="Details">Details</string>
     <string name="DeleteMovement">Delete Movement</string>
     <string name="ErrorDeletingTransaction">Error Deleting Transaction</string>
+    <string name="save">Save</string>
 </resources>

@@ -46,4 +46,9 @@
     <string name="accept">Aceptar</string>
     <string name="ErrorNameNotFilled">Por favor complete el campo de nombre</string>
     <string name="badRequest">Solicitud incorrecta</string>
+    <string name="goBack">Atrás</string>
+    <string name="Details">Detalles</string>
+    <string name="DeleteMovement">Eliminar movimiento</string>
+    <string name="ErrorDeletingTransaction">Error al eliminar la transacción</string>
+    <string name="save">Ahorrar</string>
 </resources>

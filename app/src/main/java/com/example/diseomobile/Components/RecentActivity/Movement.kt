@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.diseomobile.ui.theme.BodyRegular
@@ -50,7 +51,7 @@ fun Movement(movementData : MovementParams, navigationToMovement : (Int) -> Unit
     ){
         Column {
             Text(text = movementData.title, color = MaterialTheme.colorScheme.primary, style = SubtitleSemiBold)
-            Text(text = movementData.description, color = MaterialTheme.colorScheme.primary, style = BodyRegular)
+            Text(text = truncateDescription(movementData.description ), color = MaterialTheme.colorScheme.primary, style = BodyRegular)
             Text(text = formatDate(movementData.date), color = MaterialTheme.colorScheme.primary, style = BodyRegular)
         }
         Text(text = movementAmount, color = movementColor, style = SubtitleRegular)
@@ -68,6 +69,14 @@ fun roundAmount(amount : Double) : String {
 fun formatDate(date: Date): String {
     val formatter = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
     return formatter.format(date)
+}
+
+fun truncateDescription(description: String, maxLength: Int = 20): String {
+    return if (description.length > maxLength) {
+        description.take(maxLength) + "..."
+    } else {
+        description
+    }
 }
 
 @Preview

@@ -3,6 +3,7 @@ package com.example.diseomobile.pages.graphPage
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -22,6 +23,7 @@ import com.example.diseomobile.Components.RecentActivity.RecentActivityDay
 import com.example.diseomobile.pages.homePage.getMovements
 import com.example.diseomobile.ui.theme.fortyfivePercentWidth
 import com.example.diseomobile.ui.theme.largePadding
+import com.example.diseomobile.ui.theme.smallDP
 import com.example.diseomobile.ui.theme.veryLargePadding
 import com.example.diseomobile.utils.DayOfWeek
 import java.text.SimpleDateFormat
@@ -95,6 +97,8 @@ fun GraphPage( navigateToMovement : (Int) -> Unit) {
                 }
 
                 RecentActivityDay(getMovements(filteredMovements), navigateToMovement)
+                Spacer(modifier = Modifier.padding(smallDP))
+
             }
         }
 

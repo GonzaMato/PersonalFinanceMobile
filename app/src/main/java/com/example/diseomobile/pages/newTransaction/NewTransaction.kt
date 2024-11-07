@@ -9,12 +9,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
@@ -45,9 +46,8 @@ import com.example.diseomobile.ui.theme.largePadding
 import com.example.diseomobile.ui.theme.mediumDP
 import com.example.diseomobile.ui.theme.sixtyPercentWidth
 import com.example.diseomobile.ui.theme.smallDP
-import com.example.diseomobile.ui.theme.thirtyPercentWidth
-import com.example.diseomobile.ui.theme.twentyPercentWidth
 import com.example.diseomobile.ui.theme.veryLargePadding
+import com.example.diseomobile.ui.theme.xlDP
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -94,13 +94,11 @@ fun AddFunds(navController: () -> Unit) {
     val datePickerDialog = DatePickerDialog(
         LocalContext.current,
         { _, year, month, dayOfMonth ->
-            // Set only the calendar's date fields (year, month, day) without modifying the time
             calendar.set(Calendar.YEAR, year)
             calendar.set(Calendar.MONTH, month)
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
-            // Do not reset the time; keep it as is
-            // Update the viewModel with the updated date (date + current time)
+
             viewModel.setDate(calendar.time)
         },
         calendar.get(Calendar.YEAR),
@@ -133,7 +131,8 @@ fun AddFunds(navController: () -> Unit) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(largePadding),
+                .padding(largePadding)
+                .verticalScroll(rememberScrollState()),
 
             ) {
             Text(text = stringResource(id = R.string.AddFunds), style = TitleRegular)
@@ -174,7 +173,7 @@ fun AddFunds(navController: () -> Unit) {
             Text(text = stringResource(id = R.string.Date), style = SubtitleRegular)
             Box(
                 modifier = Modifier
-                    .fillMaxHeight(twentyPercentWidth)
+                    .height(xlDP)
                     .fillMaxWidth(eightyPercentWidth)
                     .align(Alignment.CenterHorizontally),
             ) {
@@ -223,11 +222,11 @@ fun AddFunds(navController: () -> Unit) {
 
                 Box(
                     modifier = Modifier
-                        .fillMaxHeight(thirtyPercentWidth)
+                        .height(xlDP)
                         .fillMaxWidth(sixtyPercentWidth)
                 ) {
                     FilledButton(
-                        "Save",
+                        stringResource(id = R.string.save),
                         type = ButtonType.PRIMARY,
                         onClick = {
                             if (title.isEmpty()) {

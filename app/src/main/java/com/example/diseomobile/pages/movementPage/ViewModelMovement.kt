@@ -1,6 +1,7 @@
 package com.example.diseomobile.pages.movementPage
 
 import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
@@ -36,8 +37,6 @@ class ViewModelMovement @Inject constructor(
                 val newBalance = if (income) balance - amount else balance + amount
 
                 wiseRipOffDatabase.profileDao().updateBalance(1, newBalance)
-            } else {
-                // Handle the case where the transaction is null (e.g., log a message or show an error)
             }
         }
     }
