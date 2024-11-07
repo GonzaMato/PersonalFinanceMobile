@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WiseRipOff</string>
+    <string name="app_name" translatable="false">WiseRipOff</string>
     <string name="RecentActivity">Actividad reciente</string>
     <string name="ShowAll">Mostrar todo</string>
     <string name="Today">Hoy</string>
@@ -41,4 +41,9 @@
     <string name="errorText">Error</string>
     <string name="authentication_failed">Error al autenticar</string>
     <string name="tryagain">Intenta denuevo.</string>
+    <string name="createName">Seleccione un nombre:</string>
+    <string name="EnterName">Introduce tu nombre</string>
+    <string name="accept">Aceptar</string>
+    <string name="ErrorNameNotFilled">Por favor complete el campo de nombre</string>
+    <string name="badRequest">Solicitud incorrecta</string>
 </resources>

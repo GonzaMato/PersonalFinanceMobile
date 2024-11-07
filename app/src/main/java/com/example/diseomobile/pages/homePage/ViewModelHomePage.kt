@@ -25,8 +25,7 @@ class ViewModelHomePage @Inject constructor(
 
     val balance = wiseRipOffDatabase.profileDao().getProfileBalanceLiveData(1).asFlow()
 
-    private val _nameProfile = MutableStateFlow<String?>("")
-    val nameProfile = _nameProfile.asStateFlow()
+    val nameProfile = wiseRipOffDatabase.profileDao().getProfileName(1).asFlow()
 
     fun createProfileIfNonExistant(name : String) {
         viewModelScope.launch {
@@ -38,7 +37,6 @@ class ViewModelHomePage @Inject constructor(
                         balance = 0.0
                     )
                 )
-                _nameProfile.value = name
             }
         }
     }

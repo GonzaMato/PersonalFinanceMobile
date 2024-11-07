@@ -21,4 +21,7 @@ interface ProfileDAO {
 
     @Query("SELECT balance FROM Profile WHERE id = :profileId")
     suspend fun getProfileBalance(profileId: Int): Double
+
+    @Query("SELECT name FROM Profile WHERE id = :profileId")
+    fun getProfileName(profileId: Int): LiveData<String>
 }

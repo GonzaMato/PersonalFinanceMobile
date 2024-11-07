@@ -36,15 +36,14 @@ import androidx.compose.material3.SwitchDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
-import androidx.navigation.NavHostController
+import androidx.compose.ui.text.input.KeyboardType
 import com.example.diseomobile.Components.Button.OutlineButton
-import com.example.diseomobile.navigation.WiseRipOffScreens
 import com.example.diseomobile.ui.theme.eightyPercentWidth
 import com.example.diseomobile.ui.theme.largePadding
 import com.example.diseomobile.ui.theme.mediumDP
 import com.example.diseomobile.ui.theme.sixtyPercentWidth
 import com.example.diseomobile.ui.theme.smallDP
-import com.example.diseomobile.ui.theme.thertyPercentWidth
+import com.example.diseomobile.ui.theme.thirtyPercentWidth
 import com.example.diseomobile.ui.theme.twentyPercentWidth
 import com.example.diseomobile.ui.theme.veryLargePadding
 import java.text.SimpleDateFormat
@@ -163,7 +162,8 @@ fun AddFunds(navController: () -> Unit) {
                 value = amount,
                 onValueChange = viewModel::setAmount,
                 placeHolder = stringResource(id = R.string.Amount),
-                error = amountError
+                error = amountError,
+                keyboardType = KeyboardType.Decimal
             )
 
             Spacer(modifier = Modifier.height(mediumDP))
@@ -220,7 +220,7 @@ fun AddFunds(navController: () -> Unit) {
 
                 Box(
                     modifier = Modifier
-                        .fillMaxHeight(thertyPercentWidth)
+                        .fillMaxHeight(thirtyPercentWidth)
                         .fillMaxWidth(sixtyPercentWidth)
                 ) {
                     FilledButton(

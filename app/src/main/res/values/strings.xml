@@ -44,4 +44,6 @@
     <string name="createName">Select a Name:</string>
     <string name="EnterName">Enter your Name</string>
     <string name="accept">Accept</string>
+    <string name="ErrorNameNotFilled">Please Fill The Name Field</string>
+    <string name="badRequest">Bad Request</string>
 </resources>

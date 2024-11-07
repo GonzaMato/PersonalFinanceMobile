@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.fragment.app.FragmentActivity
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -46,7 +47,7 @@ class WiseRipOff : FragmentActivity() {
             if (authError) {
                 DiseñoMobileTheme {
                 AuthenticationFail()
-                Toast.makeText(this, "Authentication Error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, stringResource(id = R.string.authentication_failed), Toast.LENGTH_SHORT).show()
                 }
             }
         }

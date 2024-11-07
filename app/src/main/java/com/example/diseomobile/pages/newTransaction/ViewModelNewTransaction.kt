@@ -44,15 +44,19 @@ class ViewModelNewTransaction @Inject constructor(
 
     @SuppressLint("DefaultLocale")
     fun setAmount(amount: String) {
-        if (amount == ""){
+        // Allow the input to be empty
+        if (amount.isEmpty()) {
             _amount.value = ""
             return
         }
-        val newAmount = amount.toFloatOrNull()
-        if (newAmount != null && newAmount >= 0) {
-            val formattedAmount = String.format("%.2f", newAmount)
-            _amount.value = formattedAmount
+
+        // Validate the input: only digits and at most one decimal point
+        if (!amount.matches(Regex("^\\d*(\\.\\d{0,2})?\$"))) {
+            return
         }
+
+        // Update the amount value directly if the input is valid
+        _amount.value = amount
     }
 
     fun setDate(date: Date) {

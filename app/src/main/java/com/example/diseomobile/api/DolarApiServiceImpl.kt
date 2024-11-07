@@ -39,7 +39,7 @@ class DolarApiServiceImpl @Inject constructor(
                 if (response?.body() != null) {
                     onSuccess(response.body())
                 } else {
-                    onFailure(Exception("Bad Request"))
+                    onFailure(Exception(errorText))
                 }
             }
 

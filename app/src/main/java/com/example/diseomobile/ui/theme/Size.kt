@@ -30,12 +30,12 @@ val xlPadding = 32.dp
 val xxlPadding = 48.dp
 val xxxlPadding = 64.dp
 
-val nientyPercentWidth = 0.9f
+val ninetyPercentWidth = 0.9f
 val fortyfivePercentWidth = 0.45f
 val eightyPercentWidth = 0.8f
 val sixtyPercentWidth = 0.6f
 val twentyPercentWidth = 0.2f
-val thertyPercentWidth = 0.3f
+val thirtyPercentWidth = 0.3f
 
 val currencyImageSize = 60.dp
 
