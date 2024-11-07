@@ -88,21 +88,18 @@ fun MovementPage(navController: () -> Unit, movementId : Int) {
                 .background(MaterialTheme.colorScheme.background)
         )
 
-        // Divider to separate the TopAppBar from the content
         Divider(color = Color.Gray, thickness = mediumBorder)
 
         transaction.value?.let { txn ->
 
             val movementParams = getMovement(txn)
 
-            // Movement Details
             Column(
                 modifier = Modifier
                     .padding(PaddingValues(mediumDP))
                     .fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(mediumDP)
             ) {
-                // Title
                 Text(
                     text = stringResource(id = R.string.Title),
                     style = SubtitleSemiBold,
@@ -138,7 +135,6 @@ fun MovementPage(navController: () -> Unit, movementId : Int) {
 
                 Spacer(modifier = Modifier.padding(smallDP))
 
-                // Debit
                 Text(
                     text = stringResource(id = R.string.Amount),
                     style = SubtitleSemiBold,
@@ -189,9 +185,8 @@ fun MovementPage(navController: () -> Unit, movementId : Int) {
     }
 }
 
-// Helper function to format the date
 fun formatDate(date: Date): String {
-    val formatter = SimpleDateFormat("dd/MM/yy HH:mm", Locale.getDefault()) // Updated pattern
+    val formatter = SimpleDateFormat("dd/MM/yy HH:mm", Locale.getDefault())
     return formatter.format(date)
 }
 
