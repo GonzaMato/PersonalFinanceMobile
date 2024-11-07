@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -41,6 +42,10 @@ fun GraphPage() {
     val lastDayOfWeek by viewModelGraphPage.lastWeekDay.collectAsState()
 
     val isCalendarVisible = remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        viewModelGraphPage.loadMovementsOfTheWeek()
+    }
 
     Box(
         modifier = Modifier

@@ -60,14 +60,14 @@ class ViewModelGraphPage @Inject constructor(
     private fun getMondayOfCurrentWeek(): Date {
         val calendar = Calendar.getInstance()
 
-        // Get the current day of the week
-        val currentDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
+        // Set the calendar to the beginning of the week
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
 
-        // Adjust the calendar to the previous or current Sunday
-        calendar.add(Calendar.DAY_OF_WEEK, Calendar.SUNDAY - currentDayOfWeek)
-
-        // Then move to Monday by adding one day
-        calendar.add(Calendar.DAY_OF_WEEK, 1)
+        // Ensure time is set to the beginning of the day
+        calendar.set(Calendar.HOUR_OF_DAY, 0)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
 
         return calendar.time
     }
@@ -76,13 +76,18 @@ class ViewModelGraphPage @Inject constructor(
         val calendar = Calendar.getInstance()
 
         // Set the calendar to the current day of the week
-        val currentDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
 
-        // Calculate how many days to subtract to get to Sunday
-        val daysToSunday = currentDayOfWeek - Calendar.SUNDAY
+        // If today is Sunday, move to the next Sunday
+        if (calendar.time.before(Calendar.getInstance().time)) {
+            calendar.add(Calendar.WEEK_OF_YEAR, 1)
+        }
 
-        // Subtract the difference to get the previous or current Sunday
-        calendar.add(Calendar.DAY_OF_WEEK, daysToSunday -1)
+        // Ensure time is set to the end of the day
+        calendar.set(Calendar.HOUR_OF_DAY, 23)
+        calendar.set(Calendar.MINUTE, 59)
+        calendar.set(Calendar.SECOND, 59)
+        calendar.set(Calendar.MILLISECOND, 999)
 
         return calendar.time
     }
