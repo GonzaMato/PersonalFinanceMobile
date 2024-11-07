@@ -1,10 +1,10 @@
 package com.example.diseomobile.Components.RecentActivity
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -29,20 +29,24 @@ data class MovementParams(
     val amount: Double,
     val description: String,
     val income: Boolean,
-    val date : Date
-)
+    val date : Date,
+    val id : Int = 0,
+    )
 
 @Composable
-fun Movement(movementData : MovementParams) {
+fun Movement(movementData : MovementParams, navigationToMovement : (Int) -> Unit = {}) {
     val movementAmountLiteral = movementData.amount
     val movementAmount = if (movementData.income) "$ +${roundAmount(movementAmountLiteral)}" else "$ -${roundAmount(movementAmountLiteral)}"
     val movementColor = if (movementData.income) PrimaryColor else SecondaryColor
 
     Row (
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable { navigationToMovement(movementData.id) }
+        ,
         horizontalArrangement =  Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
+
     ){
         Column {
             Text(text = movementData.title, color = MaterialTheme.colorScheme.primary, style = SubtitleSemiBold)

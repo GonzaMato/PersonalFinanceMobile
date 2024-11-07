@@ -1,13 +1,7 @@
 package com.example.diseomobile.utils
 
-import android.os.Build
-import androidx.annotation.RequiresApi
-import androidx.compose.ui.text.TextStyle
 import com.example.diseomobile.Components.Calendar.Week.DayParams
 import com.example.diseomobile.Components.RecentActivity.MovementParams
-import com.example.diseomobile.ui.theme.BodyRegular
-import java.time.LocalDate
-import java.time.YearMonth
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale

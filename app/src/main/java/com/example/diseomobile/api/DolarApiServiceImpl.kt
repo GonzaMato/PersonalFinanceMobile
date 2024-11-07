@@ -2,7 +2,6 @@ package com.example.diseomobile.api
 
 import android.content.Context
 import android.widget.Toast
-import androidx.compose.ui.res.stringResource
 import com.example.diseomobile.R
 import retrofit.Callback
 import retrofit.GsonConverterFactory

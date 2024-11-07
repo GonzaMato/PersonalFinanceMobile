@@ -14,9 +14,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.diseomobile.Components.Calendar.CalendarComposable
 import com.example.diseomobile.Components.Calendar.MonthSelectorViewModel
@@ -32,7 +29,7 @@ import java.util.Calendar
 import java.util.Date
 
 @Composable
-fun GraphPage() {
+fun GraphPage( navigateToMovement : (Int) -> Unit) {
     val viewModelGraphPage = hiltViewModel<ViewModelGraphPage>()
     val monthSelectorViewModel = hiltViewModel<MonthSelectorViewModel>() // Obtain MonthSelectorViewModel
 
@@ -97,7 +94,7 @@ fun GraphPage() {
                     listOf()
                 }
 
-                RecentActivityDay(getMovements(filteredMovements))
+                RecentActivityDay(getMovements(filteredMovements), navigateToMovement)
             }
         }
 
@@ -125,8 +122,3 @@ fun formatDateRange(date1: Date, date2: Date): String {
     return "$day1Month1 - $day2Month2"
 }
 
-@Preview
-@Composable
-fun PreviewGraphPage() {
-    GraphPage()
-}

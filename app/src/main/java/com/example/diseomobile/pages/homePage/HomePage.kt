@@ -1,9 +1,6 @@
 package com.example.diseomobile.pages.homePage
 
-import android.widget.Toast
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,53 +9,34 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.diseomobile.Components.BalanceCard
 import com.example.diseomobile.Components.Button.ButtonType
-import com.example.diseomobile.Components.Button.FilledButton
 import com.example.diseomobile.Components.Button.OutlineButton
 import com.example.diseomobile.Components.NoRecentActivity.NoRecentActivity
 import com.example.diseomobile.Components.RecentActivity.MovementParams
 import com.example.diseomobile.Components.RecentActivity.RecentActivity
-import com.example.diseomobile.Components.TextField.TextFieldCustom
 import com.example.diseomobile.R
 import com.example.diseomobile.data.models.transaction.Transaction
 import com.example.diseomobile.pages.nameSelect.NameSelect
-import com.example.diseomobile.ui.theme.SubtitleSemiBold
 import com.example.diseomobile.ui.theme.Title2Regular
-import com.example.diseomobile.ui.theme.eightyPercentWidth
-import com.example.diseomobile.ui.theme.largeDP
-import com.example.diseomobile.ui.theme.mediumBorder
-import com.example.diseomobile.ui.theme.mediumDP
 import com.example.diseomobile.ui.theme.mediumSemiLarge
-import com.example.diseomobile.ui.theme.ninetyPercentWidth
-import com.example.diseomobile.ui.theme.roundedCorners
-import com.example.diseomobile.ui.theme.smallDP
-import com.example.diseomobile.ui.theme.thirtyPercentWidth
-import com.example.diseomobile.ui.theme.twentyPercentWidth
-import com.example.diseomobile.ui.theme.veryLargeDP
 import com.example.diseomobile.ui.theme.veryLargePadding
 import com.example.diseomobile.ui.theme.xxlDP
 
 @Composable
-fun HomePage(navigateToNewTransaction : () -> Unit) {
+fun HomePage(navigateToNewTransaction : () -> Unit, navigateToMovement : (Int) -> Unit) {
     val viewmodel = hiltViewModel<ViewModelHomePage>()
     val transaction by viewmodel.transactions.collectAsState(listOf())
     val balance by viewmodel.balance.collectAsState(initial = 0.0)
@@ -107,7 +85,8 @@ fun HomePage(navigateToNewTransaction : () -> Unit) {
                     NoRecentActivity()
                 } else {
                     RecentActivity(
-                        movements = getMovements(transaction)
+                        movements = getMovements(transaction),
+                        navigationToMovement = navigateToMovement
                     )
                 }
             }
@@ -123,7 +102,8 @@ fun getMovements(transactions: List<Transaction>): List<MovementParams> {
             description = it.description,
             amount = it.amount,
             date = it.date,
-            income = it.income
+            income = it.income,
+            id = it.id
         )
     }
 }
