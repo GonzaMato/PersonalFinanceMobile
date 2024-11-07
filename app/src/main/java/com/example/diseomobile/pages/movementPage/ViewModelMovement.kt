@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ViewModelMovement @Inject constructor(
     @ApplicationContext private val context: Context
-) : ViewModel(){
+) : ViewModel() {
 
     private val wiseRipOffDatabase = WiseRipOffDatabase.getDataBase(context)
 
@@ -24,9 +24,21 @@ class ViewModelMovement @Inject constructor(
         val transaction = wiseRipOffDatabase.transactionDao().getTransactionById(transactionId)
         emit(transaction)
     }
+
     fun deleteTransaction(transactionId: Int) {
         viewModelScope.launch(Dispatchers.IO) { // Launch a coroutine on the IO dispatcher
-            wiseRipOffDatabase.transactionDao().deleteTransactionById(transactionId)
+            val transaction = wiseRipOffDatabase.transactionDao().getTransactionById(transactionId)
+            if (transaction != null) { // Check if transaction is not null
+                val amount = transaction.amount
+                val income = transaction.income
+                wiseRipOffDatabase.transactionDao().deleteTransactionById(transactionId)
+                val balance = wiseRipOffDatabase.profileDao().getProfileBalance(1)
+                val newBalance = if (income) balance - amount else balance + amount
+
+                wiseRipOffDatabase.profileDao().updateBalance(1, newBalance)
+            } else {
+                // Handle the case where the transaction is null (e.g., log a message or show an error)
+            }
         }
     }
 }
