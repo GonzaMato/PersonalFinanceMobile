@@ -46,4 +46,8 @@
     <string name="accept">Accept</string>
     <string name="ErrorNameNotFilled">Please Fill The Name Field</string>
     <string name="badRequest">Bad Request</string>
+    <string name="goBack">Back</string>
+    <string name="Details">Details</string>
+    <string name="DeleteMovement">Delete Movement</string>
+    <string name="ErrorDeletingTransaction">Error Deleting Transaction</string>
 </resources>

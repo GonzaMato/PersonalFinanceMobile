@@ -123,7 +123,8 @@ fun getMovements(transactions: List<Transaction>): List<MovementParams> {
             description = it.description,
             amount = it.amount,
             date = it.date,
-            income = it.income
+            income = it.income,
+            id = it.id
         )
     }
 }

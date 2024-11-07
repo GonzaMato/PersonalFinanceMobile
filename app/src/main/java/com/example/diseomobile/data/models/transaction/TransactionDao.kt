@@ -15,8 +15,15 @@ interface TransactionDao {
     suspend fun getTransactionsInRange(startDate: Date, endDate: Date): List<Transaction>
 
     @Query("SELECT * FROM `Transaction` WHERE profileId = :profileId ORDER BY date DESC LIMIT :limit OFFSET :offset")
-    suspend fun getTransactionsWithPagination(profileId: Int, limit: Int, offset: Int): List<Transaction>
+    suspend fun getTransactionsWithPagination(
+        profileId: Int,
+        limit: Int,
+        offset: Int
+    ): List<Transaction>
 
     @Query("SELECT * FROM `Transaction` WHERE profileId = :profileId ORDER BY date DESC")
     fun getTransactions(profileId: Int): LiveData<List<Transaction>>
+
+    @Query("DELETE FROM `Transaction` WHERE id = :transactionId")
+    fun deleteTransactionById(transactionId: Int)
 }

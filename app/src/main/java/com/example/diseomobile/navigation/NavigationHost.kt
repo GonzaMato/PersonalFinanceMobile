@@ -13,6 +13,7 @@ import com.example.diseomobile.pages.dolarPrices.DolarPricePage
 import com.example.diseomobile.pages.newTransaction.AddFunds
 import com.example.diseomobile.pages.graphPage.GraphPage
 import com.example.diseomobile.pages.homePage.HomePage
+import com.example.diseomobile.pages.movementPage.MovementPage
 
 @Composable
 fun NavHostComposable(navController: NavHostController, innerPadding: PaddingValues) {
@@ -36,5 +37,6 @@ fun NavHostComposable(navController: NavHostController, innerPadding: PaddingVal
         composable(WiseRipOffScreens.Graphs.name) {
             GraphPage()
         }
+
     }
 }

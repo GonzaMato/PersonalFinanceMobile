@@ -29,8 +29,9 @@ data class MovementParams(
     val amount: Double,
     val description: String,
     val income: Boolean,
-    val date : Date
-)
+    val date : Date,
+    val id : Int = 0,
+    )
 
 @Composable
 fun Movement(movementData : MovementParams) {
