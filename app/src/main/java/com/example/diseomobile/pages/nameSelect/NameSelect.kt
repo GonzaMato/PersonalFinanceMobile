@@ -34,6 +34,7 @@ import com.example.diseomobile.ui.theme.mediumBorder
 import com.example.diseomobile.ui.theme.mediumDP
 import com.example.diseomobile.ui.theme.ninetyPercentWidth
 import com.example.diseomobile.ui.theme.roundedCorners
+import com.example.diseomobile.ui.theme.sixtyPercentWidth
 import com.example.diseomobile.ui.theme.veryLargeDP
 
 @Composable
@@ -94,7 +95,7 @@ fun NameSelect(context : Context, viewmodel : ViewModelHomePage) {
                         .fillMaxWidth(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Box(modifier = Modifier.fillMaxWidth(0.6f)) { // Assuming 60% width
+                    Box(modifier = Modifier.fillMaxWidth(sixtyPercentWidth)) { // Assuming 60% width
                         FilledButton(
                             text = stringResource(id = R.string.accept),
                             type = ButtonType.PRIMARY

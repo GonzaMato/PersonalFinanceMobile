@@ -51,7 +51,6 @@ fun ColumnGraph(amount: Int, day: String, lengthPercentage: Int, selected: Boole
         )
         Spacer(modifier = Modifier.height(smallDP))
 
-        // Box for the dynamic height of the bar
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -69,7 +68,6 @@ fun ColumnGraph(amount: Int, day: String, lengthPercentage: Int, selected: Boole
 
         Spacer(modifier = Modifier.height(verySmallDP))
 
-        // Amount text on top of the bar
         Box(modifier = Modifier.height(veryLargeDP)
             .width(xlDP)
             .align(Alignment.CenterHorizontally)) {

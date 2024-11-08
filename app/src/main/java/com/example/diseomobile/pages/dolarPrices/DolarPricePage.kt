@@ -25,7 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.diseomobile.Components.Button.ButtonType
 import com.example.diseomobile.Components.Button.OutlineButton
@@ -36,8 +35,10 @@ import com.example.diseomobile.ui.theme.Primary200
 import com.example.diseomobile.ui.theme.Primary300
 import com.example.diseomobile.ui.theme.SubtitleRegular
 import com.example.diseomobile.ui.theme.TitleSemiBold
+import com.example.diseomobile.ui.theme.dolarWidth
 import com.example.diseomobile.ui.theme.largeDP
 import com.example.diseomobile.ui.theme.mediumDP
+import com.example.diseomobile.ui.theme.smallDP
 import com.example.diseomobile.ui.theme.xxlDP
 
 @Composable
@@ -76,7 +77,7 @@ fun DolarPricePage() {
                 Box(
                     modifier = Modifier
                         .height(xxlDP)
-                        .width(200.dp)
+                        .width(dolarWidth)
                 ) {
                     OutlineButton(
                         text = stringResource(id = R.string.retry),
@@ -114,7 +115,7 @@ fun DolarPricePage() {
                                 CurrencyValue(it.nombre, it.compra, it.venta, R.drawable.usaflag)
                             }
                         }
-                        Spacer(modifier = Modifier.height(8.dp))
+                        Spacer(modifier = Modifier.height(smallDP))
                     }
                 }
             }

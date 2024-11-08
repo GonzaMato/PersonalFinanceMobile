@@ -18,10 +18,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import com.example.diseomobile.R
 import com.example.diseomobile.ui.theme.Title2SemiBold
 import com.example.diseomobile.ui.theme.currencyImageSize
+import com.example.diseomobile.ui.theme.mediumDP
 
 @Composable
 fun AuthenticationFail() {
@@ -44,7 +44,7 @@ fun AuthenticationFail() {
                     .align(Alignment.CenterHorizontally),
                 contentScale = ContentScale.Crop
             )
-            Spacer(modifier = Modifier.size(16.dp))
+            Spacer(modifier = Modifier.size(mediumDP))
             Text( text = stringResource(id = R.string.authentication_failed), style = Title2SemiBold, color = MaterialTheme.colorScheme.primary)
             Text( text = stringResource(id = R.string.tryagain), style = Title2SemiBold, color = MaterialTheme.colorScheme.primary)
 

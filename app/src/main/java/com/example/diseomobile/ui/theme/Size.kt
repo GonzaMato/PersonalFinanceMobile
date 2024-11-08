@@ -40,3 +40,5 @@ val thirtyPercentWidth = 0.3f
 val currencyImageSize = 60.dp
 
 val graphColumnWidth = 45.dp
+
+val dolarWidth = 200.dp
